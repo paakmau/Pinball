@@ -29,7 +29,7 @@ var Ball = cc.Class({
     onKeyDown(event) {
         switch(event.keyCode) {
             case cc.macro.KEY.space:
-                this.bomb(cc.v2(0, 10000));
+                this.bomb(cc.v2(0, 5000));
                 break;
         }
     }
