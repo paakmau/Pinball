@@ -7,7 +7,7 @@ var CircleTrampoline = cc.Class({
     
     onBeginContact(contact, selfCollider, otherCollider) {
         var bombDir = otherCollider.node.position.sub(selfCollider.node.position).normalize().mul(bombPower);
-        this.node.on("ball_bomb", bombDir);
+        this.node.on("ball_bomb", bombDir); // TODO: 应当使用消息系统
     }
 });
 

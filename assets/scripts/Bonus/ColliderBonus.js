@@ -1,4 +1,7 @@
 
+/**
+ * 该Bonus的碰撞器需要Enable Contact
+ */
 var ColliderBonus = cc.Class({
     extends: cc.Component,
 
@@ -7,7 +10,7 @@ var ColliderBonus = cc.Class({
     },
 
     onBeginContact(contact, selfCollider, otherCollider) {
-        this.node.emit("bonus_gain", this.bonusFactor);
+        this.node.emit("bonus_gain", this.bonusFactor); // TODO: 应当使用消息系统
     }
 });
 

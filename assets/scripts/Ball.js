@@ -5,8 +5,6 @@ var Ball = cc.Class({
     properties: {
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad() {
         // 获取成员变量
         this.rigidBody = this.getComponent(cc.RigidBody);
@@ -27,9 +25,19 @@ var Ball = cc.Class({
     // TODO: 用于测试, KeyDown回调
     // 按下空格, 发射小破球
     onKeyDown(event) {
+        var impulse = 1000;
         switch(event.keyCode) {
-            case cc.macro.KEY.space:
-                this.bomb(cc.v2(0, 5000));
+            case cc.macro.KEY.w:
+                this.bomb(cc.v2(0, impulse));
+                break;
+            case cc.macro.KEY.s:
+                this.bomb(cc.v2(0, -impulse));
+                break;
+            case cc.macro.KEY.a:
+                this.bomb(cc.v2(-impulse, 0));
+                break;
+            case cc.macro.KEY.d:
+                this.bomb(cc.v2(impulse, 0));
                 break;
         }
     }

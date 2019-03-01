@@ -19,7 +19,7 @@ var RectTrampoline = cc.Class({
     onBeginContact(contact, selfCollider, otherCollider) {
         // 若被小球碰到, 广播Bomb事件
         // if(otherCollider.node.name == "Ball")
-        this.node.emit("ball_bomb", this.bombDir);
+        this.node.emit("ball_bomb", this.bombDir); // TODO: 应当使用消息系统
     }
 });
 
