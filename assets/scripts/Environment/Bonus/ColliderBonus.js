@@ -10,7 +10,8 @@ var ColliderBonus = cc.Class({
     },
 
     onBeginContact(contact, selfCollider, otherCollider) {
-        this.node.emit("bonus_gain", this.bonusFactor); // TODO: 应当使用消息系统
+        // TODO: 应当使用消息系统
+        cc.director.emit("bonus_gain", this.bonusFactor);
     }
 });
 

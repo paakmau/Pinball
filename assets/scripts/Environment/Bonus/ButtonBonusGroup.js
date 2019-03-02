@@ -28,7 +28,8 @@ var ButtonBonusGroup = cc.Class({
         this.pressedBtnNum ++;
         if(this.pressedBtnNum == this.buttonBonusArray.length) {
             this.reset();
-            this.node.emit("bonus_gain", this.bonusFactor); // TODO: 应当使用消息系统
+            // TODO: 应当使用消息系统
+            cc.director.emit("bonus_gain", this.bonusFactor);
         }
     }
 });

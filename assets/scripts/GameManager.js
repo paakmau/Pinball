@@ -8,5 +8,6 @@ cc.Class({
     onLoad() {
         // 开启物理引擎
         cc.director.getPhysicsManager().enabled = true;
+        cc.director.getCollisionManager().enabled = true;
     }
 });

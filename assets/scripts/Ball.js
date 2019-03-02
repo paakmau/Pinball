@@ -10,16 +10,24 @@ var Ball = cc.Class({
         this.rigidBody = this.getComponent(cc.RigidBody);
         this.worldCenter = this.rigidBody.getWorldCenter();
 
+        // TODO: 应当使用消息系统
         // 监听Bomb事件
-        this.node.on("ball_bomb", this.bomb, this);
+        cc.director.on("ball_bomb", this.bomb, this);
+        cc.director.on("ball_transfer", this.transfer, this);
 
 
         // TODO: 用于测试, 注册键盘输入
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
     },
 
+    // 对小球施加冲量
     bomb(dir) {
         this.rigidBody.applyLinearImpulse(dir, this.worldCenter);
+    },
+
+    // 小球传送
+    transfer(pos) {
+        this.node.position = pos;
     },
 
     // TODO: 用于测试, KeyDown回调

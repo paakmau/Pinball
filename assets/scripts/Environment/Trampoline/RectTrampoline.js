@@ -8,18 +8,19 @@
 var RectTrampoline = cc.Class({
     extends: cc.Component,
     properties: {
-        bombPower: 100
+        bombPower: 3000
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.bombDir = cc.v2(0, 1).rotate(this.node.rotation).mul(this.bombPower);
+        this.bombDir = cc.v2(0, 1).rotate(-this.node.rotation/180*3.14159).mul(this.bombPower);
     },
     onBeginContact(contact, selfCollider, otherCollider) {
         // 若被小球碰到, 广播Bomb事件
         // if(otherCollider.node.name == "Ball")
-        this.node.emit("ball_bomb", this.bombDir); // TODO: 应当使用消息系统
+        // TODO: 应当使用消息系统
+        cc.director.emit("ball_bomb", this.bombDir);
     }
 });
 
