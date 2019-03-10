@@ -1,0 +1,43 @@
+
+
+var BonusGainEvent = require("../../Message/GameLogic/BonusGainEvent")
+var ButtonBonus = require("./ButtonBonus");
+
+var ButtonBonusGroup = cc.Class({
+    extends: cc.Component,
+    properties: {
+        buttonBonusArray: {
+            type: ButtonBonus,
+            default: []
+        },
+        bonusFactor: 10000
+    },
+
+    onLoad() {
+        this.pressedBtnNum = 0;
+        this.buttonBonusArray.forEach(btnBonus => {
+            btnBonus.setGroup(this);
+        });
+    },
+
+    reset() {
+        this.pressedBtnNum = 0;
+        this.buttonBonusArray.forEach(btnBonus => {
+            btnBonus.reset();
+        });
+    },
+
+    pressDownOneBtn() {
+        this.pressedBtnNum ++;
+        if(this.pressedBtnNum == this.buttonBonusArray.length) {
+            this.reset();
+            
+            // 发送Bonus获得消息
+            var event = new BonusGainEvent();
+            event.init(this.bonusFactor);
+            this.node.dispatchEvent(event);
+        }
+    }
+});
+
+module.exports = ButtonBonusGroup;
