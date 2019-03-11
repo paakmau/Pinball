@@ -32,7 +32,7 @@ cc.Class({
             that.ball.bomb(event.bombDir);
             cc.log("BallBomb, type:" + event.trampolineType);
             var dGEvent = new TrampolineContactDGEvent()
-            dGEvent.init(event.tranpolineType);
+            dGEvent.init(event.trampolineType);
             that.node.dispatchEvent(dGEvent);
         });
 

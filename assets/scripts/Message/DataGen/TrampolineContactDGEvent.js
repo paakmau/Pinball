@@ -1,6 +1,6 @@
 /**
  * 蹦床触发事件
- * 属性 TrampolineType指明是哪一种蹦床
+ * 属性 trampolineType指明是哪一种蹦床
  */
 
 var eventName = "TrampolineContactDG";
@@ -18,10 +18,10 @@ var TrampolineContactDGEvent = cc.Class({
     },
     properties: {
     },
-    init: function(TrampolineType) {
+    init: function(trampolineType) {
         this.type = eventName;
         this.bubbles = true;
-        this.TrampolineType = TrampolineType;
+        this.trampolineType = trampolineType;
     }
 });
 
