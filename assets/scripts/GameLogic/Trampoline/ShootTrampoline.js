@@ -5,7 +5,7 @@
  * 需要普通Collider
  */
 
-var BallBombGLEvent = require("../../Message/GameLogic/BallBombGLEvent");
+var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampolineGLEvent");
 
 var ShootTrampoline = cc.Class({
     extends: cc.Component,
@@ -32,8 +32,8 @@ var ShootTrampoline = cc.Class({
         else this.touchBallTime = 0;
         if(this.touchBallTime >= this.touchBallTimeBeforeShoot) {
             this.touchBallTime = 0;
-            var event = new BallBombGLEvent();
-            event.init(this.shootDir, BallBombGLEvent.BombType.ShootTrampoline);
+            var event = new BallBombTrampolineGLEvent();
+            event.init(this.shootDir, BallBombTrampolineGLEvent.TrampolineType.ShootTrampoline);
             this.node.dispatchEvent(event);
         }
     }
