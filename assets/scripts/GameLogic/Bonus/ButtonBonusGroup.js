@@ -4,7 +4,7 @@
  * 要求Enable Contact
  */
 
-var BonusGainEvent = require("../../Message/GameLogic/BonusGainEvent")
+var BonusGainGLEvent = require("../../Message/GameLogic/BonusGainGLEvent")
 var ButtonBonus = require("./ButtonBonus");
 
 var ButtonBonusGroup = cc.Class({
@@ -37,7 +37,7 @@ var ButtonBonusGroup = cc.Class({
             this.reset();
             
             // 发送Bonus获得消息
-            var event = new BonusGainEvent();
+            var event = new BonusGainGLEvent();
             event.init(this.bonusFactor);
             this.node.dispatchEvent(event);
         }

@@ -1,8 +1,8 @@
 
 var Ball = require("./Ball");
-var BallBombEvent = require("../Message/GameLogic/BallBombEvent");
-var BallTransferEvent = require("../Message/GameLogic/BallTransferEvent");
-var BonusGainEvent = require("../Message/GameLogic/BonusGainEvent");
+var BallBombGLEvent = require("../Message/GameLogic/BallBombGLEvent");
+var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent");
+var BonusGainGLEvent = require("../Message/GameLogic/BonusGainGLEvent");
 
 cc.Class({
     extends: cc.Component,
@@ -22,18 +22,20 @@ cc.Class({
         // 观察者模式, 监听子节点的事件
 
         // 小球Bomb事件
-        this.node.on(BallBombEvent.Name, function(event) {
+        this.node.on(BallBombGLEvent.Name, function(event) {
             that.ball.bomb(event.bombDir);
+            cc.log("BallBomb, type:" + event.bombType);
         });
 
         // 小球传送事件
-        this.node.on(BallTransferEvent.Name, function(event) {
+        this.node.on(BallTransferGLEvent.Name, function(event) {
             that.ball.transfer(event.pos);
+            cc.log("BallTransfer");
         });
 
         // 获得Bonus事件
-        this.node.on(BonusGainEvent.Name, function(event) {
-            cc.log("Bonus Gain "+event.factor);
+        this.node.on(BonusGainGLEvent.Name, function(event) {
+            cc.log("BonusGain "+event.factor);
         })
     }
 });

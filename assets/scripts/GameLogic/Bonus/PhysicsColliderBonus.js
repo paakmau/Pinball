@@ -2,7 +2,7 @@
  * 该Bonus的碰撞器需要普通Collider
  */
 
-var BonusGainEvent = require("../../Message/GameLogic/BonusGainEvent")
+var BonusGainGLEvent = require("../../Message/GameLogic/BonusGainGLEvent")
 
 var PhysicsColliderBonus = cc.Class({
     extends: cc.Component,
@@ -13,7 +13,7 @@ var PhysicsColliderBonus = cc.Class({
 
     onBeginContact() {
         // 发送Bonus获得消息
-        var event = new BonusGainEvent();
+        var event = new BonusGainGLEvent();
         event.init(this.bonusFactor);
         this.node.dispatchEvent(event);
     }

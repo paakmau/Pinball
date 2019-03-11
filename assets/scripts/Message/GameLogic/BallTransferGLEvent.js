@@ -1,14 +1,13 @@
 
 
-var eventName = "BallTransfer";
+var eventName = "BallTransferGL";
 
-var BallTransferEvent = cc.Class({
+var BallTransferGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
     statics: {
         Name: eventName
     },
     properties: {
-        pos: cc.v2(0, 0)
     },
     init: function(pos) {
         this.type = eventName;
@@ -17,4 +16,4 @@ var BallTransferEvent = cc.Class({
     }
 });
 
-module.exports = BallTransferEvent;
+module.exports = BallTransferGLEvent;

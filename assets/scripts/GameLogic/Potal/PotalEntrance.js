@@ -3,7 +3,7 @@
  * exit为出口, 锚点为(0.5, 0.5)
  */
 
-var BallTransferEvent = require("../../Message/GameLogic/BallTransferEvent");
+var BallTransferGLEvent = require("../../Message/GameLogic/BallTransferGLEvent");
 
 cc.Class({
     extends: cc.Component,
@@ -18,7 +18,7 @@ cc.Class({
 
     onCollisionStay() {
         // 触发传送事件
-        var transEvent = new BallTransferEvent();
+        var transEvent = new BallTransferGLEvent();
         transEvent.init(this.exitWorldCenter);
         this.node.dispatchEvent(transEvent);
     }
