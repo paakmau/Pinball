@@ -32,7 +32,7 @@ cc.Class({
             that.ball.bomb(event.bombDir);
             cc.log("BallBomb, type:" + event.trampolineType);
             var dGEvent = new TrampolineContactDGEvent()
-            dGEvent.init();
+            dGEvent.init(event.tranpolineType);
             that.node.dispatchEvent(dGEvent);
         });
 
@@ -49,7 +49,7 @@ cc.Class({
         this.node.on(BonusGainGLEvent.Name, function(event) {
             cc.log("BonusGain "+event.factor);
             var dGEvent = new BonusGainDGEvent();
-            dGEvent.init(dGEvent.factor); // TODO: 应当与当前小球得分倍率相乘再返回
+            dGEvent.init(event.factor); // TODO: 应当与当前小球得分倍率相乘再返回
             that.node.dispatchEvent(dGEvent);
         })
     }

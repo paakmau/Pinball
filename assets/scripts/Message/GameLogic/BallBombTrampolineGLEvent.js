@@ -6,7 +6,7 @@ var BallBombTrampolineGLEvent = cc.Class({
     statics: {
         Name: eventName,
         TrampolineType: {
-            // bomb的类型
+            // Trampoline的类型
             RectTrampoline: "RectTrampoline",
             CircleTrampoline: "CircleTrampoline",
             ShootTrampoline: "ShootTrampoline",
