@@ -1,7 +1,6 @@
 
 var Ball = require("./Ball");
 var BallBombEvent = require("../Message/GameLogic/BallBombEvent");
-var BallShootEvent = require("../Message/GameLogic/BallShootEvent");
 var BallTransferEvent = require("../Message/GameLogic/BallTransferEvent");
 var BonusGainEvent = require("../Message/GameLogic/BonusGainEvent");
 
