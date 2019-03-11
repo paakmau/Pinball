@@ -1,4 +1,8 @@
-
+/**
+ * 按钮组类型Bonus
+ * 当所有按钮都被按下时获得Bonus, 并恢复所有按钮到未按下状态
+ * 要求Enable Contact
+ */
 
 var BonusGainEvent = require("../../Message/GameLogic/BonusGainEvent")
 var ButtonBonus = require("./ButtonBonus");

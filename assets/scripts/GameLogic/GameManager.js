@@ -1,6 +1,7 @@
 
 var Ball = require("./Ball");
 var BallBombEvent = require("../Message/GameLogic/BallBombEvent");
+var BallShootEvent = require("../Message/GameLogic/BallShootEvent");
 var BallTransferEvent = require("../Message/GameLogic/BallTransferEvent");
 var BonusGainEvent = require("../Message/GameLogic/BonusGainEvent");
 
@@ -26,11 +27,18 @@ cc.Class({
             that.ball.bomb(event.bombDir);
         });
 
+        // 小球Shoot事件
+        this.node.on(BallShootEvent.Name, function(event) {
+            if(that.ball.rigidbody.linearVelocity)
+                that.ball.bomb(event.shootDir);
+        });
+
         // 小球传送事件
         this.node.on(BallTransferEvent.Name, function(event) {
             that.ball.transfer(event.pos);
         });
 
+        // 获得Bonus事件
         this.node.on(BonusGainEvent.Name, function(event) {
             cc.log("Bonus Gain "+event.factor);
         })
