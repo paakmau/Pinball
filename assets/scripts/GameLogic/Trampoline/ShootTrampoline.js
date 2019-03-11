@@ -5,22 +5,37 @@
  * 需要普通Collider
  */
 
-var BallShootEvent = require("../../Message/GameLogic/BallShootEvent");
+var BallBombEvent = require("../../Message/GameLogic/BallBombEvent");
 
 var ShootTrampoline = cc.Class({
     extends: cc.Component,
     properties: {
         shootPower: 150000,
-        shootDir: cc.v2(0, 1)
+        shootDir: cc.v2(0, 1),
+        touchBallTimeBeforeShoot: 1.5
     },
 
     onLoad() {
         this.shootDir = this.shootDir.normalize().mul(this.shootPower);
+        this.isTouchBall = false;
+        this.touchBallTime = 0.0;
     },
-    onCollisionStay() {
-        var event = new BallShootEvent();
-        BallShootEvent.init(this.shootDir);
-        this.node.dispatchEvent(event);
+    onCollisionEnter() {
+        this.isTouchBall = true;
+    },
+    onCollisionExit() {
+        this.isTouchBall = false;
+    },
+    update(dT) {
+        if(this.isTouchBall)
+            this.touchBallTime += dT;
+        else this.touchBallTime = 0;
+        if(this.touchBallTime >= this.touchBallTimeBeforeShoot) {
+            this.touchBallTime = 0;
+            var event = new BallBombEvent();
+            event.init(this.shootDir);
+            this.node.dispatchEvent(event);
+        }
     }
 });
 
