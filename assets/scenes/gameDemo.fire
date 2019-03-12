@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6617974411340141,
-      "y": 0.6617974411340141,
+      "x": 0.14808132542273034,
+      "y": 0.14808132542273034,
       "z": 1
     },
     "_quat": {
@@ -76,7 +76,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 119
+        "__id__": 120
       }
     ],
     "_prefab": null,
@@ -287,17 +287,17 @@
         "__id__": 35
       },
       {
-        "__id__": 110
+        "__id__": 111
       },
       {
-        "__id__": 116
+        "__id__": 117
       }
     ],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 118
+        "__id__": 119
       }
     ],
     "_prefab": null,
@@ -4706,6 +4706,9 @@
     "_components": [
       {
         "__id__": 109
+      },
+      {
+        "__id__": 110
       }
     ],
     "_prefab": null,
@@ -4776,6 +4779,16 @@
     "_id": "2f+rUbox5ElKUowHlgAAlj"
   },
   {
+    "__type__": "c2ff8ISxn9PWpuW8bBcEnk6",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 108
+    },
+    "_enabled": true,
+    "_id": "88qCt+2KtM1L0v5POM4CXc"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "Ball",
     "_objFlags": 0,
@@ -4787,9 +4800,6 @@
     "_level": 3,
     "_components": [
       {
-        "__id__": 111
-      },
-      {
         "__id__": 112
       },
       {
@@ -4800,6 +4810,9 @@
       },
       {
         "__id__": 115
+      },
+      {
+        "__id__": 116
       }
     ],
     "_prefab": null,
@@ -4853,7 +4866,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 110
+      "__id__": 111
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -4881,7 +4894,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 110
+      "__id__": 111
     },
     "_enabled": true,
     "_type": 2,
@@ -4905,7 +4918,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 110
+      "__id__": 111
     },
     "_enabled": true,
     "tag": 0,
@@ -4927,7 +4940,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 110
+      "__id__": 111
     },
     "_enabled": true,
     "tag": 0,
@@ -4944,7 +4957,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 110
+      "__id__": 111
     },
     "_enabled": true,
     "_id": "8145BXuHNNdJ5lh5eWzLZ0"
@@ -4961,7 +4974,7 @@
     "_level": 3,
     "_components": [
       {
-        "__id__": 117
+        "__id__": 118
       }
     ],
     "_prefab": null,
@@ -5015,7 +5028,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 116
+      "__id__": 117
     },
     "_enabled": true,
     "_cullingMask": 4294967295,
@@ -5041,7 +5054,7 @@
     },
     "_enabled": true,
     "ball": {
-      "__id__": 115
+      "__id__": 116
     },
     "ballStarterNode": {
       "__id__": 107

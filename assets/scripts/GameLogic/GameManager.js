@@ -4,11 +4,12 @@ var Ball = require("./Ball");
 var BallBombTrampolineGLEvent = require("../Message/GameLogic/BallBombTrampolineGLEvent");
 var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent");
 var BonusGainGLEvent = require("../Message/GameLogic/BonusGainGLEvent");
+var GameOverGLEvent = require("../Message/GameLogic/GameOverGLEvent");
 
-var BallFallDGEvent = require("../Message/DataGen/BallFallDGEvent");
 var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent");
 var TrampolineContactDGEvent = require("../Message/DataGen/TrampolineContactDGEvent");
 var PortalContactDGEvent = require("../Message/DataGen/PortalContactGLEvent");
+var BallFallDGEvent = require("../Message/DataGen/BallFallDGEvent");
 
 cc.Class({
     extends: cc.Component,
@@ -21,6 +22,9 @@ cc.Class({
         ballStarterNode: cc.Node
     },
     onLoad() {
+        // 初始化成员变量
+        this. ballStarterWorldCenter = this.ballStarterNode.position;
+
         // 开启物理引擎
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
@@ -51,6 +55,15 @@ cc.Class({
             cc.log("BonusGain "+event.factor);
             var dGEvent = new BonusGainDGEvent();
             dGEvent.init(event.factor); // TODO: 应当与当前小球得分倍率相乘再返回
+            that.node.dispatchEvent(dGEvent);
+        });
+
+        // GameOver事件
+        this.node.on(GameOverGLEvent.Name, function(event) {
+            that.ball.transfer(that.ballStarterWorldCenter);
+            cc.log("Game Over");
+            var dGEvent = new BallFallDGEvent();
+            dGEvent.init();
             that.node.dispatchEvent(dGEvent);
         })
     }
