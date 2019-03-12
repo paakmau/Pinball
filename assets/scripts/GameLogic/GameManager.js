@@ -17,7 +17,8 @@ cc.Class({
         ball: {
             type: Ball,
             default: null
-        }
+        },
+        ballStarterNode: cc.Node
     },
     onLoad() {
         // 开启物理引擎
