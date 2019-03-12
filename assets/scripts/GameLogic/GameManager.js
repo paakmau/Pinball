@@ -5,11 +5,13 @@ var Racket = require("./Racket");
 var BallBombTrampolineGLEvent = require("../Message/GameLogic/BallBombTrampolineGLEvent");
 var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent");
 var BonusGainGLEvent = require("../Message/GameLogic/BonusGainGLEvent");
+var RacketPunchGLEvent = require("../Message/GameLogic/RacketPunchGLEvent");
 var GameOverGLEvent = require("../Message/GameLogic/GameOverGLEvent");
 
 var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent");
 var TrampolineContactDGEvent = require("../Message/DataGen/TrampolineContactDGEvent");
 var PortalContactDGEvent = require("../Message/DataGen/PortalContactGLEvent");
+var RacketPunchDGEvent = require("../Message/DataGen/RacketPunchDGEvent");
 var BallFallDGEvent = require("../Message/DataGen/BallFallDGEvent");
 
 cc.Class({
@@ -77,6 +79,14 @@ cc.Class({
             dGEvent.init();
             that.node.dispatchEvent(dGEvent);
         });
+
+        // RacketPunch事件
+        this.node.on(RacketPunchGLEvent.Name, function(event) {
+            cc.log("Racket has punched!");
+            var dGEvent = new RacketPunchDGEvent();
+            dGEvent.init();
+            that.node.dispatchEvent(dGEvent);
+        })
 
         // 监听键盘(触屏)事件
         
