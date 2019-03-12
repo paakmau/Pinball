@@ -1,5 +1,6 @@
 
 var Ball = require("./Ball");
+var Racket = require("./Racket");
 
 var BallBombTrampolineGLEvent = require("../Message/GameLogic/BallBombTrampolineGLEvent");
 var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent");
@@ -19,9 +20,15 @@ cc.Class({
             type: Ball,
             default: null
         },
+        racket: {
+            type: Racket,
+            default: []
+        },
         ballStarterNode: cc.Node
     },
     onLoad() {
+        var that = this;
+
         // 初始化成员变量
         this. ballStarterWorldCenter = this.ballStarterNode.position;
 
@@ -33,7 +40,6 @@ cc.Class({
         // 开启碰撞体边框显示(调试模式)
         cc.director.getPhysicsManager().debugDrawFlags = true;
 
-        var that = this;
 
         // 观察者模式, 监听子节点的事件
 
@@ -70,6 +76,42 @@ cc.Class({
             var dGEvent = new BallFallDGEvent();
             dGEvent.init();
             that.node.dispatchEvent(dGEvent);
-        })
+        });
+
+        // 监听键盘(触屏)事件
+        
+        // TODO: 用于测试, 注册键盘输入
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+    },
+    
+    // TODO: 用于测试, KeyDown回调
+    // 按下空格, 发射小破球
+    onKeyDown(event) {
+        var impulse = 1000;
+        switch(event.keyCode) {
+            case cc.macro.KEY.w:
+                this.ball.bomb(cc.v2(0, impulse));
+                break;
+            case cc.macro.KEY.s:
+                this.ball.bomb(cc.v2(0, -impulse));
+                break;
+            case cc.macro.KEY.a:
+                this.racket[0].setRotate(true);
+                break;
+            case cc.macro.KEY.d:
+                this.racket[1].setRotate(true);
+                break;
+        }
+    },
+    onKeyUp(event) {
+        switch(event.keyCode) {
+            case cc.macro.KEY.a:
+                this.racket[0].setRotate(false);
+                break;
+            case cc.macro.KEY.d:
+                this.racket[1].setRotate(false);
+                break;
+        }
     }
 });
