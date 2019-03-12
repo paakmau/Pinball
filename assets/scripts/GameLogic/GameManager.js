@@ -28,6 +28,11 @@ cc.Class({
         // 开启物理引擎
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
+
+        // TODO: 发行后不应有这个东西
+        // 开启碰撞体边框显示(调试模式)
+        cc.director.getPhysicsManager().debugDrawFlags = true;
+
         var that = this;
 
         // 观察者模式, 监听子节点的事件
