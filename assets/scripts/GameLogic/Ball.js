@@ -20,6 +20,10 @@ var Ball = cc.Class({
     // 小球传送
     transfer(pos) {
         this.node.position = pos;
+    },
+
+    restart() {
+        this.rigidBody.linearVelocity = cc.v2(0, 70.0);
     }
 });
 

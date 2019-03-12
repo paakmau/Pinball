@@ -74,6 +74,7 @@ cc.Class({
         // GameOver事件
         this.node.on(GameOverGLEvent.Name, function(event) {
             that.ball.transfer(that.ballStarterWorldCenter);
+            that.ball.restart();
             cc.log("Game Over");
             var dGEvent = new BallFallDGEvent();
             dGEvent.init();
