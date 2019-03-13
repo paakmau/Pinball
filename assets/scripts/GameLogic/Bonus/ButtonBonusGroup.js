@@ -14,7 +14,7 @@ var ButtonBonusGroup = cc.Class({
             type: ButtonBonus,
             default: []
         },
-        bonusFactor: 10000
+        bonusFactor: 7500
     },
 
     onLoad() {
@@ -25,6 +25,7 @@ var ButtonBonusGroup = cc.Class({
     },
 
     reset() {
+        // TODO: 应当播放成功动画
         this.pressedBtnNum = 0;
         this.buttonBonusArray.forEach(btnBonus => {
             btnBonus.reset();
