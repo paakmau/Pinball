@@ -33,7 +33,7 @@ var ButtonBonus = cc.Class({
         this.rigidBody.active = true;
 
         // 测试用
-        this.node.x -= 100;
+        this.node.x += 6;
     },
 
     pressDown() {
@@ -41,7 +41,7 @@ var ButtonBonus = cc.Class({
         this.rigidBody.active = false;
 
         // TODO: pressDownOneBtn应当在按压动画结束后调用
-        this.node.x += 100;
+        this.node.x -= 6;
         this.group.pressDownOneBtn();
     }
 });
