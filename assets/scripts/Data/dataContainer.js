@@ -13,6 +13,11 @@ var dataContainer = cc.Class({
         this.portalTimes = 0;
         this.trampolineTimes = 0;
         cc.log("resetData");
+    },
+
+    trampolineContact(){
+        this.trampolineTimes++;
+        cc.log("Trampoline Contact = " + this.trampolineTimes);
     }
 
 
