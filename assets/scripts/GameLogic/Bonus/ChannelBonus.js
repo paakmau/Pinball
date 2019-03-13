@@ -28,12 +28,15 @@ var ChannelBonus = cc.Class({
     },
 
     reset() {
-        changeStateInView(false);
+        this.isActive = false;
     },
 
     changeStateInView(isActive) {
         // TODO: 用动画或切图片改变通道状态
-        cc.log("cnm : "+isActive);
+        if(isActive)
+            this.node.color = new cc.Color(255, 84, 0);
+        else
+            this.node.color = new cc.color(255, 255, 255);
     }
 });
 
