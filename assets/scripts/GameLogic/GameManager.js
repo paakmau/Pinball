@@ -5,6 +5,7 @@ var Racket = require("./Racket");
 var BallBombTrampolineGLEvent = require("../Message/GameLogic/BallBombTrampolineGLEvent");
 var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent");
 var BonusGainGLEvent = require("../Message/GameLogic/BonusGainGLEvent");
+var UpgradableBonusUpgradeGLEvent = require("../Message/GameLogic/UpgradableBonusUpgradeGLEvent");
 var RacketPunchGLEvent = require("../Message/GameLogic/RacketPunchGLEvent");
 var GameOverGLEvent = require("../Message/GameLogic/GameOverGLEvent");
 
@@ -69,6 +70,11 @@ cc.Class({
             var dGEvent = new BonusGainDGEvent();
             dGEvent.init(event.factor); // TODO: 应当与当前小球得分倍率相乘再返回
             that.node.dispatchEvent(dGEvent);
+        });
+
+        // 可升级Bonus升级事件
+        this.node.on(UpgradableBonusUpgradeGLEvent.Name, function(event) {
+            cc.log("UpgradableBonus Upgraded, name:" + event.bonusName + ", level: " + event.level);
         });
 
         // GameOver事件
