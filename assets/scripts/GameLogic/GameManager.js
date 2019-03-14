@@ -8,6 +8,9 @@ var BonusGainGLEvent = require("../Message/GameLogic/BonusGainGLEvent");
 var UpgradableBonusUpgradeGLEvent = require("../Message/GameLogic/UpgradableBonusUpgradeGLEvent");
 var RacketPunchGLEvent = require("../Message/GameLogic/RacketPunchGLEvent");
 var GameOverGLEvent = require("../Message/GameLogic/GameOverGLEvent");
+var BlackHoleInGLEvent = require("../Message/GameLogic/BlackHoleInGLEvent");
+var BlackHoleOutGLEvent = require("../Message/GameLogic/BlackHoleOutGLEvent");
+
 
 var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent");
 var TrampolineContactDGEvent = require("../Message/DataGen/TrampolineContactDGEvent");
@@ -93,7 +96,20 @@ cc.Class({
             var dGEvent = new RacketPunchDGEvent();
             dGEvent.init();
             that.node.dispatchEvent(dGEvent);
-        })
+        });
+
+        // 进入黑洞事件
+        this.node.on(BlackHoleInGLEvent.Name, function(event) {
+            that.ball.goIntoBlackHole(event.pos);
+            cc.log("Go Into Black Hole");
+            // TODO: 发送统计DG事件
+        });
+
+        // 脱离黑洞事件
+        this.node.on(BlackHoleOutGLEvent.Name, function(event) {
+            that.ball.goOutOfBlackHole(event.pos, event.bombDir);
+            cc.log("Go Out Of Black Hole");
+        });
 
         // 监听键盘(触屏)事件
         

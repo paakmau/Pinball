@@ -25,9 +25,11 @@ var UpgradableBonusUpgrader = cc.Class({
     },
 
     onCollisionEnter() {
-        this.isActive = true;
+        if(this.isActive == false) {
+            this.isActive = true;
+            this.controller.statusChange(this.isActive);
+        }
         this.controller.upgraderBonusGain();
-        this.controller.statusChange(this.isActive);
     },
 
     resetInView() {
