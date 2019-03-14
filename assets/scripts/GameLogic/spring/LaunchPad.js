@@ -11,6 +11,7 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.springUp, this);
         this.rigidBody = this.getComponent(cc.RigidBody);
         this.rigidBody.enabledContactListener = false;
+        
     },
     springDown(event){
         if(event.keyCode == cc.macro.KEY.space && this.enable){
@@ -22,9 +23,10 @@ cc.Class({
     },
     springUp(event){
         cc.log("spring up");
-        var action = cc.moveTo(0.1, cc.v2(252.7,-500.7));
-        this.node.runAction(action);
         this.rigidBody.enabledContactListener = true;
+        this.node.stopAllActions();
+        var action = cc.moveTo(0.3, cc.v2(252.7,-488.4));
+        this.node.runAction(action);
         this.enable = true;
     }
 
