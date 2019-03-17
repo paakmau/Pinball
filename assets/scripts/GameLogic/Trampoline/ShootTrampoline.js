@@ -10,7 +10,7 @@ var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampol
 var ShootTrampoline = cc.Class({
     extends: cc.Component,
     properties: {
-        shootPower: 150000,
+        shootPower: 1000,
         shootDir: cc.v2(0, 1),
         touchBallTimeBeforeShoot: 1.5
     },

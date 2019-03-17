@@ -2,6 +2,7 @@
 var Ball = require("./Ball");
 var Racket = require("./Racket");
 
+var BallStartBombGLEvent = require("../Message/GameLogic/BallStartBombGLEvent");
 var BallBombTrampolineGLEvent = require("../Message/GameLogic/BallBombTrampolineGLEvent");
 var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent");
 var BonusGainGLEvent = require("../Message/GameLogic/BonusGainGLEvent");
@@ -48,6 +49,14 @@ cc.Class({
 
 
         // 观察者模式, 监听子节点的事件
+
+        // 小球开始Bomb事件
+        this.node.on(BallStartBombGLEvent.Name, function(event) {
+            if(!that.ball.isMoving()) {
+                that.ball.bomb(event.bombDir);
+                cc.log("BallStartBomb");
+            }
+        });
 
         // 小球蹦床Bomb事件
         this.node.on(BallBombTrampolineGLEvent.Name, function(event) {

@@ -10,7 +10,7 @@ var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampol
 var RectTrampoline = cc.Class({
     extends: cc.Component,
     properties: {
-        bombPower: 2500
+        bombPower: 600
     },
 
     // LIFE-CYCLE CALLBACKS:

@@ -39,6 +39,10 @@ var Ball = cc.Class({
 
     restart() {
         this.rigidBody.linearVelocity = cc.v2(0, 70.0);
+    },
+
+    isMoving() {
+        return this.rigidBody.linearVelocity.magSqr() >= 0.01;
     }
 });
 

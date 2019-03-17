@@ -1,7 +1,7 @@
 
-var eventName = "BallBombGL";
+var eventName = "BallStartBombGL";
 
-var BallBombGLEvent = cc.Class({
+var BallStartBombGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
     statics: {
         Name: eventName
@@ -15,4 +15,4 @@ var BallBombGLEvent = cc.Class({
     }
 });
 
-module.exports = BallBombGLEvent;
+module.exports = BallStartBombGLEvent;
