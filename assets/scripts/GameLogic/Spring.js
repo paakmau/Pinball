@@ -9,7 +9,7 @@ var BombStartBombGLEvent = require("../Message/GameLogic/BallStartBombGLEvent");
 cc.Class({
     extends: cc.Component,
     properties: {
-        bombPowerFact: 1000,
+        bombPowerFact: 2000,
         springUpSpeed: 0.1,
         maxAccTime: 0.7,
         maxDownDis: 100
@@ -49,7 +49,7 @@ cc.Class({
     },
     onSpringUpEnd() {
         var event = new BombStartBombGLEvent();
-        event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact));
+        event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(Math.random(), Math.random())));
         this.node.dispatchEvent(event);
         this.accTime = 0;
     }
