@@ -10,8 +10,14 @@ var CircleTrampoline = cc.Class({
     properties: {
         bombPower: 200
     },
+    onLoad() {
+        this.animation = this.getComponent(cc.Animation);
+    },
     
     onBeginContact(contact, selfCollider, otherCollider) {
+        // 播放动画
+        this.animation.play("CircleTrampolineBomb");
+
         // 触发Bomb事件
         var bombDir = otherCollider.node.position.sub(selfCollider.node.position).normalize().mul(this.bombPower);
         var bombEvent = new BallBombTrampolineGLEvent();
