@@ -11,6 +11,10 @@ var PhysicsColliderBonus = cc.Class({
         bonusFactor: 1000
     },
 
+    onLoad() {
+        this.animation = this.getComponent(cc.Animation);
+    },
+
     onBeginContact() {
         // 发送Bonus获得消息
         var event = new BonusGainGLEvent();
