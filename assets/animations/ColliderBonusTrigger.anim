@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "ColliderBonusTrigger",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.4,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "opacity": [
+        {
+          "frame": 0.03333333333333333,
+          "value": 255
+        },
+        {
+          "frame": 0.06666666666666667,
+          "value": 0
+        },
+        {
+          "frame": 0.11666666666666667,
+          "value": 0
+        },
+        {
+          "frame": 0.15,
+          "value": 255
+        },
+        {
+          "frame": 0.2833333333333333,
+          "value": 255
+        },
+        {
+          "frame": 0.31666666666666665,
+          "value": 0
+        },
+        {
+          "frame": 0.36666666666666664,
+          "value": 0
+        },
+        {
+          "frame": 0.4,
+          "value": 255
+        }
+      ]
+    }
+  },
+  "events": []
+}

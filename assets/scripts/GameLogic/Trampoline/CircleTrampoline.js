@@ -8,7 +8,10 @@ var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampol
 var CircleTrampoline = cc.Class({
     extends: cc.Component,
     properties: {
-        bombPower: 2000
+        bombPower: 200
+    },
+    onLoad() {
+        this.animation = this.getComponent(cc.Animation);
     },
     
     onBeginContact(contact, selfCollider, otherCollider) {

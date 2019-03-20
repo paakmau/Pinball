@@ -29,7 +29,7 @@ var BlackHole = cc.Class({
             if(this.ballInTime >= this.ballInTimeMax) {
                 this.ballIn = false;
                 var outEvent = new BlackHoleOutGLEvent();
-                outEvent.init(this.node.position, this.bombDir);
+                outEvent.init(this.node.position, this.bombDir.add(cc.v2(Math.random(), Math.random())));
                 this.node.dispatchEvent(outEvent);
             }
         }

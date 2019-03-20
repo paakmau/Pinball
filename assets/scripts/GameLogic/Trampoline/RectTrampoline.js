@@ -10,12 +10,13 @@ var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampol
 var RectTrampoline = cc.Class({
     extends: cc.Component,
     properties: {
-        bombPower: 2500
+        bombPower: 600
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        this.animation = this.getComponent(cc.Animation);
         this.bombDir = cc.v2(0, 1).rotate(-this.node.rotation/180*3.14159).mul(this.bombPower);
     },
     onBeginContact(contact, selfCollider, otherCollider) {
