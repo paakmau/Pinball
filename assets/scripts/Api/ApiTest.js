@@ -12,8 +12,12 @@ cc.Class({
         },
         updateUserEditBox: cc.EditBox
     },
-    
-    onClickLogin() {
+
+    onRegisterOrLoginByWxId() {
         UserApi.RegisterOrLoginByWxId(this.loginEditBox.string, res=>{ console.log(res) })
+    },
+    
+    onUpdateScoreById() {
+        UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) })
     }
 });

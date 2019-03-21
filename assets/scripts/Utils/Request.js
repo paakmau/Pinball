@@ -32,6 +32,9 @@ export default {
         xhr.send();
     },
     Post: function (relUrl, reqData, callback) {
+        //拼接请求参数
+        let param = JSON.stringify(reqData)
+
         //发起请求
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -54,6 +57,6 @@ export default {
         };
         xhr.open("POST", baseUrl + relUrl, true);
         xhr.setRequestHeader("Content-Type" , "application/json");  
-        xhr.send(reqData);//reqData为json
+        xhr.send(param);//reqData为json拼接的字符串
     }
 }

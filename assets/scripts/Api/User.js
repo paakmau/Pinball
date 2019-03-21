@@ -5,7 +5,7 @@ export default {
     RegisterOrLoginByWxId(wxId, callback) {
         Request.Get("RegisterOrLoginByWxId", { wxId: wxId }, callback)
     },
-    UpdateScoreByWxId(data, callback) {
-        Request.Post("UpdateScoreByWxId", data, callback)
+    UpdateScoreById(data, callback) {
+        Request.Post("UpdateScoreById", data, callback)
     }
 }
