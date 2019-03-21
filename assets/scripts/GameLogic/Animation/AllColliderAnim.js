@@ -18,4 +18,4 @@ cc.Class({
     onBeginContact() {
         this.animation.play();
     }
-});
+})
