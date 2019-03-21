@@ -14,6 +14,14 @@ var UIController = cc.Class({
     bonusGain(value){
         this.result = parseInt(this.Bonus.string) + value;
         this.Bonus.string = Number(this.result);
+    },
+    //设置bonus的值。value为int类型
+    setBonus(value){
+        this.Bonus.string = Number(value);
+    },
+    //返回bonus的值，int类型
+    getBonus(){
+        return parseInt(this.Bonus.string);
     }
 });
 

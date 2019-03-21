@@ -26,6 +26,7 @@ cc.Class({
         this.node.on(BallFallDGEvent.Name, function(event){
             cc.log("Main Controller game over");
             that.gameData.resetData();
+            that.updateUI();
          });
 
         //获得bonus
@@ -45,5 +46,13 @@ cc.Class({
             that.gameData.trampolineContact();
         });
 
+    },
+
+    updateBonus(){
+        this.gameUI.setBonus(this.gameData.getBonus());
+    },
+
+    updateUI(){
+        this.updateBonus();
     }
 });

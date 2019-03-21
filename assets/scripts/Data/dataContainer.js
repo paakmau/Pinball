@@ -24,6 +24,9 @@ var dataContainer = cc.Class({
         cc.log("get bonus:" + value + ", all bonus = " + this.bonus);
         return this.bonus;
     },
+    getBonus(){
+        return this.bonus;
+    }
 
 
 });
