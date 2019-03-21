@@ -1,6 +1,6 @@
 
 
-var eventName = "GameOverGL";
+var eventName = "GameOverGL"
 
 var GameOverGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -10,9 +10,9 @@ var GameOverGLEvent = cc.Class({
     properties: {
     },
     init: function() {
-        this.type = eventName;
-        this.bubbles = true;
+        this.type = eventName
+        this.bubbles = true
     }
-});
+})
 
-module.exports = GameOverGLEvent;
+module.exports = GameOverGLEvent

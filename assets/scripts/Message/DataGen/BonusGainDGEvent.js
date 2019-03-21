@@ -3,7 +3,7 @@
  * 属性 value 为获得的Bonus值
  */
 
-var eventName = "BonusGainDG";
+var eventName = "BonusGainDG"
 
 var BonusGainDGEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -13,10 +13,10 @@ var BonusGainDGEvent = cc.Class({
     properties: {
     },
     init: function(value) {
-        this.type = eventName;
-        this.bubbles = true;
-        this.value = value;
+        this.type = eventName
+        this.bubbles = true
+        this.value = value
     }
-});
+})
 
-module.exports = BonusGainDGEvent;
+module.exports = BonusGainDGEvent

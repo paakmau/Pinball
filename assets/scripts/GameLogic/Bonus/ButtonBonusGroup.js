@@ -5,7 +5,7 @@
  */
 
 var BonusGainGLEvent = require("../../Message/GameLogic/BonusGainGLEvent")
-var ButtonBonus = require("./ButtonBonus");
+var ButtonBonus = require("./ButtonBonus")
 
 var ButtonBonusGroup = cc.Class({
     extends: cc.Component,
@@ -18,31 +18,31 @@ var ButtonBonusGroup = cc.Class({
     },
 
     onLoad() {
-        this.pressedBtnNum = 0;
+        this.pressedBtnNum = 0
         this.buttonBonusArray.forEach(btnBonus => {
-            btnBonus.setGroup(this);
-        });
+            btnBonus.setGroup(this)
+        })
     },
 
     reset() {
         // TODO: 应当播放成功动画
-        this.pressedBtnNum = 0;
+        this.pressedBtnNum = 0
         this.buttonBonusArray.forEach(btnBonus => {
-            btnBonus.reset();
-        });
+            btnBonus.reset()
+        })
     },
 
     pressDownOneBtn() {
-        this.pressedBtnNum ++;
+        this.pressedBtnNum ++
         if(this.pressedBtnNum == this.buttonBonusArray.length) {
-            this.reset();
+            this.reset()
             
             // 发送Bonus获得消息
-            var event = new BonusGainGLEvent();
-            event.init(this.bonusFactor);
-            this.node.dispatchEvent(event);
+            var event = new BonusGainGLEvent()
+            event.init(this.bonusFactor)
+            this.node.dispatchEvent(event)
         }
     }
-});
+})
 
-module.exports = ButtonBonusGroup;
+module.exports = ButtonBonusGroup

@@ -3,7 +3,7 @@
  * 要求有普通碰撞器
  */
 
-var GameOverGLEvent = require("../Message/GameLogic/GameOverGLEvent");
+var GameOverGLEvent = require("../Message/GameLogic/GameOverGLEvent")
 
 cc.Class({
     extends: cc.Component,
@@ -11,8 +11,8 @@ cc.Class({
     },
     
     onCollisionEnter: function() {
-        var event = new GameOverGLEvent();
-        event.init();
-        this.node.dispatchEvent(event);
+        var event = new GameOverGLEvent()
+        event.init()
+        this.node.dispatchEvent(event)
     }
-});
+})

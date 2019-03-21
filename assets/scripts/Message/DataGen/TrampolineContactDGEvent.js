@@ -3,7 +3,7 @@
  * 属性 trampolineType指明是哪一种蹦床
  */
 
-var eventName = "TrampolineContactDG";
+var eventName = "TrampolineContactDG"
 
 var TrampolineContactDGEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -19,10 +19,10 @@ var TrampolineContactDGEvent = cc.Class({
     properties: {
     },
     init: function(trampolineType) {
-        this.type = eventName;
-        this.bubbles = true;
-        this.trampolineType = trampolineType;
+        this.type = eventName
+        this.bubbles = true
+        this.trampolineType = trampolineType
     }
-});
+})
 
-module.exports = TrampolineContactDGEvent;
+module.exports = TrampolineContactDGEvent

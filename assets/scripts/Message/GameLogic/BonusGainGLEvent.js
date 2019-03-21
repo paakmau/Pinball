@@ -1,6 +1,6 @@
 
 
-var eventName = "BonusGainGL";
+var eventName = "BonusGainGL"
 
 var BonusGainGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -10,10 +10,10 @@ var BonusGainGLEvent = cc.Class({
     properties: {
     },
     init: function(factor) {
-        this.type = eventName;
-        this.bubbles = true;
+        this.type = eventName
+        this.bubbles = true
         this.factor = factor
     }
-});
+})
 
-module.exports = BonusGainGLEvent;
+module.exports = BonusGainGLEvent

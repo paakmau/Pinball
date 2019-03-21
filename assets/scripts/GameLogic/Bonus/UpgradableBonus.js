@@ -7,7 +7,7 @@ var UpgradableBonus = cc.Class({
     },
 
     setController(controller) {
-        this.controller = controller;
+        this.controller = controller
     },
 
     upgradeInView() {
@@ -15,8 +15,8 @@ var UpgradableBonus = cc.Class({
     },
 
     onBeginContact() {
-        this.controller.bonusGain();
+        this.controller.bonusGain()
     }
-});
+})
 
-module.exports = UpgradableBonus;
+module.exports = UpgradableBonus

@@ -1,6 +1,6 @@
 
 
-var eventName = "BallTransferGL";
+var eventName = "BallTransferGL"
 
 var BallTransferGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -10,10 +10,10 @@ var BallTransferGLEvent = cc.Class({
     properties: {
     },
     init: function(pos) {
-        this.type = eventName;
-        this.bubbles = true;
+        this.type = eventName
+        this.bubbles = true
         this.pos = pos
     }
-});
+})
 
-module.exports = BallTransferGLEvent;
+module.exports = BallTransferGLEvent

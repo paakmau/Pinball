@@ -11,16 +11,16 @@ var CircleTrampoline = cc.Class({
         bombPower: 200
     },
     onLoad() {
-        this.animation = this.getComponent(cc.Animation);
+        this.animation = this.getComponent(cc.Animation)
     },
     
     onBeginContact(contact, selfCollider, otherCollider) {
         // 触发Bomb事件
-        var bombDir = otherCollider.node.position.sub(selfCollider.node.position).normalize().mul(this.bombPower);
-        var bombEvent = new BallBombTrampolineGLEvent();
-        bombEvent.init(bombDir, BallBombTrampolineGLEvent.TrampolineType.CircleTrampoline);
-        this.node.dispatchEvent(bombEvent);
+        var bombDir = otherCollider.node.position.sub(selfCollider.node.position).normalize().mul(this.bombPower)
+        var bombEvent = new BallBombTrampolineGLEvent()
+        bombEvent.init(bombDir, BallBombTrampolineGLEvent.TrampolineType.CircleTrampoline)
+        this.node.dispatchEvent(bombEvent)
     }
-});
+})
 
-module.exports = CircleTrampoline;
+module.exports = CircleTrampoline
