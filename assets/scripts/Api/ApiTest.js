@@ -6,15 +6,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        loginEditBox: {
-            type: cc.EditBox,
-            default: null
-        },
-        updateUserEditBox: cc.EditBox
     },
 
     onRegisterOrLoginByWxId() {
-        UserApi.RegisterOrLoginByWxId(this.loginEditBox.string, res=>{ console.log(res) })
+        UserApi.RegisterOrLoginByWxId('zyqnb!!!', res=>{ console.log(res) })
     },
     
     onUpdateScoreById() {
