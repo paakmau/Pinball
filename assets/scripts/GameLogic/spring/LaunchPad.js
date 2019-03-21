@@ -1,48 +1,56 @@
-var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampolineGLEvent")
+/**
+ * 游戏开始弹簧
+ * 手指触下开始计时, 弹簧压缩
+ * 手指松开弹起, 根据时间决定小球发射冲量
+ */
+
+var BombStartBombGLEvent = require("../Message/GameLogic/BallStartBombGLEvent");
+
 cc.Class({
     extends: cc.Component,
     properties: {
-        bombPower: 2000
+        bombPowerFact: 2000,
+        springUpSpeed: 0.1,
+        maxAccTime: 0.7,
+        maxDownDis: 100
     },
     onLoad(){
-        this.enable = true;
-        var that = this;
-        this.firstPosition = this.node.position;
-        this.endPosition = this.node.position;
+        // 成员变量
+        this.isPressed = false;
+        this.originPos = this.node.position;
+        this.accTime = 0;
 
-        // this.node.on(cc.Node.EventType.MOUSE_DOWN, this.springStart, this);
+        // TODO: 测试用
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.springDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.springUp, this);
-        this.rigidBody = this.getComponent(cc.RigidBody);
-        // this.rigidBody.enabledContactListener = false;
-        
+    },
+    update(dT) {
+        if(this.isPressed) {
+            this.accTime += dT;
+            this.accTime = Math.min(this.maxAccTime, this.accTime);
+            this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis));
+        }
     },
     springDown(event){
-        if(event.keyCode == cc.macro.KEY.space && this.enable){
-            this.enable = false;
+        if(event.keyCode==cc.macro.KEY.space && this.isPressed==false) {
+            this.isPressed = true;
             cc.log("spring down");
-            var action = cc.moveBy(1,cc.v2(0, -100));
-            this.node.runAction(action);
         }
     },
     springUp(event){
-        cc.log("spring up");
-        this.node.stopAllActions();
-        var action = cc.moveTo(0.3, cc.v2(252.7,-488.4));
-        this.node.runAction(action);
-        this.enable = true;
-        this.endPosition = this.node.position;
-        cc.log("end = " + this.endPosition.y + " and first = " + this.firstPosition);
+        if(event.keyCode==cc.macro.KEY.space && this.isPressed==true) {
+            this.isPressed = false;
+            var moveToAction = cc.moveTo(this.accTime*this.springUpSpeed, this.originPos);
+            moveToAction.easing(cc.easeIn(5.0));
+            var action = cc.sequence(moveToAction, cc.callFunc(this.onSpringUpEnd, this));
+            this.node.runAction(action);
+            cc.log("spring up");
+        }
     },
-
-    onBeginContact(contact, selfCollider, otherCollider) {
-        // 触发Bomb事件
-        var bombDir = this.firstPosition.sub(this.endPosition).normalize().mul(this.bombPower).mul(this.firstPosition.y - this.endPosition.y);
-        var bombEvent = new BallBombTrampolineGLEvent();
-        bombEvent.init(bombDir, BallBombTrampolineGLEvent.TrampolineType.CircleTrampoline);
-        this.node.dispatchEvent(bombEvent);
-        cc.log(bombDir.x + "and" + bombDir.y);
-        this.endPosition = this.firstPosition;
+    onSpringUpEnd() {
+        var event = new BombStartBombGLEvent();
+        event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(Math.random(), Math.random())));
+        this.node.dispatchEvent(event);
+        this.accTime = 0;
     }
-
 });
