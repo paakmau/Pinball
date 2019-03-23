@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Special Circle_0",
+    "_name": "Special Circle_1",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -48,8 +48,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 146,
-      "b": 146,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -64,8 +64,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -185,
-      "y": 154,
+      "x": -51,
+      "y": 24.1,
       "z": 0
     },
     "_scale": {

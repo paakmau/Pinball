@@ -6,7 +6,7 @@
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
   "subMetas": {
-    "Ball": {
+    "ball": {
       "ver": "1.0.3",
       "uuid": "e83d4a2d-7a08-492d-a4d3-43a9d5b3434e",
       "rawTextureUuid": "3d6b2a40-d9cc-44e4-8393-214c3953ca62",

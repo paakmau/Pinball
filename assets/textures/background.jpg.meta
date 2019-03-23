@@ -6,7 +6,7 @@
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
   "subMetas": {
-    "Background": {
+    "background": {
       "ver": "1.0.3",
       "uuid": "d5af15d8-e591-43e2-a016-5526811b042b",
       "rawTextureUuid": "5422f9c3-7367-46ab-b8ef-e0cc741afa69",
