@@ -3,7 +3,7 @@
  * 小球传送事件
  */
 
-var eventName = "PortalContactDG";
+var eventName = "PortalContactDG"
 
 var PortalContactDGEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -13,9 +13,9 @@ var PortalContactDGEvent = cc.Class({
     properties: {
     },
     init: function() {
-        this.type = eventName;
-        this.bubbles = true;
+        this.type = eventName
+        this.bubbles = true
     }
-});
+})
 
-module.exports = PortalContactDGEvent;
+module.exports = PortalContactDGEvent

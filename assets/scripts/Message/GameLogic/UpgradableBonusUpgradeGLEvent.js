@@ -1,7 +1,7 @@
 
 
 
-var eventName = "UpgradableBonusUpgradeGL";
+var eventName = "UpgradableBonusUpgradeGL"
 
 var UpgradableBonusUpgradeGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -11,11 +11,11 @@ var UpgradableBonusUpgradeGLEvent = cc.Class({
     properties: {
     },
     init: function(bonusName, level) {
-        this.type = eventName;
-        this.bubbles = true;
-        this.bonusName = bonusName;
-        this.level = level;
+        this.type = eventName
+        this.bubbles = true
+        this.bonusName = bonusName
+        this.level = level
     }
-});
+})
 
-module.exports = UpgradableBonusUpgradeGLEvent;
+module.exports = UpgradableBonusUpgradeGLEvent

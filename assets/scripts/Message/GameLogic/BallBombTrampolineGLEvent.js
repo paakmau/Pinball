@@ -1,5 +1,5 @@
 
-var eventName = "BallBombTrampolineGL";
+var eventName = "BallBombTrampolineGL"
 
 var BallBombTrampolineGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -15,11 +15,11 @@ var BallBombTrampolineGLEvent = cc.Class({
     properties: {
     },
     init: function(bombDir, trampolineType) {
-        this.type = eventName;
-        this.bubbles = true;
-        this.bombDir = bombDir;
-        this.trampolineType = trampolineType;
+        this.type = eventName
+        this.bubbles = true
+        this.bombDir = bombDir
+        this.trampolineType = trampolineType
     }
-});
+})
 
-module.exports = BallBombTrampolineGLEvent;
+module.exports = BallBombTrampolineGLEvent

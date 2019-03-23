@@ -1,5 +1,5 @@
 
-var eventName = "BallStartBombGL";
+var eventName = "BallStartBombGL"
 
 var BallStartBombGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -9,10 +9,10 @@ var BallStartBombGLEvent = cc.Class({
     properties: {
     },
     init: function(bombDir) {
-        this.type = eventName;
-        this.bubbles = true;
-        this.bombDir = bombDir;
+        this.type = eventName
+        this.bubbles = true
+        this.bombDir = bombDir
     }
-});
+})
 
-module.exports = BallStartBombGLEvent;
+module.exports = BallStartBombGLEvent

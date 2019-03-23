@@ -5,7 +5,7 @@
  * 并广播
  */
 
-var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampolineGLEvent");
+var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampolineGLEvent")
 
 var RectTrampoline = cc.Class({
     extends: cc.Component,
@@ -16,17 +16,17 @@ var RectTrampoline = cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.animation = this.getComponent(cc.Animation);
-        this.bombDir = cc.v2(0, 1).rotate(-this.node.rotation/180*3.14159).mul(this.bombPower);
+        this.animation = this.getComponent(cc.Animation)
+        this.bombDir = cc.v2(0, 1).rotate(-this.node.rotation/180*3.14159).mul(this.bombPower)
     },
     onBeginContact(contact, selfCollider, otherCollider) {
         // 若被小球碰到, 广播Bomb事件
         // if(otherCollider.node.name == "Ball")
-        var bombEvent = new BallBombTrampolineGLEvent();
-        bombEvent.init(this.bombDir, BallBombTrampolineGLEvent.TrampolineType.RectTrampoline);
-        this.node.dispatchEvent(bombEvent);
+        var bombEvent = new BallBombTrampolineGLEvent()
+        bombEvent.init(this.bombDir, BallBombTrampolineGLEvent.TrampolineType.RectTrampoline)
+        this.node.dispatchEvent(bombEvent)
     }
-});
+})
 
 
-module.exports = RectTrampoline;
+module.exports = RectTrampoline

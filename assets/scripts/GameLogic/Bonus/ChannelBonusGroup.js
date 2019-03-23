@@ -5,8 +5,8 @@
  * 当所有通道的状态为true时, 全部重置为false, 并加分
  */
 
-var BonusGainGLEvent = require("../../Message/GameLogic/BonusGainGLEvent");
-var ChannelBonus = require("./ChannelBonus");
+var BonusGainGLEvent = require("../../Message/GameLogic/BonusGainGLEvent")
+var ChannelBonus = require("./ChannelBonus")
 
 cc.Class({
     extends: cc.Component,
@@ -20,33 +20,33 @@ cc.Class({
     },
 
     onLoad () {
-        this.activeChannelNum = 0;
+        this.activeChannelNum = 0
         this.channelBonusArray.forEach(channelBonus => {
-            channelBonus.setGroup(this);
-        });
+            channelBonus.setGroup(this)
+        })
     },
 
     reset() {
         // TODO: 应当播放成功动画
-        this.activeChannelNum = 0;
+        this.activeChannelNum = 0
         this.channelBonusArray.forEach(channelBonus => {
-            channelBonus.reset();
+            channelBonus.reset()
         })
     },
 
     channelStateChange(state) {
         if(state) {
-            this.activeChannelNum ++;
+            this.activeChannelNum ++
             if(this.activeChannelNum == this.channelBonusArray.length) {
-                this.reset();
+                this.reset()
 
                 // 发送BonusGain消息
-                var event = new BonusGainGLEvent();
-                event.init(this.bonusFactor);
-                this.node.dispatchEvent(event);
+                var event = new BonusGainGLEvent()
+                event.init(this.bonusFactor)
+                this.node.dispatchEvent(event)
             }
         }
         else
-            this.activeChannelNum --;
+            this.activeChannelNum --
     }
-});
+})

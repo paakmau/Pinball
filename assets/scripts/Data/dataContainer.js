@@ -18,6 +18,14 @@ var dataContainer = cc.Class({
     trampolineContact(){
         this.trampolineTimes++;
         cc.log("Trampoline Contact = " + this.trampolineTimes);
+    },
+    bonusGain(value){
+        this.bonus += value;
+        cc.log("get bonus:" + value + ", all bonus = " + this.bonus);
+        return this.bonus;
+    },
+    getBonus(){
+        return this.bonus;
     }
 
 

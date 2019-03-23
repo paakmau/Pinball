@@ -6,16 +6,16 @@ cc.Class({
     },
 
     onLoad () {
-        this.animation = this.getComponent(cc.Animation);
+        this.animation = this.getComponent(cc.Animation)
     },
 
     onCollisionEnter() {
         // 播放对应动画
         // TODO: 目前默认动画都是碰撞
-        this.animation.play();
+        this.animation.play()
     },
 
     onBeginContact() {
-        this.animation.play();
+        this.animation.play()
     }
-});
+})

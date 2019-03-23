@@ -1,6 +1,6 @@
 
 
-var eventName = "RacketPunchDG";
+var eventName = "RacketPunchDG"
 
 var RacketPunchDGEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -10,9 +10,9 @@ var RacketPunchDGEvent = cc.Class({
     properties: {
     },
     init: function() {
-        this.type = eventName;
-        this.bubbles = true;
+        this.type = eventName
+        this.bubbles = true
     }
-});
+})
 
-module.exports = RacketPunchDGEvent;
+module.exports = RacketPunchDGEvent

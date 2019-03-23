@@ -5,7 +5,7 @@
  * 需要普通Collider
  */
 
-var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampolineGLEvent");
+var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampolineGLEvent")
 
 var ShootTrampoline = cc.Class({
     extends: cc.Component,
@@ -16,27 +16,27 @@ var ShootTrampoline = cc.Class({
     },
 
     onLoad() {
-        this.shootDir = this.shootDir.normalize().mul(this.shootPower);
-        this.isTouchBall = false;
-        this.touchBallTime = 0.0;
+        this.shootDir = this.shootDir.normalize().mul(this.shootPower)
+        this.isTouchBall = false
+        this.touchBallTime = 0.0
     },
     onCollisionEnter() {
-        this.isTouchBall = true;
+        this.isTouchBall = true
     },
     onCollisionExit() {
-        this.isTouchBall = false;
+        this.isTouchBall = false
     },
     update(dT) {
         if(this.isTouchBall)
-            this.touchBallTime += dT;
-        else this.touchBallTime = 0;
+            this.touchBallTime += dT
+        else this.touchBallTime = 0
         if(this.touchBallTime >= this.touchBallTimeBeforeShoot) {
-            this.touchBallTime = 0;
-            var event = new BallBombTrampolineGLEvent();
-            event.init(this.shootDir.add(cc.v2(Math.random(), Math.random())), BallBombTrampolineGLEvent.TrampolineType.ShootTrampoline);
-            this.node.dispatchEvent(event);
+            this.touchBallTime = 0
+            var event = new BallBombTrampolineGLEvent()
+            event.init(this.shootDir.add(cc.v2(Math.random(), Math.random())), BallBombTrampolineGLEvent.TrampolineType.ShootTrampoline)
+            this.node.dispatchEvent(event)
         }
     }
-});
+})
 
-module.exports = ShootTrampoline;
+module.exports = ShootTrampoline

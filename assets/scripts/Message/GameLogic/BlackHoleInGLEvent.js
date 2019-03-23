@@ -1,7 +1,7 @@
 
 
 
-var eventName = "BlackHoleInGL";
+var eventName = "BlackHoleInGL"
 
 var BlackHoleInGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -11,10 +11,10 @@ var BlackHoleInGLEvent = cc.Class({
     properties: {
     },
     init: function(pos) {
-        this.type = eventName;
-        this.bubbles = true;
-        this.pos = pos;
+        this.type = eventName
+        this.bubbles = true
+        this.pos = pos
     }
-});
+})
 
-module.exports = BlackHoleInGLEvent;
+module.exports = BlackHoleInGLEvent

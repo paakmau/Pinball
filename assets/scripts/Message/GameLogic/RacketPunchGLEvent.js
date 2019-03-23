@@ -1,6 +1,6 @@
 
 
-var eventName = "RacketPunchGL";
+var eventName = "RacketPunchGL"
 
 var RacketPunchGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
@@ -10,9 +10,9 @@ var RacketPunchGLEvent = cc.Class({
     properties: {
     },
     init: function() {
-        this.type = eventName;
-        this.bubbles = true;
+        this.type = eventName
+        this.bubbles = true
     }
-});
+})
 
-module.exports = RacketPunchGLEvent;
+module.exports = RacketPunchGLEvent

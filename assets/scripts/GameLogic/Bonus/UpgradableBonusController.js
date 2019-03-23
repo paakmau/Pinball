@@ -2,11 +2,11 @@
  * 可升级Bonus组控制器
  */
 
-var UpgradableBonus = require("./UpgradableBonus");
-var UpgradableBonusUpgrader = require("./UpgradableBonusUpgrader");
+var UpgradableBonus = require("./UpgradableBonus")
+var UpgradableBonusUpgrader = require("./UpgradableBonusUpgrader")
 
-var BonusGainGLEvent = require("../../Message/GameLogic/BonusGainGLEvent");
-var UpgradableBonusUpgradeGLEvent = require("../../Message/GameLogic/UpgradableBonusUpgradeGLEvent");
+var BonusGainGLEvent = require("../../Message/GameLogic/BonusGainGLEvent")
+var UpgradableBonusUpgradeGLEvent = require("../../Message/GameLogic/UpgradableBonusUpgradeGLEvent")
 
 var UpgradableBonusController = cc.Class({
     extends: cc.Component,
@@ -28,50 +28,50 @@ var UpgradableBonusController = cc.Class({
 
     onLoad () {
         this.upgradableBonusArray.forEach(bonus => {
-            bonus.setController(this);
-        });
+            bonus.setController(this)
+        })
         this.upgraderArray.forEach(upgrader => {
-            upgrader.setController(this);
-        });
-        this.level = 0;
-        this.activeNum = 0;
+            upgrader.setController(this)
+        })
+        this.level = 0
+        this.activeNum = 0
     },
 
     bonusGain() {
-        var event = new BonusGainGLEvent();
-        event.init(this.bonusFactorArray[this.level]);
-        this.node.dispatchEvent(event);
+        var event = new BonusGainGLEvent()
+        event.init(this.bonusFactorArray[this.level])
+        this.node.dispatchEvent(event)
     },
 
     upgraderBonusGain() {
-        var event = new BonusGainGLEvent();
-        event.init(this.upgraderBonusFactor);
-        this.node.dispatchEvent(event);
+        var event = new BonusGainGLEvent()
+        event.init(this.upgraderBonusFactor)
+        this.node.dispatchEvent(event)
     },
 
     statusChange(isActive) {
         if(isActive) {
-            this.activeNum ++;
+            this.activeNum ++
             if(this.activeNum == this.upgraderArray.length) {
-                this.activeNum = 0;
-                this.level++;
+                this.activeNum = 0
+                this.level++
                 this.upgraderArray.forEach(upgrader => {
-                    upgrader.resetInView();
-                });
+                    upgrader.resetInView()
+                })
                 this.upgradableBonusArray.forEach(bonus => {
-                    bonus.upgradeInView();
-                });
+                    bonus.upgradeInView()
+                })
 
                 // 发送升级事件
-                var event = new UpgradableBonusUpgradeGLEvent();
-                event.init("UpCircleGroupPart", this.level);
-                this.node.dispatchEvent(event);
+                var event = new UpgradableBonusUpgradeGLEvent()
+                event.init("UpCircleGroupPart", this.level)
+                this.node.dispatchEvent(event)
             }
         }
         else
-            this.activeNum --;
+            this.activeNum --
     }
-});
+})
 
 
-module.exports = UpgradableBonusController;
+module.exports = UpgradableBonusController
