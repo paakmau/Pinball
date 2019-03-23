@@ -45,7 +45,7 @@ cc.Class({
 
         // TODO: 发行后不应有这个东西
         // 开启碰撞体边框显示(调试模式)
-        cc.director.getPhysicsManager().debugDrawFlags = true
+        // cc.director.getPhysicsManager().debugDrawFlags = true
 
 
         // 观察者模式, 监听子节点的事件
