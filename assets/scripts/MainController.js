@@ -15,16 +15,21 @@ cc.Class({
         gameUI:{
             default: null,
             type: UIController
-        }
+        },
+        CameraNode:cc.Node
     },
     onLoad(){
         cc.log("Load MainController");
         this.gameData.resetData();
         var that = this;
+        //Alert.show("WASTED!! BONUS:" + this.gameData.getBonus(), null, false);
+        that.gameUI.gameOver(that.gameData.getBonus());
         
         //球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
             cc.log("Main Controller game over");
+            //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y);
+            that.gameUI.gameOver(that.gameData.getBonus());
             that.gameData.resetData();
             that.updateUI();
          });

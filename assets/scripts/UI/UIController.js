@@ -22,6 +22,13 @@ var UIController = cc.Class({
     //返回bonus的值，int类型
     getBonus(){
         return parseInt(this.Bonus.string);
+    },
+    /**
+     * 
+     * @param {int} x 最终的分数
+     */
+    gameOver(x){
+        Alert.show("WASTED!! BONUS:" + x, null, false, 0.3, this.node);
     }
 });
 
