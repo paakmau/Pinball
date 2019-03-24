@@ -8,7 +8,9 @@
     "skipRecord": false
   },
   "encryptJs": true,
-  "excludeScenes": [],
+  "excludeScenes": [
+    "965472ad-af12-49d0-a1d1-3326dd3e5122"
+  ],
   "fb-instant-games": {},
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
