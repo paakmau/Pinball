@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.2173469725052121,
-      "y": 0.2173469725052121,
+      "x": 0.46294989521936236,
+      "y": 0.46294989521936236,
       "z": 1
     },
     "_quat": {
@@ -803,6 +803,34 @@
     "_id": "9c6HpXdrBFp4IIxXxAbqkF"
   },
   {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 17
+    },
+    "_enabled": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "2d048682-8a1f-4e86-af48-c8e93befb198"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_state": 0,
+    "_atlas": null,
+    "_id": "5arMmSvIpARLobQ8gmhNCs"
+  },
+  {
     "__type__": "cc.RigidBody",
     "_name": "",
     "_objFlags": 0,
@@ -1493,34 +1521,6 @@
       }
     ],
     "_id": "b8xDuSEI9K4JxEXb3n9v1J"
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 17
-    },
-    "_enabled": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "18c3061b-b212-46c1-b66a-01de7afb79c1"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_state": 0,
-    "_atlas": null,
-    "_id": "5arMmSvIpARLobQ8gmhNCs"
   },
   {
     "__type__": "cc.Node",
@@ -9764,7 +9764,7 @@
       "y": -530
     },
     "connectedBody": {
-      "__id__": 18
+      "__id__": 19
     },
     "collideConnected": false,
     "_maxMotorTorque": 0,
@@ -10093,7 +10093,7 @@
       "y": -531
     },
     "connectedBody": {
-      "__id__": 18
+      "__id__": 19
     },
     "collideConnected": false,
     "_maxMotorTorque": 0,
@@ -10162,7 +10162,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e83d4a2d-7a08-492d-a4d3-43a9d5b3434e"
+      "__uuid__": "76e3e91f-5d62-4f90-8b0f-9cf921092a11"
     },
     "_type": 0,
     "_sizeMode": 0,
