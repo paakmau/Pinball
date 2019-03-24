@@ -25,7 +25,7 @@ var Ball = cc.Class({
     goIntoBlackHole(pos) {
         this.node.position = pos
         this.rigidBody.linearVelocity = cc.v2(0, 0)
-        // TODO: 应当消失
+        // TODO: 没救了
         this.originColor = this.node.color
         this.node.color = new cc.Color(50, 50, 50)
     },
@@ -33,7 +33,7 @@ var Ball = cc.Class({
     goOutOfBlackHole(pos, bombDir) {
         this.node.position = pos
         this.rigidBody.applyLinearImpulse(bombDir, this.worldCenter)
-        // TODO: 等美工
+        // TODO: 没救了
         this.node.color = this.originColor
     },
 

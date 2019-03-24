@@ -11,7 +11,7 @@ var BallFallDGEvent = cc.Class({
     },
     properties: {
     },
-    init: function(bombDir, bombType) {
+    init: function() {
         this.type = eventName
         this.bubbles = true
     }
