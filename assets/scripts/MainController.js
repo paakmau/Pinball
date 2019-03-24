@@ -1,9 +1,9 @@
-var BallFallDGEvent = require("../Message/DataGen/BallFallDGEvent");
-var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent");
-var PortalContactDGEvent = require("../Message/DataGen/PortalContactGLEvent");
-var TrampolineContactDGEvent = require("../Message/DataGen/PortalContactGLEvent");
-var dataContainer = require("../scripts/Data/dataContainer");
-var UIController = require("../scripts/UI/UIController");
+var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent");
+var BonusGainDGEvent = require("./Message/DataGen/BonusGainDGEvent");
+var PortalContactDGEvent = require("./Message/DataGen/PortalContactGLEvent");
+var TrampolineContactDGEvent = require("./Message/DataGen/PortalContactGLEvent");
+var dataContainer = require("./Data/dataContainer");
+var UIController = require("./UI/UIController");
 
 cc.Class({
     extends: cc.Component,
