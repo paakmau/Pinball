@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Special Circle_1",
+    "_name": "Special Circle_0",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -59,13 +59,13 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0.4738485562559299,
+      "y": 0.5261514437440701
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -51,
-      "y": 24.1,
+      "x": -195.3,
+      "y": 173.8,
       "z": 0
     },
     "_scale": {
@@ -157,8 +157,8 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -1.4,
-      "y": 1.4
+      "x": 0,
+      "y": 0
     },
     "_radius": 22.3,
     "_id": ""
