@@ -12,15 +12,20 @@ cc.Class({
 
     properties: {
         target: cc.Node,
+        gameCanvas: cc.Node,
         smoothFact: 8
     },
 
     onLoad() {
-        let width = cc.game.canvas.width
-        let height = cc.game.canvas.height
+        let gameWidth = this.gameCanvas.width
+        let gameHeight = this.gameCanvas.height
+        let canvasWidth = cc.game.canvas.width
+        let canvasHeight = cc.game.canvas.height
+        canvasWidth = canvasWidth / canvasHeight * gameHeight
+        canvasHeight = gameHeight
         let zoomRatio = this.getComponent(cc.Camera).zoomRatio
-        this.maxRight = (width-width/zoomRatio)/2
-        this.maxTop = (height-height/zoomRatio)/2
+        this.maxRight = (gameWidth-canvasWidth/zoomRatio)/2
+        this.maxTop = (gameHeight-canvasHeight/zoomRatio)/2
     },
 
     update (dt) {
