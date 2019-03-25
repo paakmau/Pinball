@@ -4,7 +4,7 @@
  * 手指松开弹起, 根据时间决定小球发射冲量
  */
 
-var BombStartBombGLEvent = require("../Message/GameLogic/BallStartBombGLEvent")
+var BombStartBombGLEvent = require("../../Message/GameLogic/BallStartBombGLEvent")
 
 cc.Class({
     extends: cc.Component,

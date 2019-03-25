@@ -5,7 +5,7 @@
 
 let Racket = require('../Racket')
 
-cc.Class({
+var RacketToucher = cc.Class({
     extends: cc.Component,
     properties: {
         racketObj: Racket
@@ -21,5 +21,10 @@ cc.Class({
     },
     touchUp(){
         this.racketObj.setRotate(false)
+    },
+    setActive(value) {
+        this.node.active = value
     }
 })
+
+module.exports = RacketToucher

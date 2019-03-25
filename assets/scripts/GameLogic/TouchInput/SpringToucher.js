@@ -3,9 +3,9 @@
  * 负责监听弹簧触摸事件
  */
 
-let Spring = require('../Spring')
+let Spring = require('../GameStart/Spring')
 
-cc.Class({
+var SpringToucher = cc.Class({
     extends: cc.Component,
     properties: {
         springObj: Spring
@@ -16,10 +16,15 @@ cc.Class({
         this.node.on('touchcancel', this.springUp, this)
         this.node.on('touchend', this.springUp, this)
     },
-    springDown(){
+    springDown() {
         this.springObj.springDown()
     },
-    springUp(){
+    springUp() {
         this.springObj.springUp()
+    },
+    setActive(value) {
+        this.node.active = value
     }
 })
+
+module.exports = SpringToucher
