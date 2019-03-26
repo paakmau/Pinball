@@ -43,10 +43,6 @@ cc.Class({
         cc.director.getPhysicsManager().enabled = true
         cc.director.getCollisionManager().enabled = true
 
-        // TODO: 发行后不应有这个东西
-        // 开启碰撞体边框显示(调试模式)
-        // cc.director.getPhysicsManager().debugDrawFlags = true
-
 
         // 观察者模式, 监听子节点的事件
 
@@ -80,7 +76,7 @@ cc.Class({
         this.node.on(BonusGainGLEvent.Name, function(event) {
             cc.log("BonusGain "+event.factor)
             var dGEvent = new BonusGainDGEvent()
-            dGEvent.init(event.factor) // TODO: 应当与当前小球得分倍率相乘再返回
+            dGEvent.init(event.factor)
             that.node.dispatchEvent(dGEvent)
         })
 
@@ -111,7 +107,6 @@ cc.Class({
         this.node.on(BlackHoleInGLEvent.Name, function(event) {
             that.ball.goIntoBlackHole(event.pos)
             cc.log("Go Into Black Hole")
-            // TODO: 发送统计DG事件
         })
 
         // 脱离黑洞事件
@@ -119,41 +114,5 @@ cc.Class({
             that.ball.goOutOfBlackHole(event.pos, event.bombDir)
             cc.log("Go Out Of Black Hole")
         })
-
-        // 监听键盘(触屏)事件
-        
-        // TODO: 用于测试, 注册键盘输入
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this)
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this)
-    },
-    
-    // TODO: 用于测试, KeyDown回调
-    // 按下空格, 发射小破球
-    onKeyDown(event) {
-        var impulse = 1000
-        switch(event.keyCode) {
-            case cc.macro.KEY.w:
-                this.ball.bomb(cc.v2(0, impulse))
-                break
-            case cc.macro.KEY.s:
-                this.ball.bomb(cc.v2(0, -impulse))
-                break
-            case cc.macro.KEY.a:
-                this.racket[0].setRotate(true)
-                break
-            case cc.macro.KEY.d:
-                this.racket[1].setRotate(true)
-                break
-        }
-    },
-    onKeyUp(event) {
-        switch(event.keyCode) {
-            case cc.macro.KEY.a:
-                this.racket[0].setRotate(false)
-                break
-            case cc.macro.KEY.d:
-                this.racket[1].setRotate(false)
-                break
-        }
     }
 })

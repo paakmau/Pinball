@@ -1,10 +1,10 @@
 import UserApi from "Api/User";
-var BallFallDGEvent = require("../Message/DataGen/BallFallDGEvent");
-var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent");
-var PortalContactDGEvent = require("../Message/DataGen/PortalContactGLEvent");
-var TrampolineContactDGEvent = require("../Message/DataGen/PortalContactGLEvent");
-var dataContainer = require("../scripts/Data/dataContainer");
-var UIController = require("../scripts/UI/UIController");
+var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent")
+var BonusGainDGEvent = require("./Message/DataGen/BonusGainDGEvent")
+var PortalContactDGEvent = require("./Message/DataGen/PortalContactGLEvent")
+var TrampolineContactDGEvent = require("./Message/DataGen/PortalContactGLEvent")
+var dataContainer = require("./Data/dataContainer")
+var UIController = require("./UI/UIController")
 
 cc.Class({
     extends: cc.Component,
@@ -45,28 +45,28 @@ cc.Class({
 
         //获得bonus
         this.node.on(BonusGainDGEvent.Name, function(event){
-            cc.log("Main Controller :" + event.type);
-            that.gameUI.bonusGain(that.gameData.bonusGain(event.value));
-        });
+            cc.log("Main Controller :" + event.type)
+            that.gameUI.bonusGain(that.gameData.bonusGain(event.value))
+        })
 
         //传送
         this.node.on(PortalContactDGEvent.name, function(event){
             
-        });
+        })
 
         //蹦床
         this.node.on(TrampolineContactDGEvent.Name, function(event){
-            cc.log("11111trampoline Contact DG");
-            that.gameData.trampolineContact();
-        });
+            cc.log("11111trampoline Contact DG")
+            that.gameData.trampolineContact()
+        })
 
     },
 
     updateBonus(){
-        this.gameUI.setBonus(this.gameData.getBonus());
+        this.gameUI.setBonus(this.gameData.getBonus())
     },
 
     updateUI(){
-        this.updateBonus();
+        this.updateBonus()
     }
-});
+})

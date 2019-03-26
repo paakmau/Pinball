@@ -1,6 +1,7 @@
 /**
  * 球形蹦床
  * 若小球碰到它, 会被施加一个沿碰撞法向量n的冲量 bombPower*n
+ * 要求它的position为全局坐标
  */
 
 var BallBombTrampolineGLEvent = require("../../Message/GameLogic/BallBombTrampolineGLEvent")

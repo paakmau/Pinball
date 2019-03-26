@@ -37,7 +37,6 @@ var ButtonBonus = cc.Class({
     },
 
     pressDown() {
-        // TODO: 播放按压动画
         this.rigidBody.active = false
 
         // TODO: pressDownOneBtn应当在按压动画结束后调用

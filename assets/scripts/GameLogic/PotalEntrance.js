@@ -3,7 +3,7 @@
  * exit为出口, 锚点为(0.5, 0.5)
  */
 
-var BallTransferGLEvent = require("../../Message/GameLogic/BallTransferGLEvent")
+var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent")
 
 cc.Class({
     extends: cc.Component,
