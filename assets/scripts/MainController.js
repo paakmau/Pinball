@@ -22,31 +22,27 @@ cc.Class({
     onLoad(){
         cc.log("Load MainController");
         var that = this;
+        this.playerID = null;
         UserApi.RegisterOrLoginByWxId('zyqnb!!!', res=>{ 
-            console.log(res);
-            cc.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!result = " + res);
-            that.palyerID = res;
+            that.playerID = res;
+            console.log("loging in with id: " + that.playerID);
          });
-         UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) })
         this.gameData.resetData();
-        //Alert.show("WASTED!! BONUS:" + this.gameData.getBonus(), null, false);
-        that.gameUI.gameOver(that.gameData.getBonus());
-        UserApi.UpdateScoreById({ id: 2, score: that.gameData.getBonus() }, res => { console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + res) })
-        
+        this.gameOver();
         //球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
             cc.log("Main Controller game over");
             //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y);
             that.gameUI.gameOver(that.gameData.getBonus());
-            UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) })
+            UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) });
             that.gameData.resetData();
             that.updateUI();
          });
 
         //获得bonus
         this.node.on(BonusGainDGEvent.Name, function(event){
-            cc.log("Main Controller :" + event.type)
-            that.gameUI.bonusGain(that.gameData.bonusGain(event.value))
+            cc.log("Main Controller :" + event.type);
+            that.gameUI.bonusGain(that.gameData.bonusGain(event.value));
         })
 
         //传送
@@ -56,17 +52,23 @@ cc.Class({
 
         //蹦床
         this.node.on(TrampolineContactDGEvent.Name, function(event){
-            cc.log("11111trampoline Contact DG")
-            that.gameData.trampolineContact()
+            cc.log("11111trampoline Contact DG");
+            that.gameData.trampolineContact();
         })
 
     },
 
     updateBonus(){
-        this.gameUI.setBonus(this.gameData.getBonus())
+        this.gameUI.setBonus(this.gameData.getBonus());
     },
 
     updateUI(){
-        this.updateBonus()
+        this.updateBonus();
+    },
+    gameOver(){
+        var that = this;
+        this.gameData.resetData();
+        this.gameUI.gameOver(that.gameData.getBonus());
+        UserApi.UpdateScoreById({ id: 2, score: that.gameData.getBonus() }, res => { console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore) });
     }
 })

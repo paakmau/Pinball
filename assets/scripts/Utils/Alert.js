@@ -4,6 +4,7 @@ const Alert = {
     _cancelButton:  null,   // 确定按钮
     _enterButton:   null,   // 取消按钮
     _enterCallBack: null,   // 回调事件
+    _outBackGroud:     null,
     _animSpeed:     0.3,    // 动画速度
     _parentUI:      null,
 }
@@ -52,10 +53,12 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
         Alert._detailLabel = cc.find("alertBackground/detailLabel", alert).getComponent(cc.Label)
         Alert._cancelButton = cc.find("alertBackground/cancelButton", alert)
         Alert._enterButton = cc.find("alertBackground/enterButton", alert)
+        Alert._outBackGroud = cc.find("singleColor", alert);
 
         // 添加点击事件
         Alert._enterButton.on('click', self.onButtonClicked, self)
         Alert._cancelButton.on('click', self.onButtonClicked, self)
+        Alert._outBackGroud.on('click', self.onButtonClicked, self);
 
         // 父视图
         Alert._alert.parent = cc.find("Canvas")
@@ -130,6 +133,8 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
         Alert._enterButton = null
         Alert._animSpeed = 0.3
     }
+
+    return Alert._detailLabel;
 }
 
 

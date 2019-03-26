@@ -30,7 +30,8 @@ var UIController = cc.Class({
      * @param {int} x 最终的分数
      */
     gameOver(x){
-        Alert.show("WASTED!! BONUS:" + x, null, false, 0.3, this.node)
+        this.label = Alert.show("WASTED!! BONUS:" + x, null, false, 0.3, this.node);
+        this.label += "cnm";
     }
 })
 
