@@ -1,3 +1,4 @@
+import UserApi from "Api/User";
 var BallFallDGEvent = require("../Message/DataGen/BallFallDGEvent");
 var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent");
 var PortalContactDGEvent = require("../Message/DataGen/PortalContactGLEvent");
@@ -20,16 +21,24 @@ cc.Class({
     },
     onLoad(){
         cc.log("Load MainController");
-        this.gameData.resetData();
         var that = this;
+        UserApi.RegisterOrLoginByWxId('zyqnb!!!', res=>{ 
+            console.log(res);
+            cc.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!result = " + res);
+            that.palyerID = res;
+         });
+         UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) })
+        this.gameData.resetData();
         //Alert.show("WASTED!! BONUS:" + this.gameData.getBonus(), null, false);
         that.gameUI.gameOver(that.gameData.getBonus());
+        UserApi.UpdateScoreById({ id: 2, score: that.gameData.getBonus() }, res => { console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + res) })
         
         //球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
             cc.log("Main Controller game over");
             //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y);
             that.gameUI.gameOver(that.gameData.getBonus());
+            UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) })
             that.gameData.resetData();
             that.updateUI();
          });
