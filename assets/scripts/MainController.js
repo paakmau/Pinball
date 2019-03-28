@@ -1,10 +1,12 @@
 import UserApi from "Api/User";
+import Alert from "./Utils/Alert";
 var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent")
 var BonusGainDGEvent = require("./Message/DataGen/BonusGainDGEvent")
 var PortalContactDGEvent = require("./Message/DataGen/PortalContactGLEvent")
-var TrampolineContactDGEvent = require("./Message/DataGen/PortalContactGLEvent")
+var TrampolineContactDGEvent = require("./Message/DataGen/TrampolineContactDGEvent")
 var dataContainer = require("./Data/dataContainer")
 var UIController = require("./UI/UIController")
+var AudioController = require("./Audio/AudioController")
 
 cc.Class({
     extends: cc.Component,
@@ -17,7 +19,10 @@ cc.Class({
             default: null,
             type: UIController
         },
-        CameraNode:cc.Node
+        gameAudio:{
+            default: null,
+            type: AudioController
+        }
     },
     onLoad(){
         cc.log("Load MainController");
@@ -37,23 +42,38 @@ cc.Class({
             UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) });
             that.gameData.resetData();
             that.updateUI();
+            that.gameAudio.playEffectAudio(6);
          });
 
         //获得bonus
         this.node.on(BonusGainDGEvent.Name, function(event){
             cc.log("Main Controller :" + event.type);
-            that.gameUI.bonusGain(that.gameData.bonusGain(event.value));
+            that.gameUI.setBonus(that.gameData.bonusGain(event.value));
+            //that.gameAudio.playEffectAudio(5);
         })
 
         //传送
-        this.node.on(PortalContactDGEvent.name, function(event){
-            
+        this.node.on(PortalContactDGEvent.Name, function(event){
+            that.gameAudio.playEffectAudio(4);
         })
 
         //蹦床
         this.node.on(TrampolineContactDGEvent.Name, function(event){
             cc.log("11111trampoline Contact DG");
             that.gameData.trampolineContact();
+            
+            switch(event.trampolineType){
+                case "RectTrampoline":
+                    that.gameAudio.playEffectAudio(1);
+                    break;
+                case "CircleTrampoline":
+                    that.gameAudio.playEffectAudio(2);
+                    break;
+                case "ShootTrampoline":
+                    that.gameAudio.playEffectAudio(3);
+                    break;
+            }
+
         })
 
     },
@@ -69,6 +89,11 @@ cc.Class({
         var that = this;
         this.gameData.resetData();
         this.gameUI.gameOver(that.gameData.getBonus());
-        UserApi.UpdateScoreById({ id: 2, score: that.gameData.getBonus() }, res => { console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore) });
+        UserApi.UpdateScoreById({ id: 2, score: that.gameData.getBonus() }, res => { 
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore);
+            if(Alert._detailLabel == null){
+
+            } 
+        });
     }
 })

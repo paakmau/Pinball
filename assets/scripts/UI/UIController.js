@@ -13,10 +13,10 @@ var UIController = cc.Class({
         this.Bonus.string = "0"
         //this.that = this
     },
-    bonusGain(value){
-        this.result = parseInt(this.Bonus.string) + value
-        this.Bonus.string = Number(this.result)
-    },
+    // bonusGain(value){
+    //     this.result = parseInt(this.Bonus.string) + value
+    //     this.Bonus.string = Number(this.result)
+    // },
     //设置bonus的值。value为int类型
     setBonus(value){
         this.Bonus.string = Number(value)
@@ -30,8 +30,7 @@ var UIController = cc.Class({
      * @param {int} x 最终的分数
      */
     gameOver(x){
-        this.label = Alert.show("WASTED!! BONUS:" + x, null, false, 0.3, this.node);
-        this.label += "cnm";
+        Alert.show("WASTED!! BONUS:" + x + "\nuploading your score...", null, false, 0.3, this.node);
     }
 })
 
