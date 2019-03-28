@@ -96,13 +96,13 @@ cc.Class({
     },
     gameOver(){
         var that = this;
-        this.gameData.resetData();
-        this.gameUI.gameOver(that.gameData.getBonus());
+        this.resultBonus = this.gameData.getBonus()
+        this.gameUI.gameOver(this.resultBonus);
         UserApi.UpdateScoreById({ id: 2, score: that.gameData.getBonus() }, res => { 
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore);
-            if(Alert._detailLabel == null){
-
-            } 
+            Alert.Change("WASTED!! BONUS:" + that.resultBonus +  "\nrank = " + res.rank +" highscore = " + res.highestScore);
+            
         });
+        this.gameData.resetData();
     }
 })

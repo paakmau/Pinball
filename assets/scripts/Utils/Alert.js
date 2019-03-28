@@ -7,6 +7,7 @@ const Alert = {
     _outBackGroud:     null,
     _animSpeed:     0.3,    // 动画速度
     _parentUI:      null,
+    _mystring:      null
 }
 
 /**
@@ -78,7 +79,11 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
         Alert._enterCallBack = enterCallBack
 
         // 内容
-        Alert._detailLabel.string = detailString
+        if(Alert._mystring == undefined){
+            Alert._detailLabel.string = detailString
+        }else{
+            Alert._detailLabel.string = Alert._mystring;
+        }
         // 是否需要取消按钮
         if (needCancel || needCancel == undefined) { // 显示
             Alert._cancelButton.active = true
@@ -135,6 +140,14 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
     }
 
     return Alert._detailLabel;
+}
+
+Alert.Change = function(str){
+    if(Alert._detailLabel == undefined){
+        Alert._mystring = str;
+    }else{
+        Alert._detailLabel.string = str;
+    }
 }
 
 
