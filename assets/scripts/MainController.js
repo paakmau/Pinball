@@ -1,5 +1,6 @@
 import UserApi from "Api/User";
 import Alert from "./Utils/Alert";
+import AudioPlayer from "./Utils/AudioPlayerUtil";
 var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent")
 var BonusGainDGEvent = require("./Message/DataGen/BonusGainDGEvent")
 var PortalContactDGEvent = require("./Message/DataGen/PortalContactGLEvent")
@@ -20,9 +21,9 @@ cc.Class({
             type: UIController
         },
         gameAudio:{
-            default: null,
-            type: AudioController
-        }
+             default: null,
+             type: AudioController
+         }
     },
     onLoad(){
         cc.log("Load MainController");
@@ -34,6 +35,8 @@ cc.Class({
          });
         this.gameData.resetData();
         this.gameOver();
+        AudioPlayer.init(this.gameAudio);
+
         //球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
             cc.log("Main Controller game over");
@@ -42,7 +45,7 @@ cc.Class({
             UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) });
             that.gameData.resetData();
             that.updateUI();
-            that.gameAudio.playEffectAudio(6);
+            //that.gameAudio.playEffectAudio(6);
          });
 
         //获得bonus
@@ -54,7 +57,7 @@ cc.Class({
 
         //传送
         this.node.on(PortalContactDGEvent.Name, function(event){
-            that.gameAudio.playEffectAudio(4);
+            //that.gameAudio.playEffectAudio(4);
         })
 
         //蹦床
@@ -64,13 +67,16 @@ cc.Class({
             
             switch(event.trampolineType){
                 case "RectTrampoline":
-                    that.gameAudio.playEffectAudio(1);
+                    //that.gameAudio.playEffectAudio(1);
+                    AudioPlayer.play(1);
                     break;
                 case "CircleTrampoline":
-                    that.gameAudio.playEffectAudio(2);
+                    //that.gameAudio.playEffectAudio(2);
+                    AudioPlayer.play(2);
                     break;
                 case "ShootTrampoline":
-                    that.gameAudio.playEffectAudio(3);
+                    //that.gameAudio.playEffectAudio(3);
+                    AudioPlayer.play(3);
                     break;
             }
 

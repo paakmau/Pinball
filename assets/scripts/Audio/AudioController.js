@@ -19,13 +19,6 @@ var AudioController = cc.Class({
 
     },
 
-    /**
-     * 
-     * @param {int} i 
-     */
-    playEffectAudio(i){
-        this.effect = cc.audioEngine.playEffect(this.Audios[i], false, 1);
-    }
 
     // update (dt) {},
 });
