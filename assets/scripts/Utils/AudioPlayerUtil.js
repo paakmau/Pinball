@@ -10,6 +10,9 @@ AudioPlayerUtil.init = function (audioController){
 }
 AudioPlayerUtil.play = function (i){
     //AudioPlayerUtil._audioController.palyerEffectAudio(i);
+    if(i >= AudioPlayerUtil._audioController.Audios.length){
+        i = 1;
+    }
     cc.audioEngine.playEffect(AudioPlayerUtil._audioController.Audios[i], false, 1);
 }
 export default AudioPlayerUtil

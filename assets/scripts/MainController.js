@@ -46,6 +46,7 @@ cc.Class({
             that.gameData.resetData();
             that.updateUI();
             //that.gameAudio.playEffectAudio(6);
+            AudioPlayer.play(6);
          });
 
         //获得bonus
