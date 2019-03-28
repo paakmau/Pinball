@@ -6,6 +6,7 @@ AudioPlayerUtil.init = function (audioController){
     
     //实例
     AudioPlayerUtil._audioController = audioController;
+    cc.audioEngine.play(AudioPlayerUtil._audioController.Audios[0], true, 1);
 }
 AudioPlayerUtil.play = function (i){
     //AudioPlayerUtil._audioController.palyerEffectAudio(i);

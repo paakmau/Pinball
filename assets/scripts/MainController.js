@@ -53,11 +53,13 @@ cc.Class({
             cc.log("Main Controller :" + event.type);
             that.gameUI.setBonus(that.gameData.bonusGain(event.value));
             //that.gameAudio.playEffectAudio(5);
+            //AudioPlayer.play(5);
         })
 
         //传送
         this.node.on(PortalContactDGEvent.Name, function(event){
             //that.gameAudio.playEffectAudio(4);
+            AudioPlayer.play(4);
         })
 
         //蹦床

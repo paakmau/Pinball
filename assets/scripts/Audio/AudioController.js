@@ -12,7 +12,7 @@ var AudioController = cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.backGround = cc.audioEngine.play(this.Audios[0], true, 1);
+        // this.backGround = cc.audioEngine.play(this.Audios[0], true, 1);
     },
 
     start () {
