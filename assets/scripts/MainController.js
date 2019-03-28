@@ -41,10 +41,7 @@ cc.Class({
         this.node.on(BallFallDGEvent.Name, function(event){
             cc.log("Main Controller game over");
             //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y);
-            that.gameUI.gameOver(that.gameData.getBonus());
-            UserApi.UpdateScoreById({ id: 2, score: 1005 }, res => { console.log(res) });
-            that.gameData.resetData();
-            that.updateUI();
+            that.gameOver();
             //that.gameAudio.playEffectAudio(6);
             AudioPlayer.play(6);
          });
@@ -98,11 +95,12 @@ cc.Class({
         var that = this;
         this.resultBonus = this.gameData.getBonus()
         this.gameUI.gameOver(this.resultBonus);
-        UserApi.UpdateScoreById({ id: 2, score: that.gameData.getBonus() }, res => { 
+        UserApi.UpdateScoreById({ id: 2, score: that.resultBonus }, res => { 
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore);
             Alert.Change("WASTED!! BONUS:" + that.resultBonus +  "\nrank = " + res.rank +" highscore = " + res.highestScore);
             
         });
         this.gameData.resetData();
+        this.updateUI();
     }
 })
