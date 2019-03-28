@@ -1,4 +1,4 @@
-
+import AudioPlayer from "../Utils/AudioPlayerUtil"
 var BlackHoleInGLEvent = require("../Message/GameLogic/BlackHoleInGLEvent")
 var BlackHoleOutGLEvent = require("../Message/GameLogic/BlackHoleOutGLEvent")
 
@@ -31,6 +31,7 @@ var BlackHole = cc.Class({
                 var outEvent = new BlackHoleOutGLEvent()
                 outEvent.init(this.node.position, this.bombDir.add(cc.v2(Math.random(), Math.random())))
                 this.node.dispatchEvent(outEvent)
+                AudioPlayer.play(8);
             }
         }
     }
