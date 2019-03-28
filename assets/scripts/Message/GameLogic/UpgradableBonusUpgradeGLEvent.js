@@ -10,11 +10,12 @@ var UpgradableBonusUpgradeGLEvent = cc.Class({
     },
     properties: {
     },
-    init: function(bonusName, level) {
+    init: function(bonusName, level, mxLevel) {
         this.type = eventName
         this.bubbles = true
         this.bonusName = bonusName
         this.level = level
+        this.mxLevel = mxLevel
     }
 })
 

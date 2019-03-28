@@ -85,7 +85,7 @@ cc.Class({
         // 可升级Bonus升级事件
         this.node.on(UpgradableBonusUpgradeGLEvent.Name, function(event) {
             cc.log("UpgradableBonus Upgraded, name:" + event.bonusName + ", level: " + event.level)
-            this.centralCircleController.setOuterLight(event.level)
+            that.centralCircleController.setOuterLight(event.level, event.mxLevel)
         })
 
         // GameOver事件
