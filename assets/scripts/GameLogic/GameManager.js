@@ -1,6 +1,7 @@
 
 var Ball = require("./Ball")
 var Racket = require("./Racket")
+var CentralCircleController = require('./CentralCircle/CentralCircleController')
 
 var BallStartBombGLEvent = require("../Message/GameLogic/BallStartBombGLEvent")
 var BallBombTrampolineGLEvent = require("../Message/GameLogic/BallBombTrampolineGLEvent")
@@ -31,7 +32,8 @@ cc.Class({
             type: Racket,
             default: []
         },
-        ballStarterNode: cc.Node
+        ballStarterNode: cc.Node,
+        centralCircleController: CentralCircleController
     },
     onLoad() {
         var that = this
@@ -83,6 +85,7 @@ cc.Class({
         // 可升级Bonus升级事件
         this.node.on(UpgradableBonusUpgradeGLEvent.Name, function(event) {
             cc.log("UpgradableBonus Upgraded, name:" + event.bonusName + ", level: " + event.level)
+            this.centralCircleController.setOuterLight(event.level)
         })
 
         // GameOver事件

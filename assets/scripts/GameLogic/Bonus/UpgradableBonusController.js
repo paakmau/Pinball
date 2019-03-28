@@ -23,10 +23,11 @@ var UpgradableBonusController = cc.Class({
             type: cc.Integer,
             default: []
         },
-        upgraderBonusFactor: 200
+        upgraderBonusFactor: 150
     },
 
     onLoad () {
+        this.bonusFactorArray = [100, 200, 300, 400, 500, 800, 1200, 1500, 1800]
         this.upgradableBonusArray.forEach(bonus => {
             bonus.setController(this)
         })
@@ -54,7 +55,7 @@ var UpgradableBonusController = cc.Class({
             this.activeNum ++
             if(this.activeNum == this.upgraderArray.length) {
                 this.activeNum = 0
-                this.level++
+                this.level = Math.max(this.level+1, this.bonusFactorArray.length)
                 this.upgraderArray.forEach(upgrader => {
                     upgrader.resetInView()
                 })

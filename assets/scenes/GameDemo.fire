@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.2601184456667592,
-      "y": 0.2601184456667592,
+      "x": 0.527803164309156,
+      "y": 0.527803164309156,
       "z": 1
     },
     "_quat": {
@@ -72,7 +72,7 @@
         "__id__": 5
       },
       {
-        "__id__": 289
+        "__id__": 290
       },
       {
         "__id__": 10
@@ -82,7 +82,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 291
+        "__id__": 292
       }
     ],
     "_prefab": null,
@@ -329,9 +329,6 @@
     "_level": 3,
     "_components": [
       {
-        "__id__": 285
-      },
-      {
         "__id__": 286
       },
       {
@@ -341,7 +338,10 @@
         "__id__": 288
       },
       {
-        "__id__": 284
+        "__id__": 289
+      },
+      {
+        "__id__": 285
       }
     ],
     "_prefab": null,
@@ -420,6 +420,9 @@
         "__id__": 41
       },
       {
+        "__id__": 283
+      },
+      {
         "__id__": 8
       },
       {
@@ -433,7 +436,7 @@
     "_level": 3,
     "_components": [
       {
-        "__id__": 283
+        "__id__": 284
       }
     ],
     "_prefab": null,
@@ -9034,12 +9037,7 @@
         "__id__": 204
       }
     ],
-    "bonusFactorArray": [
-      100,
-      200,
-      500,
-      1000
-    ],
+    "bonusFactorArray": [],
     "upgraderBonusFactor": 150,
     "_id": "34qKHHugtDGbWuQ4wntivP"
   },
@@ -9571,14 +9569,14 @@
       "y": 1,
       "z": 1
     },
-    "_rotationX": 70,
-    "_rotationY": 70,
+    "_rotationX": 89,
+    "_rotationY": 89,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
       "y": 0,
-      "z": -0.573576436351046,
-      "w": 0.8191520442889918
+      "z": -0.7009092642998509,
+      "w": 0.7132504491541816
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -10576,6 +10574,63 @@
     "_id": "4av53AnKhI5JyC2wD4AXoL"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "CentralCirclePart",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 9
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 4,
+    "_components": [],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_zIndex": 0,
+    "groupIndex": 0,
+    "_id": "96WuzTCspCm4Zwxf9di2C2"
+  },
+  {
     "__type__": "cc590ZnuHFFW4TFJWeEA5CM",
     "_name": "",
     "_objFlags": 0,
@@ -10584,7 +10639,7 @@
     },
     "_enabled": true,
     "ball": {
-      "__id__": 284
+      "__id__": 285
     },
     "racket": [
       {
@@ -10597,6 +10652,7 @@
     "ballStarterNode": {
       "__id__": 51
     },
+    "centralCircleController": null,
     "_id": "eaK9ofl+5HK576XrnMftUM"
   },
   {
@@ -10712,7 +10768,7 @@
     "_level": 2,
     "_components": [
       {
-        "__id__": 290
+        "__id__": 291
       }
     ],
     "_prefab": null,
@@ -10766,7 +10822,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 289
+      "__id__": 290
     },
     "_enabled": true,
     "_cullingMask": -2,
