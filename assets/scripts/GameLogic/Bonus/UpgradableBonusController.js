@@ -23,10 +23,11 @@ var UpgradableBonusController = cc.Class({
             type: cc.Integer,
             default: []
         },
-        upgraderBonusFactor: 200
+        upgraderBonusFactor: 150
     },
 
     onLoad () {
+        this.bonusFactorArray = [100, 200, 300, 400, 500, 800, 1200, 1500, 1800]
         this.upgradableBonusArray.forEach(bonus => {
             bonus.setController(this)
         })
@@ -35,6 +36,7 @@ var UpgradableBonusController = cc.Class({
         })
         this.level = 0
         this.activeNum = 0
+
     },
 
     bonusGain() {
@@ -54,7 +56,11 @@ var UpgradableBonusController = cc.Class({
             this.activeNum ++
             if(this.activeNum == this.upgraderArray.length) {
                 this.activeNum = 0
-                this.level++
+                let upgraded = true
+                if(this.level<this.bonusFactorArray.length)
+                    this.level++
+                else 
+                    upgraded = false
                 this.upgraderArray.forEach(upgrader => {
                     upgrader.resetInView()
                 })
@@ -62,10 +68,12 @@ var UpgradableBonusController = cc.Class({
                     bonus.upgradeInView()
                 })
 
-                // 发送升级事件
-                var event = new UpgradableBonusUpgradeGLEvent()
-                event.init("UpCircleGroupPart", this.level)
-                this.node.dispatchEvent(event)
+                if(upgraded) {
+                    // 发送升级事件
+                    var event = new UpgradableBonusUpgradeGLEvent()
+                    event.init("UpCircleGroupPart", this.level, this.bonusFactorArray.length)
+                    this.node.dispatchEvent(event)
+                }
             }
         }
         else
