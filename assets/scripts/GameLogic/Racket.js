@@ -13,7 +13,7 @@ var Racket = cc.Class({
 
     properties: {
         direction: 1,
-        power: 350000
+        power: 700000
     },
     onLoad() {
         this.rigidBody = this.getComponent(cc.RigidBody)
