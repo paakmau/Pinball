@@ -1,5 +1,4 @@
-import UserApi from "./Api/User";
-import Alert from "./Utils/Alert";
+
 import AudioPlayer from "./Utils/AudioPlayerUtil";
 var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent")
 var BonusGainDGEvent = require("./Message/DataGen/BonusGainDGEvent")
@@ -28,11 +27,6 @@ cc.Class({
     onLoad(){
         cc.log("Load MainController");
         var that = this;
-        this.playerID = null;
-        UserApi.RegisterOrLoginByWxId('zyqnb!!!', res=>{ 
-            that.playerID = res;
-            console.log("loging in with id: " + that.playerID);
-         });
         this.gameData.resetData();
         this.gameOver();
         AudioPlayer.init(this.gameAudio);
