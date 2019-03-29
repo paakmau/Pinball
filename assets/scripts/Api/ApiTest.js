@@ -1,5 +1,5 @@
 
-import UserApi from "../Api/User"
+import UserApi from "./User"
 
 
 cc.Class({

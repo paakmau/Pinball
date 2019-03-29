@@ -1,4 +1,4 @@
-import UserApi from "Api/User";
+import UserApi from "./Api/User";
 import Alert from "./Utils/Alert";
 import AudioPlayer from "./Utils/AudioPlayerUtil";
 var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent")
