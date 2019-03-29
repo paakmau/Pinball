@@ -6,8 +6,6 @@ const Alert = {
     _enterCallBack: null,   // 回调事件
     _outBackGroud:     null,
     _animSpeed:     0.3,    // 动画速度
-    _parentUI:      null,
-    _mystring:      null
 }
 
 /**
@@ -26,8 +24,6 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
 
     // 
     Alert._animSpeed = animSpeed ? animSpeed : Alert._animSpeed
-
-    Alert._parentUI = parentUI
 
     // 加载 prefab 创建
     cc.loader.loadRes("Alert", cc.Prefab, function (error, prefab) {
@@ -69,7 +65,7 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
 
         // 参数
         self.configAlert(detailString, enterCallBack, needCancel, animSpeed)
-        
+
     })
 
     // 参数
@@ -79,11 +75,8 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
         Alert._enterCallBack = enterCallBack
 
         // 内容
-        if(Alert._mystring == undefined){
-            Alert._detailLabel.string = detailString
-        }else{
-            Alert._detailLabel.string = Alert._mystring;
-        }
+        Alert._detailLabel.string = detailString
+
         // 是否需要取消按钮
         if (needCancel || needCancel == undefined) { // 显示
             Alert._cancelButton.active = true
@@ -140,14 +133,6 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
     }
 
     return Alert._detailLabel;
-}
-
-Alert.Change = function(str){
-    if(Alert._detailLabel == undefined){
-        Alert._mystring = str;
-    }else{
-        Alert._detailLabel.string = str;
-    }
 }
 
 

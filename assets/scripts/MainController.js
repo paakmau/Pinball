@@ -92,15 +92,14 @@ cc.Class({
         this.updateBonus();
     },
     gameOver(){
-        var that = this;
         this.resultBonus = this.gameData.getBonus()
-        this.gameUI.gameOver(this.resultBonus);
-        UserApi.UpdateScoreById({ id: 2, score: that.resultBonus }, res => { 
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore);
-            Alert.Change("WASTED!! BONUS:" + that.resultBonus +  "\nrank = " + res.rank +" highscore = " + res.highestScore);
+        // UserApi.UpdateScoreById({ id: 2, score: that.resultBonus }, res => { 
+        //     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore);
+        //     Alert.Change("WASTED!! BONUS:" + that.resultBonus +  "\nrank = " + res.rank +" highscore = " + res.highestScore);
             
-        });
+        // });
         this.gameData.resetData();
         this.updateUI();
+        this.gameUI.gameOver(this.resultBonus);
     }
 })
