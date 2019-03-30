@@ -7,7 +7,8 @@ cc.Class({
 
     properties: {
         innerLights: CentralCircleLights,
-        outerLights: CentralCircleLights
+        outerLights: CentralCircleLights,
+        redLight: cc.Node
     },
 
     setInnerLight(num, size) {
@@ -16,6 +17,9 @@ cc.Class({
 
     setOuterLight(num, size) {
         this.outerLights.setValue(num, size)
+    },
+    blinkRedLight(){
+        this.redLight.getComponent(cc.Animation).play()
     }
 
     // update (dt) {},

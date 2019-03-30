@@ -96,6 +96,7 @@ cc.Class({
             var dGEvent = new BallFallDGEvent()
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
+            that.centralCircleController.blinkRedLight()
         })
 
         // RacketPunch事件
