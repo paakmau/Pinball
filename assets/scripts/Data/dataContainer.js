@@ -1,4 +1,4 @@
-var dataContainer = cc.Class({
+var DataContainer = cc.Class({
     extends: cc.Component,
     properties:{
     },
@@ -31,4 +31,4 @@ var dataContainer = cc.Class({
 
 });
 
-module.exports = dataContainer;
+module.exports = DataContainer;

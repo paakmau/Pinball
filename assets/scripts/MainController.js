@@ -4,7 +4,7 @@ var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent")
 var BonusGainDGEvent = require("./Message/DataGen/BonusGainDGEvent")
 var PortalContactDGEvent = require("./Message/DataGen/PortalContactGLEvent")
 var TrampolineContactDGEvent = require("./Message/DataGen/TrampolineContactDGEvent")
-var dataContainer = require("./Data/dataContainer")
+var DataContainer = require("./Data/DataContainer")
 var UIController = require("./UI/UIController")
 var AudioController = require("./Audio/AudioController")
 
@@ -13,7 +13,7 @@ cc.Class({
     properties:{
         gameData: {
             default: null,
-            type: dataContainer
+            type: DataContainer
         },
         gameUI:{
             default: null,
