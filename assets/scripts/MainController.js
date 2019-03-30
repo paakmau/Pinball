@@ -62,11 +62,11 @@ cc.Class({
             switch(event.trampolineType){
                 case "RectTrampoline":
                     //that.gameAudio.playEffectAudio(1);
-                    AudioPlayer.play(1);
+                    //AudioPlayer.play(1);
                     break;
                 case "CircleTrampoline":
                     //that.gameAudio.playEffectAudio(2);
-                    AudioPlayer.play(2);
+                    //AudioPlayer.play(2);
                     break;
                 case "ShootTrampoline":
                     //that.gameAudio.playEffectAudio(3);
