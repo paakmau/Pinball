@@ -3,8 +3,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        progressBarSpeed: 1,
-        progressBar: cc.ProgressBar
+        progressBarSpeed: 100,
+        progressBar: cc.Node
     },
 
     onLoad () {
@@ -14,12 +14,15 @@ cc.Class({
             else
                 cc.director.loadScene('GameDemo')
         })
+        this.progressOri = this.progressBar.x
+        this.progress = 0
     },
 
     update(dT) {
-        let progress = this.progressBar.progress + dT*this.progressBarSpeed
-        while(progress>=1)
-            progress-=1
-        this.progressBar.progress = progress
+        this.progress = this.progress + dT*this.progressBarSpeed
+        while(this.progress>=20) {
+            this.progress-=20
+        }
+        this.progressBar.x = this.progressOri + this.progress
     }
 });
