@@ -8,7 +8,7 @@ const Alert = {
     _outBackGroud:     null,
     _animSpeed:     0.3,    // 动画速度
 }
-
+// TODO: 作为全局单例, 不应当频繁实例化与销毁
 /**
  * detailString :   内容 string 类型.
  * enterCallBack:   确定点击事件回调  function 类型.
