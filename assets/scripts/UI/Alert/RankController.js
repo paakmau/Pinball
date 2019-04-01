@@ -5,7 +5,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        worldRankListController: WorldRankListController
+        worldRankListController: WorldRankListController,
+        worldTopLabel: cc.Label
     },
 
     onLoad() {
@@ -21,13 +22,29 @@ cc.Class({
     },
 
     start() {
+        let that = this
         // 向微信开放数据域传递分数数据
         if(cc.sys.platform === cc.sys.WECHAT_GAME) {
             wx.postMessage({ type: 'GAME_OVER' , mark: this.mark })
         }
+        // 设置世界排名显示
+        this.worldTopLabel.string = "您的得分是 " + this.mark + '...'
         // 向世界发送数据 TODO:
-        UserApi.RegisterOrLoginByWxId("hbmnb", resId=>{
-
+        UserApi.RegisterOrLoginByWxId("hbmdeidididididid", "hbm", resId=>{
+            console.log(resId)
+            UserApi.UpdateScoreById( resId, that.mark, 3, 2, 1, resUpdate=>{
+                console.log(resUpdate)
+                resUpdate.topUsers.forEach(e => {
+                    e.nickname = e.wxName
+                    e.mark = e.highestScore
+                });
+                resUpdate.nearUsers.forEach(e => {
+                    e.nickname = e.wxName
+                    e.mark = e.highestScore
+                });
+                this.worldTopLabel.string = "您的得分是 " + this.mark + ' 最高分 ' + resUpdate.highestScore
+                this.worldRankListController.setUserData(resUpdate.topUsers, resUpdate.nearUsers, resUpdate.rank)
+            })
         })
         this.onClickFriendMode()
     },

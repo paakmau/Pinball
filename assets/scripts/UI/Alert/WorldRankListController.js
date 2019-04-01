@@ -4,7 +4,8 @@ var WorldRankListController = cc.Class({
     extends: cc.Component,
 
     properties: {
-        friendItemPrefab: cc.Prefab
+        friendItemPrefab: cc.Prefab,
+        emptyItemPrefab: cc.Prefab
     },
 
     onLoad() {
@@ -13,21 +14,35 @@ var WorldRankListController = cc.Class({
         this.friendItemList = new Array()
     },
 
-    setFriendData(friendList) {
+    setUserData(topUserList, nearUserList, nearRankFront) {
         this.friendItemList.forEach(element => {
             element.destroy()
         })
         this.friendItemList.length = 0
         var rank = 0
-        friendList.forEach(element => {
+        topUserList.forEach(element => {
             rank ++
             var item = cc.instantiate(this.friendItemPrefab)
-            item.getComponent('FriendItem').init(rank, element.nickname, element.mark)
+            item.getComponent('RankItem').init(rank, element.nickname, element.mark)
             this.friendItemList.push(item)
+            this.scrollContent.addChild(item)
         });
-        this.friendItemList.forEach(element => {
-            this.scrollContent.addChild(element)
-        })
+        var empty = cc.instantiate(this.emptyItemPrefab)
+        this.friendItemList.push(empty)
+        this.scrollContent.addChild(empty)
+        if(nearUserList.length != 0) {
+            rank = nearRankFront - 1
+            nearUserList.forEach(element => {
+                rank++
+                var item = cc.instantiate(this.friendItemPrefab)
+                item.getComponent('RankItem').init(rank, element.nickname, element.mark)
+                this.friendItemList.push(item)
+                this.scrollContent.addChild(item)
+            });
+            var empty = cc.instantiate(this.emptyItemPrefab)
+            this.friendItemList.push(empty)
+            this.scrollContent.addChild(empty)
+        }
     },
 
     scrollBarDrag(deltaY) {

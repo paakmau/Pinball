@@ -2,10 +2,10 @@
 import Request from "../Utils/Request"
 
 export default {
-    RegisterOrLoginByWxId(wxId, callback) {
-        Request.Get("RegisterOrLoginByWxId", { wxId: wxId }, callback)
+    RegisterOrLoginByWxId(wxId, wxName, callback) {
+        Request.Post("RegisterOrLoginByWxId", { wxId: wxId, wxName: wxName }, callback)
     },
-    UpdateScoreById(data, callback) {
-        Request.Post("UpdateScoreById", data, callback)
+    UpdateScoreById(id, score, topUserNum, radiusFront, radiusBack, callback) {
+        Request.Post("UpdateScoreById", { id: id, score: score, topUserNum: topUserNum, radiusFront:radiusFront, radiusBack: radiusBack }, callback)
     }
 }
