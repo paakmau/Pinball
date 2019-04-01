@@ -55,7 +55,7 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
         // 添加点击事件
         Alert._enterButton.on('click', self.onButtonClicked, self)
         Alert._cancelButton.on('click', self.onButtonClicked, self)
-        Alert._outBackGroud.on('click', self.onButtonClicked, self);
+        Alert._outBackGroud.on('click', self.onButtonClicked, self)
 
         // 父视图
         Alert._alert.parent = cc.find("Canvas")
