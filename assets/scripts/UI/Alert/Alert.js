@@ -1,3 +1,4 @@
+
 const Alert = {
     _alert: null,           // prefab
     _detailLabel:   null,   // 内容
@@ -14,7 +15,7 @@ const Alert = {
  * neeCancel:       是否展示取消按钮 bool 类型 default YES.
  * duration:        动画速度 default = 0.3.
 */
-Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, parentUI) {
+Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, parentUI, mark) {
 
     // 引用
     var self = this
@@ -51,6 +52,11 @@ Alert.show = function (detailString, enterCallBack, needCancel, animSpeed, paren
         Alert._cancelButton = cc.find("alertBackground/cancelButton", alert)
         Alert._enterButton = cc.find("alertBackground/enterButton", alert)
         Alert._outBackGroud = cc.find("singleColor", alert);
+
+        // 获取RankController并赋予mark值
+        cc.find("alertBackground/rankList", alert).getComponent("RankController").init(mark)
+
+        // 
 
         // 添加点击事件
         Alert._enterButton.on('click', self.onButtonClicked, self)

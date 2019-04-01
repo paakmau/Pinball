@@ -1,9 +1,11 @@
-
+import WorldRankListController from "./WorldRankListController"
+import UserApi from '../../Api/User'
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
+        worldRankListController: WorldRankListController
     },
 
     onLoad() {
@@ -12,6 +14,21 @@ cc.Class({
         this.worldChild = this.node.getChildByName("worldRankList")
         this.friendChildPos = this.friendChild.position
         this.worldChildPos = this.worldChild.position
+    },
+
+    init(mark) {
+        this.mark = mark
+    },
+
+    start() {
+        // 向微信开放数据域传递分数数据
+        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+            wx.postMessage({ type: 'GAME_OVER' , mark: this.mark })
+        }
+        // 向世界发送数据 TODO:
+        UserApi.RegisterOrLoginByWxId("hbmnb", resId=>{
+
+        })
         this.onClickFriendMode()
     },
 

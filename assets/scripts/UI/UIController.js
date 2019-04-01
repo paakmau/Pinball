@@ -1,4 +1,4 @@
-import Alert from "../Utils/Alert"
+import Alert from "./Alert/Alert"
 
 var UIController = cc.Class({
     extends: cc.Component,
@@ -30,10 +30,7 @@ var UIController = cc.Class({
      * @param {int} x 最终的分数
      */
     gameOver(x){
-        Alert.show("游戏结束", null, false, 0.3, this.node);
-        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
-            wx.postMessage({ type: 'GAME_OVER' , mark: x })
-        }
+        Alert.show("游戏结束", null, false, 0.3, this.node, x);
     }
 })
 
