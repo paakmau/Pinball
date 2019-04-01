@@ -3,19 +3,25 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        additionNode: cc.Node
     },
 
     onLoad () {
-        this.animation = this.getComponent(cc.Animation)
+        this.animations = [this.getComponent(cc.Animation)]
+        if(this.additionNode != null)
+            this.animations.push(this.additionNode.getComponent(cc.Animation))
     },
 
     onCollisionEnter() {
-        // 播放对应动画
-        // TODO: 目前默认动画都是碰撞
-        this.animation.play()
+        // 播放默认动画
+        this.animations.forEach(element => {
+            element.play()
+        });
     },
 
     onBeginContact() {
-        this.animation.play()
+        this.animations.forEach(element => {
+            element.play()
+        });
     }
 })
