@@ -15,7 +15,7 @@
   "inlineSpriteFrames_native": true,
   "md5Cache": false,
   "mergeStartScene": false,
-  "optimizeHotUpdate": false,
+  "optimizeHotUpdate": true,
   "orientation": {
     "landscapeLeft": true,
     "landscapeRight": true,

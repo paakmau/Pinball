@@ -47,15 +47,17 @@ exports.main = async (event, context) => new Promise((resolve0, reject0) => {
         }
         if(topUserNum < rank-radiusFront)
           resolve0({
-            topUser: users.slice(0, topUserNum),
-            nearUser: users.slice(rank-radiusFront, Math.min(rank+radiusBack+1, users.length)),
+            maxMark: maxMark,
+            topUsers: users.slice(0, topUserNum),
+            nearUsers: users.slice(rank-radiusFront, Math.min(rank+radiusBack+1, users.length)),
             nearFrontRank: rank-radiusFront+1,
             rank: rank+1
           })
         else
           resolve0({
-            topUser: users.slice(0, Math.min(topUserNum, users.length)),
-            nearUser: [],
+            maxMark: maxMark,
+            topUsers: users.slice(0, Math.min(topUserNum+2, users.length)),
+            nearUsers: [],
             nearFrontRank: -1,
             rank: rank+1
           })

@@ -315,7 +315,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 120,
-      "height": 60
+      "height": 35
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -324,8 +324,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -95,
-      "y": 9,
+      "x": -93,
+      "y": -2,
       "z": 0
     },
     "_scale": {
@@ -360,8 +360,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "Nickname",
-    "_N$string": "Nickname",
+    "_string": "何jojo",
+    "_N$string": "何jojo",
     "_fontSize": 25,
     "_lineHeight": 25,
     "_enableWrapText": true,
@@ -414,8 +414,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 90,
-      "height": 60
+      "width": 128,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -424,8 +424,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 36,
-      "y": 5,
+      "x": 29,
+      "y": -3,
       "z": 0
     },
     "_scale": {
@@ -460,8 +460,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "32500",
-    "_N$string": "32500",
+    "_string": "3250044444444",
+    "_N$string": "3250044444444",
     "_fontSize": 30,
     "_lineHeight": 30,
     "_enableWrapText": true,

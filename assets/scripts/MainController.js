@@ -42,6 +42,7 @@ cc.Class({
                 name: 'login',
                 success(res) {
                     that.openid = res.result.openid
+                    console.log(that.openid)
                 }
             })
         }
@@ -93,11 +94,6 @@ cc.Class({
 
     },
 
-    start() {
-        // TODO: 用于测试
-        this.gameOver()
-    },
-
     updateBonus(){
         this.gameUI.setBonus(this.gameData.getBonus());
     },
@@ -114,58 +110,74 @@ cc.Class({
         this.gameUI.gameOver(this.resultBonus);
 
 
-        // TODO: 用于测试
-            this.gameUI.setWorldRank({
-                maxMark: 10000,
-                topUsers: [
-                    {
-                        nickname: 'hbm',
-                        mark: 2333333
-                    },
-                    {
-                        nickname: 'sbsb',
-                        mark: 233334
-                    },
-                    {
-                        nickname: 'gjb',
-                        mark: 24444
-                    }
-                ],
-                nearUsers: [
-                    {
-                        nickname: 'test',
-                        mark: 23333
-                    },
-                    {
-                        nickname: 'me',
-                        mark: 10000
-                    },
-                    {
-                        nickname: 'sssssss',
-                        mark: 2004
-                    }
-                ],
-                nearFrontRank: 95
-            })
+        //  数据格式样例
+            // this.gameUI.setWorldRank({
+            //     maxMark: 10000,
+            //     topUsers: [
+            //         {
+            //             nickname: 'hbm',
+            //             mark: 2333333
+            //         },
+            //         {
+            //             nickname: 'sbsb',
+            //             mark: 233334
+            //         },
+            //         {
+            //             nickname: 'gjb',
+            //             mark: 24444
+            //         }
+            //     ],
+            //     nearUsers: [
+            //         {
+            //             nickname: 'test',
+            //             mark: 23333
+            //         },
+            //         {
+            //             nickname: 'me',
+            //             mark: 10000
+            //         },
+            //         {
+            //             nickname: 'sssssss',
+            //             mark: 2004
+            //         }
+            //     ],
+            //     nearFrontRank: 95
+            // })
 
 
         // 把得分上传至后端并向UI传入从后端获得的世界排名信息
-        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+        if(cc.sys.platform === cc.sys.WECHAT_GAME && that.openid!=null) {
             wx.cloud.callFunction({
                 name: 'uploadMark',
                 data: {
                     openid: that.openid,
-                    mark: that.resultBonus
+                    mark: that.resultBonus,
+                    topUserNum: 3, // 世界排名显示的前几名
+                    radiusFront: 1, // 玩家目前排名附近的其他玩家半径
+                    radiusBack: 2
                 },
                 success(res) {
-                    res.result
+                    let curRank = 1
+                    let myRank = res.result.rank
+                    const unknownNicknames = ['路人甲', '路人丙', '路人乙', '张三', '李四', '赵四', '王五', '卢本伟', '郭逢缘']
+                    res.result.topUsers.forEach(element => {
+                        if(curRank == myRank)
+                            element.nickname = "您"
+                        else
+                            element.nickname=unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length-1))]
+                        curRank++
+                    })
+                    curRank = res.result.nearFrontRank
+                    res.result.nearUsers.forEach(element=>{
+                        if(curRank == myRank)
+                        element.nickname = "您"
+                        else
+                            element.nickname=unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length-1))]
+                        curRank++
+                    })
+                    that.gameUI.setWorldRank(res.result)
                 }
             })
         }
-
-
-
-
-
     }
 })
