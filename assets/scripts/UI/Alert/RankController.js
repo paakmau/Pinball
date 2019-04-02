@@ -32,23 +32,11 @@ cc.Class({
         }
         // 设置世界排名显示
         this.worldTopLabel.string = "您的得分是 " + this.mark + '...'
-        // 向世界发送数据 TODO:
-        UserApi.RegisterOrLoginByWxId("hbmdeidididididid", "hbm", resId=>{
-            UserApi.UpdateScoreById( resId, that.mark, 3, 2, 1, resUpdate=>{
-                if(!resUpdate.topUsers) return
-                resUpdate.topUsers.forEach(e => {
-                    e.nickname = e.wxName
-                    e.mark = e.highestScore
-                });
-                resUpdate.nearUsers.forEach(e => {
-                    e.nickname = e.wxName
-                    e.mark = e.highestScore
-                });
-                this.worldTopLabel.string = "您的得分是 " + this.mark + ' 最高分 ' + resUpdate.highestScore
-                this.worldRankListController.setUserData(resUpdate.topUsers, resUpdate.nearUsers, resUpdate.rank)
-            })
-        })
         this.onClickFriendMode()
+    },
+    setWorldRank(worldRankData) {
+        this.worldTopLabel.string = "您的得分是 " + this.mark + ' 最高分 ' + worldRankData.maxMark
+        this.worldRankListController.setUserData(worldRankData.topUsers, worldRankData.nearUsers, worldRankData.nearFrontRank)
     },
 
     onClickFriendMode() {

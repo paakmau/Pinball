@@ -29,8 +29,22 @@ cc.Class({
         this.gameData.resetData();
         AudioPlayer.init(this.gameAudio);
 
-        // 用户登录
-        
+        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+            // 初始化微信云开发
+            wx.cloud.init({
+                traceUser: true,
+                env: 'pinball-backend-345f5b'
+            })
+
+            // 用户登陆
+            this.openid = null
+            wx.cloud.callFunction({
+                name: 'login',
+                success(res) {
+                    that.openid = res.result.openid
+                }
+            })
+        }
 
         // 球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
@@ -93,13 +107,41 @@ cc.Class({
     },
     gameOver(){
         this.resultBonus = this.gameData.getBonus()
-        // UserApi.UpdateScoreById({ id: 2, score: that.resultBonus }, res => { 
-        //     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "rank = " + res.rank +" highscore = " + res.highestScore);
-        //     Alert.Change("WASTED!! BONUS:" + that.resultBonus +  "\nrank = " + res.rank +" highscore = " + res.highestScore);
-            
-        // });
         this.gameData.resetData();
         this.updateUI();
         this.gameUI.gameOver(this.resultBonus);
+        // TODO: 向UI传入世界排名信息
+            this.gameUI.setWorldRank({
+                maxMark: 10000,
+                topUsers: [
+                    {
+                        nickname: 'hbm',
+                        mark: 2333333
+                    },
+                    {
+                        nickname: 'sbsb',
+                        mark: 233334
+                    },
+                    {
+                        nickname: 'gjb',
+                        mark: 24444
+                    }
+                ],
+                nearUsers: [
+                    {
+                        nickname: 'test',
+                        mark: 23333
+                    },
+                    {
+                        nickname: 'me',
+                        mark: 10000
+                    },
+                    {
+                        nickname: 'sssssss',
+                        mark: 2004
+                    }
+                ],
+                nearFrontRank: 95
+            })
     }
 })

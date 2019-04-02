@@ -3,10 +3,11 @@ import Alert from "./Alert/Alert"
 var UIController = cc.Class({
     extends: cc.Component,
     properties:{
-        Bonus:{
+        Bonus: {
             default: null,
             type: cc.Label
-        }
+        },
+        alertDialog: Alert
     },
     onLoad(){
         cc.log("UIController onLoad()")
@@ -26,10 +27,13 @@ var UIController = cc.Class({
     },
     /**
      * 
-     * @param {int} x 最终的分数
+     * @param {int} mark 最终的分数
      */
-    gameOver(x){
-        Alert.show("游戏结束", null, false, x);
+    gameOver(mark){
+        this.alertDialog.show("游戏结束", null, false, mark)
+    },
+    setWorldRank(worldRankData) {
+        this.alertDialog.setWorldRank(worldRankData)
     }
 })
 
