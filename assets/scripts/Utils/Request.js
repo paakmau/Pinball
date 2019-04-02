@@ -1,5 +1,7 @@
 
 let baseUrl = "http://120.78.76.9:8080/"
+// let baseUrl = 'http://127.0.0.1:8080/'
+
 
 export default {
     Get: function(relUrl, reqData, callback){

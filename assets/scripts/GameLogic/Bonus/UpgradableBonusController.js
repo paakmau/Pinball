@@ -57,7 +57,7 @@ var UpgradableBonusController = cc.Class({
             if(this.activeNum == this.upgraderArray.length) {
                 this.activeNum = 0
                 let upgraded = true
-                if(this.level<this.bonusFactorArray.length)
+                if(this.level<this.bonusFactorArray.length-1)
                     this.level++
                 else 
                     upgraded = false
