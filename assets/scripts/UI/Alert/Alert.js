@@ -53,7 +53,7 @@ var Alert = cc.Class({
     },
     // 执行弹进动画
     startFadeIn : function () {
-        cc.eventManager.pauseTarget(this, true)
+        // cc.eventManager.pauseTarget(this, true)
         this.node.position = cc.p(0, 0)
         this.node.setScale(2)
         this.node.opacity = 0
@@ -61,7 +61,7 @@ var Alert = cc.Class({
     },
     // 执行弹出动画
     startFadeOut : function () {
-        cc.eventManager.pauseTarget(this, true)
+        // cc.eventManager.pauseTarget(this, true)
         this.node.runAction(this.actionFadeOut)
     },
     // 弹进动画完成回调
