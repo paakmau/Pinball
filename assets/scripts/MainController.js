@@ -29,7 +29,10 @@ cc.Class({
         this.gameData.resetData();
         AudioPlayer.init(this.gameAudio);
 
-        //球掉落
+        // 用户登录
+        
+
+        // 球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
             cc.log("Main Controller game over");
             //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y);
