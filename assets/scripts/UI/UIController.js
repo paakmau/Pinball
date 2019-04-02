@@ -29,7 +29,7 @@ var UIController = cc.Class({
      * @param {int} x 最终的分数
      */
     gameOver(x){
-        Alert.show("游戏结束", null, false, 0.3, this.node, x);
+        Alert.show("游戏结束", null, false, x);
     }
 })
 
