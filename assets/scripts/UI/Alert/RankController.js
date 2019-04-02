@@ -24,9 +24,7 @@ cc.Class({
 
     init(mark) {
         this.mark = mark
-    },
 
-    start() {
         let that = this
         // 向微信开放数据域传递分数数据
         if(cc.sys.platform === cc.sys.WECHAT_GAME) {
