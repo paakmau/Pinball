@@ -10,7 +10,7 @@ import RankController from './RankController'
  * duration:        动画速度 default = 0.3.
 */
 
-cc.Class({
+var Alert = cc.Class({
     extends: cc.Component,
     properties:{
         detailLabel: cc.Label,
@@ -39,6 +39,9 @@ cc.Class({
         this.configAlert(detailString, enterCallBack, needCancel)
 
         this.startFadeIn()
+    },
+    setWorldRank(worldRankData) {
+        this.rankController.setWorldRank(worldRankData)
     },
     onExitButtonClicked : function(event){
         if(event.target.name == "enterButton"){
@@ -87,16 +90,4 @@ cc.Class({
     }
 })
 
-
-const Alert = {
-    _alert: null,           // 单例
-}
-Alert.show = function (detailString, enterCallBack, needCancel, mark) {
-
-    this._alert.show(detailString, enterCallBack, needCancel, mark)
-
-    return this._alert.detailLabel;
-}
-
-
-export default Alert
+module.exports = Alert
