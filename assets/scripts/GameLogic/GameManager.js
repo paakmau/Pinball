@@ -82,6 +82,7 @@ cc.Class({
             var dGEvent = new PortalContactDGEvent()
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
+            that.centralCircleController.addInnerLight()
         })
 
         // 获得Bonus事件
@@ -111,6 +112,7 @@ cc.Class({
                 that.buttonBonusGroups[i].reset();
             }
             that.upgradableBonusController.reset();
+            that.centralCircleController.reset();
         })
 
         // RacketPunch事件

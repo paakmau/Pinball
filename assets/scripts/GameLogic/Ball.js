@@ -11,7 +11,7 @@ var Ball = cc.Class({
         this.worldCenter = this.rigidBody.getWorldCenter()
         this.time = 0
 
-        // //TODO:测试用
+        //TODO:测试用
         // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
     },
     // onKeyDown(event){

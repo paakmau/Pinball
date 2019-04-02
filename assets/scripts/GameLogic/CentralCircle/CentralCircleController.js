@@ -10,6 +10,9 @@ cc.Class({
         outerLights: CentralCircleLights,
         redLight: cc.Node
     },
+    onLoad(){
+        this.innerNum = 0;
+    },
 
     setInnerLight(num, size) {
         this.innerLights.setValue(num, size)
@@ -20,6 +23,21 @@ cc.Class({
     },
     blinkRedLight(){
         this.redLight.getComponent(cc.Animation).play()
+    },
+    /**
+     * 增加一盏灯
+     */
+    addInnerLight(){
+        if(this.innerNum == this.innerLights.length){
+            this.innerNum = 0;
+        }else{
+            this.innerNum++;
+            this.setInnerLight(this.innerNum, 6);
+        }
+    },
+    reset(){
+        this.innerLights.setValue(0,0);
+        this.outerLights.setValue(0,0);
     }
 
     // update (dt) {},
