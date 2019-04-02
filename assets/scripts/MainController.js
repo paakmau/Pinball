@@ -25,7 +25,6 @@ cc.Class({
          }
     },
     onLoad(){
-        cc.log("Load MainController");
         var that = this;
         this.gameData.resetData();
         AudioPlayer.init(this.gameAudio);
@@ -78,6 +77,7 @@ cc.Class({
     },
 
     start() {
+        // TODO: 用于测试
         this.gameOver()
     },
 
