@@ -44,6 +44,16 @@ var UpgradableBonusController = cc.Class({
         event.init(this.bonusFactorArray[this.level])
         this.node.dispatchEvent(event)
     },
+    reset(){
+        this.activeNum = 0;
+        this.level = 0;
+        this.upgraderArray.forEach(upgrader => {
+            upgrader.reset();
+        });
+        var event = new UpgradableBonusUpgradeGLEvent()
+        event.init("UpCircleGroupPart", this.level, this.bonusFactorArray.length)
+        this.node.dispatchEvent(event)
+    },
 
     upgraderBonusGain() {
         var event = new BonusGainGLEvent()

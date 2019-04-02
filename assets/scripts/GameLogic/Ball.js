@@ -10,7 +10,30 @@ var Ball = cc.Class({
         this.rigidBody = this.getComponent(cc.RigidBody)
         this.worldCenter = this.rigidBody.getWorldCenter()
         this.time = 0
+
+        // //TODO:测试用
+        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
     },
+    // onKeyDown(event){
+    //     switch(event.keyCode){
+    //         case cc.KEY.a:
+    //             this.rigidBody.applyLinearImpulse(cc.v2(-50,0), this.worldCenter);
+    //             // this.node.x -= 20
+    //             break;
+    //         case cc.KEY.s:
+    //             this.rigidBody.applyLinearImpulse(cc.v2(0,-50), this.worldCenter);
+    //             // this.node.y -= 20;
+    //             break;
+    //         case cc.KEY.d:
+    //             this.rigidBody.applyLinearImpulse(cc.v2(50,0), this.worldCenter);
+    //             // this.node.x += 20;
+    //             break;
+    //         case cc.KEY.w:
+    //             this.rigidBody.applyLinearImpulse(cc.v2(0,50), this.worldCenter);
+    //             // this.node.y += 20;
+    //             break;
+    //     }
+    // },
 
     // 对小球施加冲量
     bomb(dir) {
