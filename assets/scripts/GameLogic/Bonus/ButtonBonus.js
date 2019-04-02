@@ -9,19 +9,27 @@ var ButtonBonus = cc.Class({
 
     onLoad() {
         this.rigidBody = this.getComponent(cc.RigidBody)
-        this.isPressed = false
+        this.isPressed = false;
+        this.havePressed = false;
+        this.animation = this.getComponent(cc.Animation);
+        //this.animation.play(0);
     },
 
     update(dt) {
-        if(this.isPressed) {
-            this.pressDown()
-            this.isPressed = false
+        if(this.havePressed) {
+             this.pressDown();
+             this.havePressed = false;
         }
     },
 
     onBeginContact(contact, selfCollider, otherCollider) {
-        this.isPressed = true
+        if(!this.isPressed){
+            this.isPressed = true;
+            this.havePressed = true;
+            //this.pressDown();
+        }
     },
+
 
     // 只能由上层group调用
     setGroup(group) {
@@ -29,18 +37,24 @@ var ButtonBonus = cc.Class({
     },
 
     reset() {
-        // TODO: 播放恢复动画
-        this.rigidBody.active = true
-
-        // 测试用
-        this.node.x += 6
+        if(this.isPressed){
+            // TODO: 播放恢复动画
+            //this.rigidBody.enabledContactListener = true;
+            
+            // 测试用
+            // this.animation.play(1);
+            this.node.x += 6;
+            this.isPressed = false;
+        }
     },
 
     pressDown() {
-        this.rigidBody.active = false
+        //this.rigidBody.enabledContactListener = false
 
         // TODO: pressDownOneBtn应当在按压动画结束后调用
         this.node.x -= 6
+        // this.animation.play(0);
+
         this.group.pressDownOneBtn()
     }
 })

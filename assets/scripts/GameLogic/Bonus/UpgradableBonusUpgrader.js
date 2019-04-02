@@ -35,6 +35,11 @@ var UpgradableBonusUpgrader = cc.Class({
     resetInView() {
         // TODO: 此处应当播放动画
         this.isActive = false
+    },
+    reset(){
+        this.node.color = new cc.Color(255, 255, 255);
+        this.isActive = false
+        this.isActivePre = false
     }
 })
 

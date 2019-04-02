@@ -14,6 +14,8 @@ var BlackHoleInGLEvent = require("../Message/GameLogic/BlackHoleInGLEvent")
 var BlackHoleOutGLEvent = require("../Message/GameLogic/BlackHoleOutGLEvent")
 
 
+var ButtonBonusGroup = require("./Bonus/ButtonBonusGroup")
+var UpgradableBonusController = require("./Bonus/UpgradableBonusController")
 var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent")
 var TrampolineContactDGEvent = require("../Message/DataGen/TrampolineContactDGEvent")
 var PortalContactDGEvent = require("../Message/DataGen/PortalContactGLEvent")
@@ -33,7 +35,15 @@ cc.Class({
             default: []
         },
         ballStarterNode: cc.Node,
-        centralCircleController: CentralCircleController
+        centralCircleController: CentralCircleController,
+        buttonBonusGroups:{
+            type: ButtonBonusGroup,
+            default:[]
+        },
+        upgradableBonusController: {
+            type: UpgradableBonusController,
+            default: null
+        }
     },
     onLoad() {
         var that = this
@@ -72,6 +82,7 @@ cc.Class({
             var dGEvent = new PortalContactDGEvent()
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
+            that.centralCircleController.addInnerLight()
         })
 
         // 获得Bonus事件
@@ -97,6 +108,11 @@ cc.Class({
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
             that.centralCircleController.blinkRedLight()
+            for(var i = 0; i < that.buttonBonusGroups.length;i++){
+                that.buttonBonusGroups[i].reset();
+            }
+            that.upgradableBonusController.reset();
+            that.centralCircleController.reset();
         })
 
         // RacketPunch事件

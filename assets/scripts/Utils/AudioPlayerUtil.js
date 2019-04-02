@@ -13,6 +13,6 @@ AudioPlayerUtil.play = function (i){
     if(i >= AudioPlayerUtil._audioController.Audios.length){
         i = 1;
     }
-    cc.audioEngine.playEffect(AudioPlayerUtil._audioController.Audios[i], false, 1);
+    cc.audioEngine.playEffect(AudioPlayerUtil._audioController.Audios[i], false, 0.5);
 }
 export default AudioPlayerUtil
