@@ -34,9 +34,8 @@ cc.Class({
         this.worldTopLabel.string = "您的得分是 " + this.mark + '...'
         // 向世界发送数据 TODO:
         UserApi.RegisterOrLoginByWxId("hbmdeidididididid", "hbm", resId=>{
-            console.log(resId)
             UserApi.UpdateScoreById( resId, that.mark, 3, 2, 1, resUpdate=>{
-                console.log(resUpdate)
+                if(!resUpdate.topUsers) return
                 resUpdate.topUsers.forEach(e => {
                     e.nickname = e.wxName
                     e.mark = e.highestScore
