@@ -106,11 +106,15 @@ cc.Class({
         this.updateBonus();
     },
     gameOver(){
+        var that = this
+
         this.resultBonus = this.gameData.getBonus()
         this.gameData.resetData();
         this.updateUI();
         this.gameUI.gameOver(this.resultBonus);
-        // TODO: 向UI传入世界排名信息
+
+
+        // TODO: 用于测试
             this.gameUI.setWorldRank({
                 maxMark: 10000,
                 topUsers: [
@@ -143,5 +147,25 @@ cc.Class({
                 ],
                 nearFrontRank: 95
             })
+
+
+        // 把得分上传至后端并向UI传入从后端获得的世界排名信息
+        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+            wx.cloud.callFunction({
+                name: 'uploadMark',
+                data: {
+                    openid: that.openid,
+                    mark: that.resultBonus
+                },
+                success(res) {
+                    res.result
+                }
+            })
+        }
+
+
+
+
+
     }
 })

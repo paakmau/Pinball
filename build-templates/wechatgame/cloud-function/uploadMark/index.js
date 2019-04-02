@@ -7,10 +7,12 @@ cloud.init()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
+  cloud.init()
+  const db = wx.cloud.database()
+  const pinballUserCollection = db.collection('pinball_user')
+
+  event.openid
+  event.mark
   return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
   }
 }
