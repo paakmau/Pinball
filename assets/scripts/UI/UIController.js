@@ -11,7 +11,6 @@ var UIController = cc.Class({
     onLoad(){
         cc.log("UIController onLoad()")
         this.Bonus.string = "0"
-        //this.that = this
     },
     // bonusGain(value){
     //     this.result = parseInt(this.Bonus.string) + value

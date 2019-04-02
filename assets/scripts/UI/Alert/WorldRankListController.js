@@ -1,4 +1,8 @@
 
+/**
+ * 管理世界排名的显示
+ */
+
 
 var WorldRankListController = cc.Class({
     extends: cc.Component,

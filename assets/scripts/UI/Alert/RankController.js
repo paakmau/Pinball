@@ -1,6 +1,11 @@
 import WorldRankListController from "./WorldRankListController"
 import UserApi from '../../Api/User'
 
+/**
+ * 负责向后端上传数据, 从后端接收排行榜
+ * 管理好友排名与世界排名的切换
+ */
+
 cc.Class({
     extends: cc.Component,
 

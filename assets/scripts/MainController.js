@@ -28,7 +28,6 @@ cc.Class({
         cc.log("Load MainController");
         var that = this;
         this.gameData.resetData();
-        this.gameOver();
         AudioPlayer.init(this.gameAudio);
 
         //球掉落
@@ -76,6 +75,10 @@ cc.Class({
 
         })
 
+    },
+
+    start() {
+        this.gameOver()
     },
 
     updateBonus(){
