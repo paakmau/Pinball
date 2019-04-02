@@ -9,7 +9,7 @@ var Ball = cc.Class({
         // 获取成员变量
         this.rigidBody = this.getComponent(cc.RigidBody)
         this.worldCenter = this.rigidBody.getWorldCenter()
-
+        this.time = 0
     },
 
     // 对小球施加冲量
@@ -43,6 +43,19 @@ var Ball = cc.Class({
 
     isMoving() {
         return this.rigidBody.linearVelocity.magSqr() >= 0.01
+    },
+    update(dt){
+        //连续7秒不动则给一个速度，防止卡死在某个地方
+        if(!this.isMoving()){
+            if(this.time < 7){
+                this.time += dt
+            }else{
+                this.rigidBody.linearVelocity = cc.v2(50,500)
+                this.time = 0;
+            }
+        }else{
+            this.time = 0;
+        }
     }
 })
 
