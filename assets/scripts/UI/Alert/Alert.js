@@ -17,7 +17,7 @@ var Alert = cc.Class({
         cancelButton: cc.Node,
         enterButton: cc.Node,
         outBackground: cc.Node,
-        animSpeed: 0.1,
+        animSpeed: 0.3,
         rankController: RankController
     },
     onLoad() {
@@ -33,12 +33,11 @@ var Alert = cc.Class({
     },
     show(detailString, enterCallBack, needCancel, mark) {
 
-        // 设置mark
-        this.rankController.init(mark)
-
         this.configAlert(detailString, enterCallBack, needCancel)
 
         this.startFadeIn()
+        // 设置mark
+        this.rankController.init(mark)
     },
     setWorldRank(worldRankData) {
         this.rankController.setWorldRank(worldRankData)
@@ -53,15 +52,15 @@ var Alert = cc.Class({
     },
     // 执行弹进动画
     startFadeIn : function () {
-        // cc.eventManager.pauseTarget(this, true)
+        cc.eventManager.pauseTarget(this, true)
         this.node.position = cc.p(0, 0)
-        this.node.setScale(2)
+        this.node.setScale(2.0)
         this.node.opacity = 0
         this.node.runAction(this.actionFadeIn)
     },
     // 执行弹出动画
     startFadeOut : function () {
-        // cc.eventManager.pauseTarget(this, true)
+        cc.eventManager.pauseTarget(this, true)
         this.node.runAction(this.actionFadeOut)
     },
     // 弹进动画完成回调
@@ -71,6 +70,7 @@ var Alert = cc.Class({
     // 弹出动画完成回调
     onFadeOutFinish : function () {
         this.node.position = cc.p(10000, 10000)
+        this.rankController.fade()
     },
     configAlert : function (detailString, enterCallBack, needCancel) {
 
