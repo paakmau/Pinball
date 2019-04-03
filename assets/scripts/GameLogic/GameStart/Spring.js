@@ -3,7 +3,6 @@
  * 手指触下开始计时, 弹簧压缩
  * 手指松开弹起, 根据时间决定小球发射冲量
  */
-import AudioPlayer from "../../Utils/AudioPlayerUtil"
 var BombStartBombGLEvent = require("../../Message/GameLogic/BallStartBombGLEvent")
 
 cc.Class({
@@ -33,7 +32,6 @@ cc.Class({
     springDown(){
         this.isPressed = true
         cc.log("spring down")
-        AudioPlayer.play(7)
     },
     springUp(){
         this.isPressed = false

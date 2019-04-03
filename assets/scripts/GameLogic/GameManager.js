@@ -2,6 +2,8 @@
 var Ball = require("./Ball")
 var Racket = require("./Racket")
 var CentralCircleController = require('./CentralCircle/CentralCircleController')
+var ButtonBonusGroup = require("./Bonus/ButtonBonusGroup")
+var UpgradableBonusController = require("./Bonus/UpgradableBonusController")
 
 var BallReadyGLEvent = require("../Message/GameLogic/BallReadyGLEvent")
 var BallStartBombGLEvent = require("../Message/GameLogic/BallStartBombGLEvent")
@@ -15,13 +17,12 @@ var BlackHoleInGLEvent = require("../Message/GameLogic/BlackHoleInGLEvent")
 var BlackHoleOutGLEvent = require("../Message/GameLogic/BlackHoleOutGLEvent")
 
 
-var ButtonBonusGroup = require("./Bonus/ButtonBonusGroup")
-var UpgradableBonusController = require("./Bonus/UpgradableBonusController")
 var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent")
 var TrampolineContactDGEvent = require("../Message/DataGen/TrampolineContactDGEvent")
 var PortalContactDGEvent = require("../Message/DataGen/PortalContactGLEvent")
 var RacketPunchDGEvent = require("../Message/DataGen/RacketPunchDGEvent")
 var BallFallDGEvent = require("../Message/DataGen/BallFallDGEvent")
+var BallStartShootEvent = require("../Message/DataGen/BallStartShootDGEvent")
 
 cc.Class({
     extends: cc.Component,
@@ -68,7 +69,9 @@ cc.Class({
         this.node.on(BallStartBombGLEvent.Name, function(event) {
             if(that.isBallReady) {
                 that.ball.bomb(event.bombDir)
-                // cc.log("BallStartBomb")
+                var dGEvent = new BallStartShootEvent()
+                dGEvent.init()
+                that.node.dispatchEvent(dGEvent)
             }
         })
 

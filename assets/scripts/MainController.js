@@ -1,9 +1,10 @@
 
-import AudioPlayer from "./Utils/AudioPlayerUtil";
+import AudioPlayer from "./Utils/AudioPlayerUtil"
 var BallFallDGEvent = require("./Message/DataGen/BallFallDGEvent")
 var BonusGainDGEvent = require("./Message/DataGen/BonusGainDGEvent")
 var PortalContactDGEvent = require("./Message/DataGen/PortalContactGLEvent")
 var TrampolineContactDGEvent = require("./Message/DataGen/TrampolineContactDGEvent")
+var BallStartShootDGEvent = require("./Message/DataGen/BallStartShootDGEvent")
 var DataContainer = require("./Data/DataContainer")
 var UIController = require("./UI/UIController")
 var AudioController = require("./Audio/AudioController")
@@ -25,9 +26,9 @@ cc.Class({
          }
     },
     onLoad(){
-        var that = this;
-        this.gameData.resetData();
-        AudioPlayer.init(this.gameAudio);
+        var that = this
+        this.gameData.resetData()
+        AudioPlayer.init(this.gameAudio)
 
         if(cc.sys.platform === cc.sys.WECHAT_GAME) {
             // 初始化微信云开发
@@ -49,65 +50,69 @@ cc.Class({
 
         // 球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
-            // cc.log("Main Controller game over");
-            //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y);
-            that.gameOver();
-            //that.gameAudio.playEffectAudio(6);
-            AudioPlayer.play(6);
-         });
+            // cc.log("Main Controller game over")
+            //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y)
+            that.gameOver()
+            //that.gameAudio.playEffectAudio(6)
+            AudioPlayer.play(6)
+         })
 
         //获得bonus
         this.node.on(BonusGainDGEvent.Name, function(event){
-            // cc.log("Main Controller :" + event.type);
-            that.gameUI.setBonus(that.gameData.bonusGain(event.value));
-            //that.gameAudio.playEffectAudio(5);
-            //AudioPlayer.play(5);
+            // cc.log("Main Controller :" + event.type)
+            that.gameUI.setBonus(that.gameData.bonusGain(event.value))
+            //that.gameAudio.playEffectAudio(5)
+            //AudioPlayer.play(5)
         })
 
         //传送
         this.node.on(PortalContactDGEvent.Name, function(event){
-            //that.gameAudio.playEffectAudio(4);
-            AudioPlayer.play(4);
+            //that.gameAudio.playEffectAudio(4)
+            AudioPlayer.play(4)
         })
 
         //蹦床
         this.node.on(TrampolineContactDGEvent.Name, function(event){
-            // cc.log("11111trampoline Contact DG");
-            that.gameData.trampolineContact();
+            // cc.log("11111trampoline Contact DG")
+            that.gameData.trampolineContact()
             
             switch(event.trampolineType){
                 case "RectTrampoline":
-                    //that.gameAudio.playEffectAudio(1);
-                    //AudioPlayer.play(1);
-                    break;
+                    //that.gameAudio.playEffectAudio(1)
+                    //AudioPlayer.play(1)
+                    break
                 case "CircleTrampoline":
-                    //that.gameAudio.playEffectAudio(2);
-                    //AudioPlayer.play(2);
-                    break;
+                    //that.gameAudio.playEffectAudio(2)
+                    //AudioPlayer.play(2)
+                    break
                 case "ShootTrampoline":
-                    //that.gameAudio.playEffectAudio(3);
-                    AudioPlayer.play(3);
-                    break;
+                    //that.gameAudio.playEffectAudio(3)
+                    AudioPlayer.play(3)
+                    break
             }
 
+        })
+
+        this.node.on(BallStartShootDGEvent.Name, function(event) {
+            AudioPlayer.play(7)
         })
 
     },
 
     updateBonus(){
-        this.gameUI.setBonus(this.gameData.getBonus());
+        this.gameUI.setBonus(this.gameData.getBonus())
     },
 
     updateUI(){
-        this.updateBonus();
+        this.updateBonus()
     },
     gameOver(){
         var that = this
 
         this.resultBonus = this.gameData.getBonus()
-        this.gameData.resetData();
-        this.updateUI();
-        this.gameUI.gameOver(this.resultBonus);
+        this.gameData.resetData()
+        this.updateUI()
+        this.gameUI.gameOver(this.resultBonus)
 
 
         //  数据格式样例

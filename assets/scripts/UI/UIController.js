@@ -10,7 +10,7 @@ var UIController = cc.Class({
         alertDialog: Alert
     },
     onLoad(){
-        cc.log("UIController onLoad()")
+        // cc.log("UIController onLoad()")
         this.Bonus.string = "0"
     },
     // bonusGain(value){
