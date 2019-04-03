@@ -4,8 +4,7 @@
 
 var BallInCheck = require("./BallInCheck")
 var BallOutCheck = require("./BallOutCheck")
-var BallInGLEvent = require("../../Message/GameLogic/BallInGLEvent")
-var BallOutGLEvent = require("../../Message/GameLogic/BallOutGLEvent")
+var BallInOutGLEvent = require("../../Message/GameLogic/BallInOutGLEvent")
 var SpringToucher = require("../TouchInput/SpringToucher")
 var RacketToucher = require("../TouchInput/RacketToucher")
 
@@ -25,22 +24,14 @@ cc.Class({
     onLoad() {
         var that = this
 
-        // 检查小球进入隧道
-        this.node.on(BallInGLEvent.Name, function(event) {
-            that.ballInCheck.setActive(false)
-            that.ballOutCheck.setActive(true)
-            that.springToucher.setActive(true)
+        // 检查小球进入或离开隧道
+        this.node.on(BallInOutGLEvent.Name, function(event) {
+            let isIn = event.isIn
+            that.ballInCheck.setActive(!isIn)
+            that.ballOutCheck.setActive(isIn)
+            that.springToucher.setActive(isIn)
             that.racketTouchers.forEach(toucher => {
-                toucher.setActive(false)
-            })
-        })
-        // 小球离开隧道
-        this.node.on(BallOutGLEvent.Name, function(event) {
-            that.ballInCheck.setActive(true)
-            that.ballOutCheck.setActive(false)
-            that.springToucher.setActive(false)
-            that.racketTouchers.forEach(toucher => {
-                toucher.setActive(true)
+                toucher.setActive(!isIn)
             })
         })
     }

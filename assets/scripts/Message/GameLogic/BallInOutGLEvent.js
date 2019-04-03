@@ -1,18 +1,19 @@
 
 
-var eventName = "BallOutGL"
+var eventName = "BallInOutGL"
 
-var BallOutGLEvent = cc.Class({
+var BallInOutGLEvent = cc.Class({
     extends: cc.Event.EventCustom,
     statics: {
         Name: eventName
     },
     properties: {
     },
-    init: function() {
+    init: function(isIn) {
         this.type = eventName
         this.bubbles = true
+        this.isIn = isIn
     }
 })
 
-module.exports = BallOutGLEvent
+module.exports = BallInOutGLEvent

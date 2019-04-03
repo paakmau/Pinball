@@ -2,7 +2,7 @@
  * 检查小球离开发射轨道
  */
 
-var BallOutGLEvent = require("../../Message/GameLogic/BallOutGLEvent")
+var BallInOutGLEvent = require("../../Message/GameLogic/BallInOutGLEvent")
 
 var BallOutCheck = cc.Class({
     extends: cc.Component,
@@ -11,8 +11,8 @@ var BallOutCheck = cc.Class({
     },
     
     onCollisionEnter() {
-        var event = new BallOutGLEvent();
-        event.init()
+        var event = new BallInOutGLEvent();
+        event.init(false)
         this.node.dispatchEvent(event)
     },
 

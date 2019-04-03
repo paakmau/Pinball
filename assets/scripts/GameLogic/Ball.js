@@ -68,12 +68,12 @@ var Ball = cc.Class({
         return this.rigidBody.linearVelocity.magSqr() >= 0.01
     },
     update(dt){
-        //连续7秒不动则给一个速度，防止卡死在某个地方
+        //连续3.8秒不动则给一个速度，防止卡死在某个地方
         if(!this.isMoving()){
-            if(this.time < 7){
+            if(this.time < 3.8){
                 this.time += dt
             }else{
-                this.rigidBody.linearVelocity = cc.v2(50,500)
+                this.rigidBody.linearVelocity = cc.v2((Math.random()-0.5)*100, (Math.random()-0.5)*100)
                 this.time = 0;
             }
         }else{

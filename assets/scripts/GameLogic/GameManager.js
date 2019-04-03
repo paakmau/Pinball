@@ -3,6 +3,7 @@ var Ball = require("./Ball")
 var Racket = require("./Racket")
 var CentralCircleController = require('./CentralCircle/CentralCircleController')
 
+var BallReadyGLEvent = require("../Message/GameLogic/BallReadyGLEvent")
 var BallStartBombGLEvent = require("../Message/GameLogic/BallStartBombGLEvent")
 var BallBombTrampolineGLEvent = require("../Message/GameLogic/BallBombTrampolineGLEvent")
 var BallTransferGLEvent = require("../Message/GameLogic/BallTransferGLEvent")
@@ -58,18 +59,23 @@ cc.Class({
 
         // 观察者模式, 监听子节点的事件
 
+        // 小球就绪事件
+        this.node.on(BallReadyGLEvent.Name, function(event) {
+            that.isBallReady = event.isReady
+        })
+
         // 小球开始Bomb事件
         this.node.on(BallStartBombGLEvent.Name, function(event) {
-            if(!that.ball.isMoving()) {
+            if(that.isBallReady) {
                 that.ball.bomb(event.bombDir)
-                cc.log("BallStartBomb")
+                // cc.log("BallStartBomb")
             }
         })
 
         // 小球蹦床Bomb事件
         this.node.on(BallBombTrampolineGLEvent.Name, function(event) {
             that.ball.bomb(event.bombDir)
-            cc.log("BallBomb, type:" + event.trampolineType)
+            // cc.log("BallBomb, type:" + event.trampolineType)
             var dGEvent = new TrampolineContactDGEvent()
             dGEvent.init(event.trampolineType)
             that.node.dispatchEvent(dGEvent)
@@ -78,7 +84,7 @@ cc.Class({
         // 小球传送事件
         this.node.on(BallTransferGLEvent.Name, function(event) {
             that.ball.transfer(event.pos)
-            cc.log("BallTransfer")
+            // cc.log("BallTransfer")
             var dGEvent = new PortalContactDGEvent()
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
@@ -87,7 +93,7 @@ cc.Class({
 
         // 获得Bonus事件
         this.node.on(BonusGainGLEvent.Name, function(event) {
-            cc.log("BonusGain "+event.factor)
+            // cc.log("BonusGain "+event.factor)
             var dGEvent = new BonusGainDGEvent()
             dGEvent.init(event.factor)
             that.node.dispatchEvent(dGEvent)
@@ -95,7 +101,7 @@ cc.Class({
 
         // 可升级Bonus升级事件
         this.node.on(UpgradableBonusUpgradeGLEvent.Name, function(event) {
-            cc.log("UpgradableBonus Upgraded, name:" + event.bonusName + ", level: " + event.level)
+            // cc.log("UpgradableBonus Upgraded, name:" + event.bonusName + ", level: " + event.level)
             that.centralCircleController.setOuterLight(event.level, event.mxLevel)
         })
 
@@ -103,7 +109,7 @@ cc.Class({
         this.node.on(GameOverGLEvent.Name, function(event) {
             that.ball.transfer(that.ballStarterWorldCenter)
             that.ball.restart()
-            cc.log("Game Over")
+            // cc.log("Game Over")
             var dGEvent = new BallFallDGEvent()
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
@@ -117,7 +123,7 @@ cc.Class({
 
         // RacketPunch事件
         this.node.on(RacketPunchGLEvent.Name, function(event) {
-            cc.log("Racket has punched!")
+            // cc.log("Racket has punched!")
             var dGEvent = new RacketPunchDGEvent()
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
@@ -126,13 +132,13 @@ cc.Class({
         // 进入黑洞事件
         this.node.on(BlackHoleInGLEvent.Name, function(event) {
             that.ball.goIntoBlackHole(event.pos)
-            cc.log("Go Into Black Hole")
+            // cc.log("Go Into Black Hole")
         })
 
         // 脱离黑洞事件
         this.node.on(BlackHoleOutGLEvent.Name, function(event) {
             that.ball.goOutOfBlackHole(event.pos, event.bombDir)
-            cc.log("Go Out Of Black Hole")
+            // cc.log("Go Out Of Black Hole")
         })
     }
 })

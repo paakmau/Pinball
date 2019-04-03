@@ -42,14 +42,14 @@ cc.Class({
                 name: 'login',
                 success(res) {
                     that.openid = res.result.openid
-                    console.log(that.openid)
+                    // console.log(that.openid)
                 }
             })
         }
 
         // 球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
-            cc.log("Main Controller game over");
+            // cc.log("Main Controller game over");
             //Alert.show("WASTED!! BONUS:" + that.gameData.getBonus(), null, false, 0.3,that.CameraNode.x, that.CameraNode.y);
             that.gameOver();
             //that.gameAudio.playEffectAudio(6);
@@ -58,7 +58,7 @@ cc.Class({
 
         //获得bonus
         this.node.on(BonusGainDGEvent.Name, function(event){
-            cc.log("Main Controller :" + event.type);
+            // cc.log("Main Controller :" + event.type);
             that.gameUI.setBonus(that.gameData.bonusGain(event.value));
             //that.gameAudio.playEffectAudio(5);
             //AudioPlayer.play(5);
@@ -72,7 +72,7 @@ cc.Class({
 
         //蹦床
         this.node.on(TrampolineContactDGEvent.Name, function(event){
-            cc.log("11111trampoline Contact DG");
+            // cc.log("11111trampoline Contact DG");
             that.gameData.trampolineContact();
             
             switch(event.trampolineType){
