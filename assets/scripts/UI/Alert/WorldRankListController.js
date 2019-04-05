@@ -27,7 +27,7 @@ var WorldRankListController = cc.Class({
         topUserList.forEach(element => {
             rank ++
             var item = cc.instantiate(this.friendItemPrefab)
-            item.getComponent('RankItem').init(rank, element.nickname, element.mark)
+            this.setFriendItem(item, rank, element.nickname, element.mark)
             this.friendItemList.push(item)
             this.scrollContent.addChild(item)
         });
@@ -39,7 +39,7 @@ var WorldRankListController = cc.Class({
             nearUserList.forEach(element => {
                 rank++
                 var item = cc.instantiate(this.friendItemPrefab)
-                item.getComponent('RankItem').init(rank, element.nickname, element.mark)
+                this.setFriendItem(item, rank, element.nickname, element.mark)
                 this.friendItemList.push(item)
                 this.scrollContent.addChild(item)
             });
@@ -50,13 +50,16 @@ var WorldRankListController = cc.Class({
         empty = cc.instantiate(this.emptyItemPrefab)
         this.friendItemList.push(empty)
         this.scrollContent.addChild(empty)
-        empty = cc.instantiate(this.emptyItemPrefab)
-        this.friendItemList.push(empty)
-        this.scrollContent.addChild(empty)
     },
 
     scrollBarDrag(deltaY) {
         this.scrollView.scrollToOffset(this.scrollView.getScrollOffset().add(cc.v2(0, deltaY)))
+    },
+
+    setFriendItem(itemNode, rank, nickname, mark) {
+        itemNode.getChildByName('Rank').getComponent(cc.Label).string = rank
+        itemNode.getChildByName('Nickname').getComponent(cc.Label).string = nickname
+        itemNode.getChildByName('Mark').getComponent(cc.Label).string = mark
     }
 });
 

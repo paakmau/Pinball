@@ -17,7 +17,7 @@ var Alert = cc.Class({
         cancelButton: cc.Node,
         enterButton: cc.Node,
         outBackground: cc.Node,
-        animSpeed: 0.3,
+        animSpeed: 0.5,
         rankController: RankController
     },
     onLoad() {
@@ -28,16 +28,19 @@ var Alert = cc.Class({
         var cbFadeOut = cc.callFunc(self.onFadeOutFinish, self)
         var cbFadeIn = cc.callFunc(self.onFadeInFinish, self)
         self.actionFadeIn = cc.sequence(cc.spawn(cc.fadeTo(self.animSpeed, 255), cc.scaleTo(self.animSpeed, 1.0)), cbFadeIn)
-        self.actionFadeOut = cc.sequence(cc.spawn(cc.fadeTo(self.animSpeed, 0), cc.scaleTo(self.animSpeed, 2.0)), cbFadeOut)
-
+        self.actionFadeOut = cc.sequence(cc.spawn(cc.fadeTo(self.animSpeed, 0), cc.scaleTo(self.animSpeed, 1.2)), cbFadeOut)
     },
-    show(detailString, enterCallBack, needCancel, mark) {
-
+    showGameOver(detailString, enterCallBack, needCancel, mark) {
         this.configAlert(detailString, enterCallBack, needCancel)
-
         this.startFadeIn()
         // 设置mark
-        this.rankController.init(mark)
+        this.rankController.initGameOver(mark)
+    },
+    showGamePause(detailString, enterCallBack, needCancel, mark) {
+        this.configAlert(detailString, enterCallBack, needCancel)
+        this.startFadeIn()
+        // 设置mark
+        this.rankController.initGamePause(mark)
     },
     setWorldRank(worldRankData) {
         this.rankController.setWorldRank(worldRankData)
@@ -52,25 +55,24 @@ var Alert = cc.Class({
     },
     // 执行弹进动画
     startFadeIn : function () {
-        cc.eventManager.pauseTarget(this, true)
+        // cc.eventManager.pauseTarget(this, true)
         this.node.position = cc.p(0, 0)
-        this.node.setScale(2.0)
+        this.node.setScale(1.2)
         this.node.opacity = 0
         this.node.runAction(this.actionFadeIn)
     },
     // 执行弹出动画
     startFadeOut : function () {
-        cc.eventManager.pauseTarget(this, true)
+        // cc.eventManager.pauseTarget(this, true)
         this.node.runAction(this.actionFadeOut)
     },
     // 弹进动画完成回调
     onFadeInFinish : function () {
-        cc.eventManager.resumeTarget(this, true)
+        // cc.eventManager.resumeTarget(this, true)
     },
     // 弹出动画完成回调
     onFadeOutFinish : function () {
         this.node.position = cc.p(10000, 10000)
-        this.rankController.fade()
     },
     configAlert : function (detailString, enterCallBack, needCancel) {
 

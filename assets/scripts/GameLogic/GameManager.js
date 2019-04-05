@@ -143,5 +143,11 @@ cc.Class({
             that.ball.goOutOfBlackHole(event.pos, event.bombDir)
             // cc.log("Go Out Of Black Hole")
         })
+    },
+    pause() {
+        // cc.director.getScheduler().setTimeScale(0.0)
+    },
+    resume() {
+        // cc.director.getScheduler().setTimeScale(1.0)
     }
 })

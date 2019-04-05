@@ -10,30 +10,22 @@ var UIController = cc.Class({
         alertDialog: Alert
     },
     onLoad(){
-        // cc.log("UIController onLoad()")
-        this.Bonus.string = "0"
+        this.mark = 0
+        this.setBonus(this.mark)
     },
-    // bonusGain(value){
-    //     this.result = parseInt(this.Bonus.string) + value
-    //     this.Bonus.string = Number(this.result)
-    // },
     //设置bonus的值。value为int类型
     setBonus(value){
-        this.Bonus.string = Number(value)
+        this.Bonus.string = '得分:  ' + value
+        this.mark = value
     },
-    //返回bonus的值，int类型
-    getBonus(){
-        return parseInt(this.Bonus.string)
-    },
-    /**
-     * 
-     * @param {int} mark 最终的分数
-     */
-    gameOver(mark){
-        this.alertDialog.show("游戏结束", null, false, mark)
+    gameOver(mark) {
+        this.alertDialog.showGameOver("游戏结束", null, false, mark)
     },
     setWorldRank(worldRankData) {
         this.alertDialog.setWorldRank(worldRankData)
+    },
+    showRank() {
+        this.alertDialog.showGamePause("游戏暂停", null, false, this.mark)
     }
 })
 
