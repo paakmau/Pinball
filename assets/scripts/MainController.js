@@ -48,6 +48,10 @@ cc.Class({
                     that.uploadRankAndGetRank(that.openid, 0)
                 }
             })
+
+            
+            // 向微信开放数据域传递进入游戏消息
+            wx.postMessage({ type: 'GAME_START' })
         }
 
         // 球掉落

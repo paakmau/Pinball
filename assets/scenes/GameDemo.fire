@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6233316637283989,
-      "y": 0.6233316637283989,
+      "x": 0.36803032019451937,
+      "y": 0.36803032019451937,
       "z": 1
     },
     "_quat": {
@@ -14427,8 +14427,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 937,
-      "y": -65,
+      "x": 742,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -14454,7 +14454,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "topLabel",
+    "_name": "mark",
     "_objFlags": 0,
     "_parent": {
       "__id__": 391
@@ -14478,7 +14478,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 244.52,
+      "width": 300,
       "height": 40
     },
     "_anchorPoint": {
@@ -14524,8 +14524,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "您的世界排名是10086",
-    "_N$string": "您的世界排名是10086",
+    "_string": "本局得分 1005030",
+    "_N$string": "本局得分 1005030",
     "_fontSize": 25,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -14536,7 +14536,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_id": "18+cKeUJtBXZXSoxzFj6ad"
   },
   {
@@ -15077,7 +15077,7 @@
     "worldRankListController": {
       "__id__": 406
     },
-    "worldTopLabel": {
+    "worldMark": {
       "__id__": 393
     },
     "friendRankList": {
