@@ -24,8 +24,8 @@ var UIController = cc.Class({
     setWorldRank(worldRankData) {
         this.alertDialog.setWorldRank(worldRankData)
     },
-    showRank() {
-        this.alertDialog.showGamePause("游戏暂停", null, false, this.mark)
+    showRank(callback) {
+        this.alertDialog.showGamePause("游戏暂停", callback, false, this.mark)
     }
 })
 

@@ -46,10 +46,8 @@ var Alert = cc.Class({
         this.rankController.setWorldRank(worldRankData)
     },
     onExitButtonClicked : function(event){
-        if(event.target.name == "enterButton"){
-            if(this.enterCallBack){
-                this.enterCallBack()
-            }
+        if(this.enterCallBack){
+            this.enterCallBack()
         }
         this.startFadeOut()
     },

@@ -145,9 +145,9 @@ cc.Class({
         })
     },
     pause() {
-        // cc.director.getScheduler().setTimeScale(0.0)
+        this.ball.pause()
     },
     resume() {
-        // cc.director.getScheduler().setTimeScale(1.0)
+        this.ball.resume()
     }
 })

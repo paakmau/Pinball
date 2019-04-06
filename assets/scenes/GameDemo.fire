@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.36803032019451937,
-      "y": 0.36803032019451937,
+      "x": 0.2637495638520586,
+      "y": 0.2637495638520586,
       "z": 1
     },
     "_quat": {
@@ -13739,7 +13739,7 @@
     },
     "component": "",
     "_componentId": "9ea7dN7ZAhIZbKM/cLY2+BI",
-    "handler": "showRank",
+    "handler": "showRankAndPause",
     "customEventData": ""
   },
   {

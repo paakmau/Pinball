@@ -144,9 +144,12 @@ cc.Class({
             wx.postMessage({ type: 'GAME_OVER' , mark: this.resultBonus })
         }
     },
-    showRank() {
+    showRankAndPause() {
         this.gameManager.pause()
-        this.gameUI.showRank()
+        this.gameUI.showRank(this.closeRankAndResume.bind(this))
+    },
+    closeRankAndResume() {
+        this.gameManager.resume()
     },
     uploadRankAndGetRank(openid, resultBonus) {
         var that = this
