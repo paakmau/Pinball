@@ -19,7 +19,7 @@ var WorldRankListController = cc.Class({
     },
 
     setUserData(topUserList, nearUserList, nearFrontRank) {
-        this.friendItemList.forEach(element => {
+        this.friendItemList.forEach(element=>{
             element.destroy()
         })
         this.friendItemList.length = 0
@@ -50,6 +50,12 @@ var WorldRankListController = cc.Class({
         empty = cc.instantiate(this.emptyItemPrefab)
         this.friendItemList.push(empty)
         this.scrollContent.addChild(empty)
+    },
+    resetUserData() {
+        this.friendItemList.forEach(element=>{
+            element.destroy()
+        })
+        this.friendItemList.length = 0
     },
 
     scrollBarDrag(deltaY) {

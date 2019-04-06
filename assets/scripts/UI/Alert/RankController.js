@@ -59,6 +59,9 @@ cc.Class({
         this.maxMark = worldRankData.maxMark
         this.worldRankListController.setUserData(worldRankData.topUsers, worldRankData.nearUsers, worldRankData.nearFrontRank)
     },
+    releaseRankList() {
+        this.worldRankListController.resetUserData()
+    },
 
     onClickFriendMode() {
         this.isFriendMode = true

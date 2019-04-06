@@ -21,6 +21,10 @@ var Alert = cc.Class({
         rankController: RankController
     },
     onLoad() {
+        this.isShow = false
+        this.isUploaded = false
+        this.isShowRankList = false
+        this.curIsShowRankList = false
         var self = this
         Alert._alert = this
 
@@ -35,15 +39,30 @@ var Alert = cc.Class({
         this.startFadeIn()
         // 设置mark
         this.rankController.initGameOver(mark)
+        // 因为分数未上传不能立刻设置rank
+        this.isShow = true
+        this.isShowRankList = true
+        this.isUploaded = false
     },
     showGamePause(detailString, enterCallBack, needCancel, mark) {
         this.configAlert(detailString, enterCallBack, needCancel)
         this.startFadeIn()
         // 设置mark
         this.rankController.initGamePause(mark)
+        // 设置rank
+        this.isShow = true
+        this.isShowRankList = true
     },
     setWorldRank(worldRankData) {
-        this.rankController.setWorldRank(worldRankData)
+        // 服务器返回最高分与世界排名信息
+        this.isUploaded = true
+        this.worldRankData = worldRankData
+    },
+    setWorldRankShow() {
+        if(this.isShow)
+            this.rankController.setWorldRank(this.worldRankData)
+        else
+            this.rankController.releaseRankList()
     },
     onExitButtonClicked : function(event){
         if(this.enterCallBack){
@@ -66,11 +85,18 @@ var Alert = cc.Class({
     },
     // 弹进动画完成回调
     onFadeInFinish : function () {
+        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+            wx.postMessage({ type: 'GAME_PAUSE' })
+        }
         // cc.eventManager.resumeTarget(this, true)
     },
     // 弹出动画完成回调
     onFadeOutFinish : function () {
         this.node.position = cc.p(10000, 10000)
+        this.isShowRankList = false
+        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+            wx.postMessage({ type: 'GAME_RESUME' })
+        }
     },
     configAlert : function (detailString, enterCallBack, needCancel) {
 
@@ -86,6 +112,12 @@ var Alert = cc.Class({
         } else {  // 隐藏
             this.cancelButton.active = false
             this.enterButton.x = 0
+        }
+    },
+    update(dT) {
+        if(this.isShowRankList != this.curIsShowRankList && this.isUploaded) {
+            this.curIsShowRankList = this.isShowRankList
+            this.setWorldRankShow()
         }
     }
 })

@@ -134,7 +134,6 @@ cc.Class({
         */
 
         // 把得分上传至后端并向UI传入从后端获得的世界排名信息
-        // TODO: 有缘的话可以封装
         if(cc.sys.platform === cc.sys.WECHAT_GAME && this.openid!=null) {
             this.uploadRankAndGetRank(this.openid, this.resultBonus)
         }
