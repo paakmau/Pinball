@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.35950205064441193,
-      "y": 0.35950205064441193,
+      "x": 0.702257438087616,
+      "y": 0.702257438087616,
       "z": 1
     },
     "_quat": {
@@ -13398,7 +13398,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -16,
+      "x": -10,
       "y": -1,
       "z": 0
     },
@@ -13436,7 +13436,7 @@
     "_useOriginalSize": false,
     "_string": "得分:  0",
     "_N$string": "得分:  0",
-    "_fontSize": 37,
+    "_fontSize": 20,
     "_lineHeight": 50,
     "_enableWrapText": true,
     "_N$file": null,
@@ -13571,7 +13571,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 102,
+      "width": 60,
       "height": 34
     },
     "_anchorPoint": {
@@ -13581,8 +13581,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 8,
-      "y": -2,
+      "x": -8,
+      "y": -1,
       "z": 0
     },
     "_scale": {
@@ -13619,7 +13619,7 @@
     "_useOriginalSize": false,
     "_string": "排行榜",
     "_N$string": "排行榜",
-    "_fontSize": 34,
+    "_fontSize": 20,
     "_lineHeight": 34,
     "_enableWrapText": true,
     "_N$file": null,
