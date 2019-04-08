@@ -18,14 +18,14 @@ var Racket = cc.Class({
     onLoad() {
         this.rigidBody = this.getComponent(cc.RigidBody)
         //this.torque = this.direction * this.power
-        this.angularVelocity = this.direction * this.power
+        this.angularImpulse = this.direction * this.power
         this.isRotate = false
         this.originRotation = this.node.rotation
     },
     update(dT) {
         if(this.isRotate)
             //this.rigidBody.applyTorque(this.torque)
-            this.rigidBody.applyAngularImpulse(this.angularVelocity)
+            this.rigidBody.applyAngularImpulse(this.angularImpulse)
     },
     onBeginContact() {
         var event = new RacketPunchGLEvent()
