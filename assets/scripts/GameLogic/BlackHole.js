@@ -12,7 +12,7 @@ var BlackHole = cc.Class({
     },
 
     onLoad() {
-        this.bombDir = cc.v2(0, 1).rotate(-this.node.rotation/180*3.14159).mul(this.bombPower)
+        this.bombDir = cc.v2(0, 1).rotate(-this.node.rotation / 180 * 3.14159).mul(this.bombPower)
         this.ballIn = false
         this.ballInTime = 0.0
     },
@@ -24,12 +24,12 @@ var BlackHole = cc.Class({
         this.node.dispatchEvent(inEvent)
     },
     update(dT) {
-        if(this.ballIn) {
+        if (this.ballIn) {
             this.ballInTime += dT
-            if(this.ballInTime >= this.ballInTimeMax) {
+            if (this.ballInTime >= this.ballInTimeMax) {
                 this.ballIn = false
                 var outEvent = new BlackHoleOutGLEvent()
-                outEvent.init(this.node.position, this.bombDir.add(cc.v2(Math.random(), Math.random())))
+                outEvent.init(this.node.position, this.bombDir.rotate( 3.14159 / 3 * (Math.random() - 0.5)))
                 this.node.dispatchEvent(outEvent)
                 AudioPlayer.play(8);
             }
