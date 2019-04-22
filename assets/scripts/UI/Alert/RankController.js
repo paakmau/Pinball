@@ -23,6 +23,11 @@ cc.Class({
         this.mark = null
         this.maxMark = null
     },
+    initLoading() {
+        this.mark = 0
+        this.worldMark.string = "您的最高分..."
+        this.maxMark = 0
+    },
     initGameOver(mark) {
         this.mark = mark
         // 显示分数, 上传并获得最高分之前

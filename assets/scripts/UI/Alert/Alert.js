@@ -34,24 +34,32 @@ var Alert = cc.Class({
         self.actionFadeIn = cc.sequence(cc.spawn(cc.fadeTo(self.animSpeed, 255), cc.scaleTo(self.animSpeed, 1.0)), cbFadeIn)
         self.actionFadeOut = cc.sequence(cc.spawn(cc.fadeTo(self.animSpeed, 0), cc.scaleTo(self.animSpeed, 1.2)), cbFadeOut)
     },
+    showLoadingRank(detailStr, enterCallBack, needCancel) {
+        this.configAlert(detailStr, enterCallBack, needCancel)
+        this.rankController.initLoading()
+        this.isShow = true
+        this.isShowRankList = true
+        // Loading 第一次打开排名前 this.isUploaded 为 false
+        this.startFadeIn()
+    },
     showGameOver(detailString, enterCallBack, needCancel, mark) {
         this.configAlert(detailString, enterCallBack, needCancel)
-        this.startFadeIn()
         // 设置mark
         this.rankController.initGameOver(mark)
         // 因为分数未上传不能立刻设置rank
         this.isShow = true
         this.isShowRankList = true
         this.isUploaded = false
+        this.startFadeIn()
     },
     showGamePause(detailString, enterCallBack, needCancel, mark) {
         this.configAlert(detailString, enterCallBack, needCancel)
-        this.startFadeIn()
         // 设置mark
         this.rankController.initGamePause(mark)
         // 设置rank
         this.isShow = true
         this.isShowRankList = true
+        this.startFadeIn()
     },
     setWorldRank(worldRankData) {
         // 服务器返回最高分与世界排名信息

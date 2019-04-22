@@ -7,12 +7,11 @@ var UIController = cc.Class({
             default: null,
             type: cc.Label
         },
-        alertDialogNode: cc.Node
+        alertDialog: Alert
     },
     onLoad(){
         this.mark = 0
         this.setBonus(this.mark)
-        this.alertDialog = this.alertDialogNode.getComponent(Alert)
     },
     //设置bonus的值。value为int类型
     setBonus(value){
