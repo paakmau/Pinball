@@ -15,9 +15,9 @@ cc.Class({
             if(err)
                 console.log(err)
             else {
-                gameStartBtn.interactable = true
-                loadingGameStart.active = true
-                loadingLoading.active = false
+                this.gameStartBtn.interactable = true
+                this.loadingGameStart.active = true
+                this.loadingLoading.active = false
             }
         })
         this.progressOri = this.progressBar.x
@@ -34,5 +34,9 @@ cc.Class({
 
     gameStart() {
         cc.director.loadScene('GameDemo')
+    },
+    showRank() {
+    },
+    sharing() {
     }
 });
