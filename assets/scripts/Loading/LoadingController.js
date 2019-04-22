@@ -20,8 +20,8 @@ cc.Class({
 
     update(dT) {
         this.progress = this.progress + dT*this.progressBarSpeed
-        while(this.progress>=20) {
-            this.progress-=20
+        while(this.progress>=30) {
+            this.progress-=30
         }
         this.progressBar.x = this.progressOri + this.progress
     }
