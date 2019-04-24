@@ -1,3 +1,4 @@
+import AudioPlayer from "../../Utils/AudioPlayerUtil"
 
 /**
  * 需要有Enable Contact
@@ -5,6 +6,7 @@
 var ButtonBonus = cc.Class({
     extends: cc.Component,
     properties: {
+        AudioID: 0
     },
 
     onLoad() {
@@ -12,7 +14,6 @@ var ButtonBonus = cc.Class({
         this.isPressed = false;
         this.havePressed = false;
         this.animation = this.getComponent(cc.Animation);
-        //this.animation.play(0);
     },
 
     update(dt) {
@@ -22,14 +23,13 @@ var ButtonBonus = cc.Class({
         }
     },
 
-    onBeginContact(contact, selfCollider, otherCollider) {
+    onBeginContact() {
         if(!this.isPressed){
             this.isPressed = true;
             this.havePressed = true;
-            //this.pressDown();
+            AudioPlayer.play(this.AudioID);
         }
     },
-
 
     // 只能由上层group调用
     setGroup(group) {
@@ -40,9 +40,7 @@ var ButtonBonus = cc.Class({
         if(this.isPressed){
             // TODO: 播放恢复动画
             //this.rigidBody.enabledContactListener = true;
-            
-            // 测试用
-            // this.animation.play(1);
+
             this.node.x += 6;
             this.isPressed = false;
         }
@@ -53,8 +51,6 @@ var ButtonBonus = cc.Class({
 
         // TODO: pressDownOneBtn应当在按压动画结束后调用
         this.node.x -= 6
-        // this.animation.play(0);
-
         this.group.pressDownOneBtn()
     }
 })
