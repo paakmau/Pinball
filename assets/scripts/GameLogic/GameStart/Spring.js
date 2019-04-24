@@ -24,9 +24,14 @@ cc.Class({
     },
     update(dT) {
         if(this.isPressed) {
-            this.accTime += dT
-            this.accTime = Math.min(this.maxAccTime, this.accTime)
-            this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis))
+            if(this.accTime < this.maxAccTime){
+                this.accTime += dT
+                this.accTime = Math.min(this.maxAccTime, this.accTime)
+                this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis))
+            }else{
+                this.node.position = this.node.position.add(cc.v2(0, (Math.random() - 0.5) * 5))
+            }
+
         }
     },
     springDown(){
