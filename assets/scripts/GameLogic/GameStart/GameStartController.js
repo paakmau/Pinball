@@ -24,15 +24,20 @@ cc.Class({
     onLoad() {
         var that = this
 
-        // 检查小球进入或离开隧道
-        this.node.on(BallInOutGLEvent.Name, function(event) {
-            let isIn = event.isIn
-            that.ballInCheck.setActive(!isIn)
-            that.ballOutCheck.setActive(isIn)
-            that.springToucher.setActive(isIn)
-            that.racketTouchers.forEach(toucher => {
-                toucher.setActive(!isIn)
-            })
+        // // 检查小球进入或离开隧道
+        // this.node.on(BallInOutGLEvent.Name, function(event) {
+        //     let isIn = event.isIn
+        //     that.ballInCheck.setActive(!isIn)
+        //     that.ballOutCheck.setActive(isIn)
+        //     that.springToucher.setActive(isIn)
+        //     that.racketTouchers.forEach(toucher => {
+        //         toucher.setActive(!isIn)
+        //     })
+        // })
+        //直接当作离开隧道
+        that.springToucher.setActive(true)
+        that.racketTouchers.forEach(toucher => {
+            toucher.setActive(true)
         })
     }
 });
