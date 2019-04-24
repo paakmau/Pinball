@@ -11,13 +11,15 @@ cc.Class({
         bombPowerFact: 2000,
         springUpSpeed: 0.1,
         maxAccTime: 0.7,
-        maxDownDis: 100
+        maxDownDis: 100,
+        ZhenFu: 1
     },
     onLoad(){
         // 成员变量
         this.isPressed = false
         this.originPos = this.node.position
         this.accTime = 0
+        this.overTime = 0
         this.node.on('touchstart', this.springDown, this)
         this.node.on('touchcancel', this.springUp, this)
         this.node.on('touchend', this.springUp, this)
@@ -29,7 +31,9 @@ cc.Class({
                 this.accTime = Math.min(this.maxAccTime, this.accTime)
                 this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis))
             }else{
-                this.node.position = this.node.position.add(cc.v2(0, (Math.random() - 0.5) * 5))
+                // this.node.position = this.node.position.add(cc.v2(0, (Math.random() - 0.5) * 5))
+                this.overTime += dT
+                this.node.position = this.node.position.add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10)))
             }
 
         }
@@ -51,5 +55,6 @@ cc.Class({
         event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(Math.random(), Math.random())))
         this.node.dispatchEvent(event)
         this.accTime = 0
+        this.overTime = 0
     }
 })
