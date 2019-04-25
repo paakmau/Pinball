@@ -52,7 +52,8 @@ cc.Class({
     },
     onSpringUpEnd() {
         var event = new BombStartBombGLEvent()
-        event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(Math.random(), Math.random())))
+        event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10) * 1000)))
+        cc.log(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10) * 1000)).y)
         this.node.dispatchEvent(event)
         this.accTime = 0
         this.overTime = 0
