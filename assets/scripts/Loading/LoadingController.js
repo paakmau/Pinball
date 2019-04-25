@@ -18,6 +18,7 @@ cc.Class({
             if(err)
                 console.log(err)
             else {
+                this.progressBar.active = false
                 this.gameStartBtn.interactable = true
                 this.loadingGameStart.active = true
                 this.loadingLoading.active = false
