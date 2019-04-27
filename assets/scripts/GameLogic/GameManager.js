@@ -15,6 +15,7 @@ var RacketPunchGLEvent = require("../Message/GameLogic/RacketPunchGLEvent")
 var GameOverGLEvent = require("../Message/GameLogic/GameOverGLEvent")
 var BlackHoleInGLEvent = require("../Message/GameLogic/BlackHoleInGLEvent")
 var BlackHoleOutGLEvent = require("../Message/GameLogic/BlackHoleOutGLEvent")
+var CentralCircleCollideGLEvent = require("../Message/GameLogic/CentralCircleCollideGLEvent")
 
 
 var BonusGainDGEvent = require("../Message/DataGen/BonusGainDGEvent")
@@ -51,7 +52,7 @@ cc.Class({
         var that = this
 
         // 初始化成员变量
-        this. ballStarterWorldCenter = this.ballStarterNode.position
+        this.ballStarterWorldCenter = this.ballStarterNode.position
 
         // 开启物理引擎
         cc.director.getPhysicsManager().enabled = true
@@ -91,7 +92,6 @@ cc.Class({
             var dGEvent = new PortalContactDGEvent()
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
-            that.centralCircleController.addInnerLight()
         })
 
         // 获得Bonus事件
@@ -142,6 +142,13 @@ cc.Class({
         this.node.on(BlackHoleOutGLEvent.Name, function(event) {
             that.ball.goOutOfBlackHole(event.pos, event.bombDir)
             // cc.log("Go Out Of Black Hole")
+        })
+
+        //centralcircle碰撞事件
+        this.node.on(CentralCircleCollideGLEvent.Name, function(event){
+            cc.log("CentralCircle Collide")
+            that.ball.faster()
+            that.centralCircleController.addInnerLight()
         })
     },
     pause() {

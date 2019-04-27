@@ -28,7 +28,7 @@ cc.Class({
      * 增加一盏灯
      */
     addInnerLight(){
-        if(this.innerNum == this.innerLights.length){
+        if(this.innerNum == this.innerLights.Lights.length){
             this.innerNum = 0;
         }else{
             this.innerNum++;
@@ -38,6 +38,7 @@ cc.Class({
     reset(){
         this.innerLights.setValue(0,0);
         this.outerLights.setValue(0,0);
+        this.innerNum = 0;
     }
 
     // update (dt) {},

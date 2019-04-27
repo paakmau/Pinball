@@ -18,6 +18,7 @@ cc.Class({
         // 成员变量
         this.isPressed = false
         this.originPos = this.node.position
+        this.over = false
         this.accTime = 0
         this.overTime = 0
         this.node.on('touchstart', this.springDown, this)
@@ -26,15 +27,21 @@ cc.Class({
     },
     update(dT) {
         if(this.isPressed) {
-            if(this.accTime < this.maxAccTime){
+            if(this.accTime < this.maxAccTime && !this.over){
                 this.accTime += dT
                 this.accTime = Math.min(this.maxAccTime, this.accTime)
-                this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis))
+                // this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis))
+                // this.maxPosition = this.node.position
             }else{
                 // this.node.position = this.node.position.add(cc.v2(0, (Math.random() - 0.5) * 5))
+                // this.overTime += dT
+                // this.node.position = this.maxPosition.add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10)))
+                this.over = true
                 this.overTime += dT
-                this.node.position = this.node.position.add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10)))
+                this.accTime = this.maxAccTime + this.ZhenFu * Math.sin(this.overTime * 10)
             }
+            this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis))
+            this.maxPosition = this.node.position
 
         }
     },
@@ -52,10 +59,11 @@ cc.Class({
     },
     onSpringUpEnd() {
         var event = new BombStartBombGLEvent()
-        event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10) * 1000)))
-        cc.log(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10) * 1000)).y)
+        event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact))
+        cc.log(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).y)
         this.node.dispatchEvent(event)
         this.accTime = 0
         this.overTime = 0
+        this.over = false
     }
 })

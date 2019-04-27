@@ -3,13 +3,19 @@ var Ball = cc.Class({
     extends: cc.Component,
 
     properties: {
+        maxGravity: 0,
+        minDensity: 0,
     },
 
     onLoad() {
         // 获取成员变量
         this.rigidBody = this.getComponent(cc.RigidBody)
+        this.physicsCircleCollider = this.getComponent(cc.PhysicsCircleCollider)
         this.worldCenter = this.rigidBody.getWorldCenter()
         this.time = 0
+        this.originDensity = this.physicsCircleCollider.density
+        this.originGravity = this.rigidBody.gravityScale
+        
     },
 
     // 对小球施加冲量
@@ -39,6 +45,8 @@ var Ball = cc.Class({
 
     restart() {
         this.rigidBody.linearVelocity = cc.v2(0, 70.0)
+        this.rigidBody.gravityScale = this.originGravity
+        this.physicsCircleCollider.density = this.originDensity
     },
 
     isMoving() {
@@ -64,6 +72,15 @@ var Ball = cc.Class({
     resume() {
         this.rigidBody.linearVelocity = this.oriSpeed
         this.rigidBody.type = cc.RigidBodyType.Dynamic
+    },
+    faster(){
+        //更快:密度变为90%，重力变为1.2倍，之后给一个小冲量
+        if(this.physicsCircleCollider.density > this.minDensity)
+            this.physicsCircleCollider.density *= 0.9
+        this.rigidBody.linearVelocity = this.rigidBody.linearVelocity.mul(1.3)
+        if(this.rigidBody.gravityScale < this.maxGravity)
+            this.rigidBody.gravityScale *= 1.2
+        cc.log("g = " + this.rigidBody.gravityScale + "density = " + this.physicsCircleCollider.density)
     }
 })
 
