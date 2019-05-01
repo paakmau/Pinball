@@ -41,6 +41,15 @@ cc.Class({
             })
             // 向微信开放数据域传递进入游戏消息
             wx.postMessage({ type: 'GAME_START' })
+
+            // 初始化分享
+            wx.showShareMenu();
+            cc.loader.loadRes("share.jpg", function(err, data) {
+                wx.onShareAppMessage(() => ({
+                    title: "太空弹珠台",
+                    imageUrl: data.url
+                }))
+            })
         }
         this.progressOri = this.progressBar.x
         this.progress = 0
@@ -94,5 +103,12 @@ cc.Class({
         this.alertDialog.showLoadingRank("", null, false)
     },
     sharing() {
+        //主动拉起分享接口
+        cc.loader.loadRes("share.jpg", function(err, data) {
+            wx.shareAppMessage({
+                title: "太空弹珠台",
+                imageUrl: data.url
+            })
+        });
     }
 });

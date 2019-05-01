@@ -91,7 +91,7 @@
     "_level": 0,
     "_components": [
       {
-        "__id__": 110
+        "__id__": 111
       }
     ],
     "_prefab": null,
@@ -4089,9 +4089,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 189,
-      "g": 189,
-      "b": 189,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -4258,8 +4258,12 @@
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
-    "_N$interactable": false,
+    "clickEvents": [
+      {
+        "__id__": 110
+      }
+    ],
+    "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 1,
     "transition": 1,
@@ -4329,6 +4333,16 @@
     "_id": "4fBVbKnHFDaLPWvFH9y3Nv"
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 20
+    },
+    "component": "",
+    "_componentId": "bfcddDfPptIzqllVAdBXDkI",
+    "handler": "sharing",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -4341,7 +4355,7 @@
       "width": 678,
       "height": 1406
     },
-    "_fitWidth": true,
+    "_fitWidth": false,
     "_fitHeight": false,
     "_id": "ccSWweATdOf5ZMOZcsGkPJ"
   }
