@@ -133,6 +133,9 @@ cc.Class({
         this.openid = null
         wx.cloud.callFunction({
             name: 'login',
+            data: {
+                nickName
+            },
             success(res) {
                 that.openid = res.result.openid
                 that.uploadRankAndGetRank(that.openid, 0)
@@ -193,10 +196,15 @@ cc.Class({
         })
         curRank = res.result.nearFrontRank
         res.result.nearUsers.forEach(element => {
+            console.log(element)
             if (curRank == myRank)
                 element.nickname = "您"
-            else
-                element.nickname = unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length - 1))]
+            else {
+                if (element.nickName != null)
+                    element.nickname = element.nickName
+                else
+                    element.nickname = unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length - 1))]
+            }
             curRank++
         })
         this.gameUI.setWorldRank(res.result)

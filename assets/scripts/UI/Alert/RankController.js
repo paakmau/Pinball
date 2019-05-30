@@ -22,6 +22,7 @@ cc.Class({
         this.worldChildPos = cc.v2(0, 0)
         this.mark = null
         this.maxMark = null
+        this.isFriendMode = true
     },
     initLoading() {
         this.mark = 0
