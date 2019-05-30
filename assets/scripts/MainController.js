@@ -38,38 +38,77 @@ cc.Class({
                 traceUser: true,
                 env: 'pinball-backend-345f5b'
             })
-
-            // 用户登陆, 并获得最高分与排行榜
-            this.openid = null
-            wx.cloud.callFunction({
-                name: 'login',
-                success(res) {
-                    that.openid = res.result.openid
-                    that.uploadRankAndGetRank(that.openid, 0)
-                }
-            })
-
-            
+            // 生成获取微信用户名授权隐形按钮
+            if (cc.sys.platform === cc.sys.WECHAT_GAME) {
+                let exportJson = {};
+                let sysInfo = window.wx.getSystemInfoSync();
+                //获取微信界面大小
+                let width = sysInfo.screenWidth;
+                let height = sysInfo.screenHeight;
+                window.wx.getSetting({
+                    success (res) {
+                        console.log(res.authSetting);
+                        if (res.authSetting["scope.userInfo"]) {
+                            console.log("用户已授权");
+                            window.wx.getUserInfo({
+                                success(res){
+                                    console.log(res);
+                                    exportJson.userInfo = res.userInfo;
+                                    // 登陆
+                                    that.login (res.userInfo.nickName)
+                                }
+                            });
+                        }else {
+                            console.log("用户未授权");
+                            let button = window.wx.createUserInfoButton({
+                                type: 'text',
+                                text: '',
+                                style: {
+                                    left: 0,
+                                    top: 0,
+                                    width: width,
+                                    height: height,
+                                    backgroundColor: '#00000000',//最后两位为透明度
+                                    color: '#ffffff',
+                                    fontSize: 20,
+                                    textAlign: "center",
+                                    lineHeight: height,
+                                }
+                            });
+                            button.onTap((res) => {
+                                if (res.userInfo) {
+                                    console.log("用户授权:", res);
+                                    exportJson.userInfo = res.userInfo;
+                                    // 登陆
+                                    that.login (res.userInfo.nickName)
+                                    button.destroy();
+                                }else {
+                                    console.log("用户拒绝授权:", res);
+                                    // 匿名登陆
+                                    that.login (null)
+                                    button.destroy();
+                                }
+                            });
+                        }
+                    }
+                })
+            }
             // 向微信开放数据域传递进入游戏消息
             wx.postMessage({ type: 'GAME_START' })
         }
-
         // 球掉落
         this.node.on(BallFallDGEvent.Name, function(event){
             that.gameOver()
             AudioPlayer.play(6)
          })
-
         //获得bonus
         this.node.on(BonusGainDGEvent.Name, function(event){
             that.gameUI.setBonus(that.gameData.bonusGain(event.value))
         })
-
         //传送
         this.node.on(PortalContactDGEvent.Name, function(event){
             AudioPlayer.play(4)
         })
-
         //蹦床
         this.node.on(TrampolineContactDGEvent.Name, function(event){
             that.gameData.trampolineContact()
@@ -83,48 +122,34 @@ cc.Class({
                     AudioPlayer.play(3)
                     break
             }
-
         })
-
         this.node.on(BallStartShootDGEvent.Name, function(event) {
             AudioPlayer.play(7)
         })
-
+    },
+    login (nickName) {
+        let that = this
+        // 用户登陆, 并获得最高分与排行榜
+        this.openid = null
+        wx.cloud.callFunction({
+            name: 'login',
+            success(res) {
+                that.openid = res.result.openid
+                that.uploadRankAndGetRank(that.openid, 0)
+            }
+        })
     },
 
     gameOver(){
         var that = this
-
         this.resultBonus = this.gameData.getBonus()
         this.gameData.resetData()
         this.gameUI.setBonus(this.gameData.getBonus())
         this.gameUI.gameOver(this.resultBonus)
-
-
-        /*  数据格式样例
-            this.gameUI.setWorldRank({
-                maxMark: 10000,
-                topUsers: [
-                    {
-                        nickname: 'hbm',
-                        mark: 2333333
-                    }
-                ],
-                nearUsers: [
-                    {
-                        nickname: 'me',
-                        mark: 23333
-                    }
-                ],
-                nearFrontRank: 95
-            })
-        */
-
         // 把得分上传至后端并向UI传入从后端获得的世界排名信息
         if(cc.sys.platform === cc.sys.WECHAT_GAME && this.openid!=null) {
             this.uploadRankAndGetRank(this.openid, this.resultBonus)
         }
-
         // 向微信开放数据域传递分数数据
         if(cc.sys.platform === cc.sys.WECHAT_GAME) {
             wx.postMessage({ type: 'GAME_OVER' , mark: this.resultBonus })

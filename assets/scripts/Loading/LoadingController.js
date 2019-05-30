@@ -30,15 +30,63 @@ cc.Class({
                 traceUser: true,
                 env: 'pinball-backend-345f5b'
             })
-            // 用户登陆, 并获得最高分与排行榜
-            this.openid = null
-            wx.cloud.callFunction({
-                name: 'login',
-                success(res) {
-                    that.openid = res.result.openid
-                    that.uploadRankAndGetRank(that.openid, 0)
-                }
-            })
+
+            // 生成获取微信授权隐形按钮
+            if (cc.sys.platform === cc.sys.WECHAT_GAME) {
+                let exportJson = {};
+                let sysInfo = window.wx.getSystemInfoSync();
+                //获取微信界面大小
+                let width = sysInfo.screenWidth;
+                let height = sysInfo.screenHeight;
+                window.wx.getSetting({
+                    success (res) {
+                        console.log(res.authSetting);
+                        if (res.authSetting["scope.userInfo"]) {
+                            console.log("用户已授权");
+                            window.wx.getUserInfo({
+                                success(res){
+                                    console.log(res);
+                                    exportJson.userInfo = res.userInfo;
+                                    // 登陆
+                                    that.login (res.userInfo.nickName)
+                                }
+                            });
+                        }else {
+                            console.log("用户未授权");
+                            let button = window.wx.createUserInfoButton({
+                                type: 'text',
+                                text: '',
+                                style: {
+                                    left: 0,
+                                    top: 0,
+                                    width: width,
+                                    height: height,
+                                    backgroundColor: '#00000000',//最后两位为透明度
+                                    color: '#ffffff',
+                                    fontSize: 20,
+                                    textAlign: "center",
+                                    lineHeight: height,
+                                }
+                            });
+                            button.onTap((res) => {
+                                if (res.userInfo) {
+                                    console.log("用户授权:", res);
+                                    exportJson.userInfo = res.userInfo;
+                                    // 登陆
+                                    that.login (res.userInfo.nickName)
+                                    button.destroy();
+                                }else {
+                                    console.log("用户拒绝授权:", res);
+                                    // 匿名登陆
+                                    that.login (null)
+                                    button.destroy();
+                                }
+                            });
+                        }
+                    }
+                })
+            }
+
             // 向微信开放数据域传递进入游戏消息
             wx.postMessage({ type: 'GAME_START' })
 
@@ -53,6 +101,21 @@ cc.Class({
         }
         this.progressOri = this.progressBar.x
         this.progress = 0
+    },
+    login (nickName) {
+        let that = this
+        // 用户登陆, 并获得最高分与排行榜
+        this.openid = null
+        wx.cloud.callFunction({
+            name: 'login',
+            data: {
+                nickName
+            },
+            success(res) {
+                that.openid = res.result.openid
+                that.uploadRankAndGetRank(that.openid, 0)
+            }
+        })
     },
     update(dT) {
         this.progress = this.progress + dT*this.progressBarSpeed
@@ -100,13 +163,13 @@ cc.Class({
         cc.director.loadScene('GameDemo')
     },
     showRank() {
-        this.alertDialog.showLoadingRank("", null, false)
+        this.alertDialog.showLoadingRank("", null, true)
     },
     sharing() {
         //主动拉起分享接口
         cc.loader.loadRes("share.jpg", function(err, data) {
             wx.shareAppMessage({
-                title: "太空弹珠台",
+                title: "寻找童年回忆 是兄弟就来弹我！",
                 imageUrl: data.url
             })
         });

@@ -19,13 +19,13 @@ var UIController = cc.Class({
         this.mark = value
     },
     gameOver(mark) {
-        this.alertDialog.showGameOver("游戏结束", null, false, mark)
+        this.alertDialog.showGameOver("游戏结束", null, mark)
     },
     setWorldRank(worldRankData) {
         this.alertDialog.setWorldRank(worldRankData)
     },
     showRank(callback) {
-        this.alertDialog.showGamePause("游戏暂停", callback, false, this.mark)
+        this.alertDialog.showGamePause("游戏暂停", callback, this.mark)
     }
 })
 
