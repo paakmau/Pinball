@@ -22,17 +22,17 @@ cc.Class({
             type: UIController
         },
         gameAudio: {
-             default: null,
-             type: AudioController
+            default: null,
+            type: AudioController
         },
         gameManager: GameManager
     },
-    onLoad(){
+    onLoad() {
         var that = this
         this.gameData.resetData()
         AudioPlayer.init(this.gameAudio)
 
-        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+        if (cc.sys.platform === cc.sys.WECHAT_GAME) {
             // 初始化微信云开发
             wx.cloud.init({
                 traceUser: true,
@@ -46,19 +46,19 @@ cc.Class({
                 let width = sysInfo.screenWidth;
                 let height = sysInfo.screenHeight;
                 window.wx.getSetting({
-                    success (res) {
+                    success(res) {
                         console.log(res.authSetting);
                         if (res.authSetting["scope.userInfo"]) {
                             console.log("用户已授权");
                             window.wx.getUserInfo({
-                                success(res){
+                                success(res) {
                                     console.log(res);
                                     exportJson.userInfo = res.userInfo;
                                     // 登陆
-                                    that.login (res.userInfo.nickName)
+                                    that.login(res.userInfo.nickName)
                                 }
                             });
-                        }else {
+                        } else {
                             console.log("用户未授权");
                             let button = window.wx.createUserInfoButton({
                                 type: 'text',
@@ -80,12 +80,12 @@ cc.Class({
                                     console.log("用户授权:", res);
                                     exportJson.userInfo = res.userInfo;
                                     // 登陆
-                                    that.login (res.userInfo.nickName)
+                                    that.login(res.userInfo.nickName)
                                     button.destroy();
-                                }else {
+                                } else {
                                     console.log("用户拒绝授权:", res);
                                     // 匿名登陆
-                                    that.login (null)
+                                    that.login(null)
                                     button.destroy();
                                 }
                             });
@@ -97,23 +97,23 @@ cc.Class({
             wx.postMessage({ type: 'GAME_START' })
         }
         // 球掉落
-        this.node.on(BallFallDGEvent.Name, function(event){
+        this.node.on(BallFallDGEvent.Name, function (event) {
             that.gameOver()
             AudioPlayer.play(6)
-         })
+        })
         //获得bonus
-        this.node.on(BonusGainDGEvent.Name, function(event){
+        this.node.on(BonusGainDGEvent.Name, function (event) {
             that.gameUI.setBonus(that.gameData.bonusGain(event.value))
         })
         //传送
-        this.node.on(PortalContactDGEvent.Name, function(event){
+        this.node.on(PortalContactDGEvent.Name, function (event) {
             AudioPlayer.play(4)
         })
         //蹦床
-        this.node.on(TrampolineContactDGEvent.Name, function(event){
+        this.node.on(TrampolineContactDGEvent.Name, function (event) {
             that.gameData.trampolineContact()
-            
-            switch(event.trampolineType){
+
+            switch (event.trampolineType) {
                 case "RectTrampoline":
                     break
                 case "CircleTrampoline":
@@ -123,11 +123,11 @@ cc.Class({
                     break
             }
         })
-        this.node.on(BallStartShootDGEvent.Name, function(event) {
+        this.node.on(BallStartShootDGEvent.Name, function (event) {
             AudioPlayer.play(7)
         })
     },
-    login (nickName) {
+    login(nickName) {
         let that = this
         // 用户登陆, 并获得最高分与排行榜
         this.openid = null
@@ -140,19 +140,19 @@ cc.Class({
         })
     },
 
-    gameOver(){
+    gameOver() {
         var that = this
         this.resultBonus = this.gameData.getBonus()
         this.gameData.resetData()
         this.gameUI.setBonus(this.gameData.getBonus())
         this.gameUI.gameOver(this.resultBonus)
         // 把得分上传至后端并向UI传入从后端获得的世界排名信息
-        if(cc.sys.platform === cc.sys.WECHAT_GAME && this.openid!=null) {
+        if (cc.sys.platform === cc.sys.WECHAT_GAME && this.openid != null) {
             this.uploadRankAndGetRank(this.openid, this.resultBonus)
         }
         // 向微信开放数据域传递分数数据
-        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
-            wx.postMessage({ type: 'GAME_OVER' , mark: this.resultBonus })
+        if (cc.sys.platform === cc.sys.WECHAT_GAME) {
+            wx.postMessage({ type: 'GAME_OVER', mark: this.resultBonus })
         }
     },
     showRankAndPause() {
@@ -181,18 +181,22 @@ cc.Class({
         let myRank = res.result.rank
         const unknownNicknames = ['匿名用户']
         res.result.topUsers.forEach(element => {
-            if(curRank == myRank)
+            if (curRank == myRank)
                 element.nickname = "您"
-            else
-                element.nickname=unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length-1))]
+            else {
+                if (element.nickName != null)
+                    element.nickname = element.nickName
+                else
+                    element.nickname = unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length - 1))]
+            }
             curRank++
         })
         curRank = res.result.nearFrontRank
-        res.result.nearUsers.forEach(element=>{
-            if(curRank == myRank)
-            element.nickname = "您"
+        res.result.nearUsers.forEach(element => {
+            if (curRank == myRank)
+                element.nickname = "您"
             else
-                element.nickname=unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length-1))]
+                element.nickname = unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length - 1))]
             curRank++
         })
         this.gameUI.setWorldRank(res.result)

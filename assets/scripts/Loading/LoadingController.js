@@ -12,10 +12,10 @@ cc.Class({
         alertDialog: Alert
     },
 
-    onLoad () {
+    onLoad() {
         var that = this
         cc.loader.downloader.loadSubpackage('res-package', err => {
-            if(err)
+            if (err)
                 console.log(err)
             else {
                 this.progressBar.active = false
@@ -24,7 +24,7 @@ cc.Class({
                 this.loadingLoading.active = false
             }
         })
-        if(cc.sys.platform === cc.sys.WECHAT_GAME) {
+        if (cc.sys.platform === cc.sys.WECHAT_GAME) {
             // 初始化微信云开发
             wx.cloud.init({
                 traceUser: true,
@@ -39,19 +39,19 @@ cc.Class({
                 let width = sysInfo.screenWidth;
                 let height = sysInfo.screenHeight;
                 window.wx.getSetting({
-                    success (res) {
+                    success(res) {
                         console.log(res.authSetting);
                         if (res.authSetting["scope.userInfo"]) {
                             console.log("用户已授权");
                             window.wx.getUserInfo({
-                                success(res){
+                                success(res) {
                                     console.log(res);
                                     exportJson.userInfo = res.userInfo;
                                     // 登陆
-                                    that.login (res.userInfo.nickName)
+                                    that.login(res.userInfo.nickName)
                                 }
                             });
-                        }else {
+                        } else {
                             console.log("用户未授权");
                             let button = window.wx.createUserInfoButton({
                                 type: 'text',
@@ -73,12 +73,12 @@ cc.Class({
                                     console.log("用户授权:", res);
                                     exportJson.userInfo = res.userInfo;
                                     // 登陆
-                                    that.login (res.userInfo.nickName)
+                                    that.login(res.userInfo.nickName)
                                     button.destroy();
-                                }else {
+                                } else {
                                     console.log("用户拒绝授权:", res);
                                     // 匿名登陆
-                                    that.login (null)
+                                    that.login(null)
                                     button.destroy();
                                 }
                             });
@@ -92,7 +92,7 @@ cc.Class({
 
             // 初始化分享
             wx.showShareMenu();
-            cc.loader.loadRes("share.jpg", function(err, data) {
+            cc.loader.loadRes("share.jpg", function (err, data) {
                 wx.onShareAppMessage(() => ({
                     title: "太空弹珠台",
                     imageUrl: data.url
@@ -102,7 +102,7 @@ cc.Class({
         this.progressOri = this.progressBar.x
         this.progress = 0
     },
-    login (nickName) {
+    login(nickName) {
         let that = this
         // 用户登陆, 并获得最高分与排行榜
         this.openid = null
@@ -118,9 +118,9 @@ cc.Class({
         })
     },
     update(dT) {
-        this.progress = this.progress + dT*this.progressBarSpeed
-        while(this.progress>=30) {
-            this.progress-=30
+        this.progress = this.progress + dT * this.progressBarSpeed
+        while (this.progress >= 30) {
+            this.progress -= 30
         }
         this.progressBar.x = this.progressOri + this.progress
     },
@@ -143,18 +143,22 @@ cc.Class({
         let myRank = res.result.rank
         const unknownNicknames = ['匿名用户']
         res.result.topUsers.forEach(element => {
-            if(curRank == myRank)
+            if (curRank == myRank)
                 element.nickname = "您"
-            else
-                element.nickname=unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length-1))]
+            else {
+                if (element.nickName != null)
+                    element.nickname = element.nickName
+                else
+                    element.nickname = unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length - 1))]
+            }
             curRank++
         })
         curRank = res.result.nearFrontRank
-        res.result.nearUsers.forEach(element=>{
-            if(curRank == myRank)
-            element.nickname = "您"
+        res.result.nearUsers.forEach(element => {
+            if (curRank == myRank)
+                element.nickname = "您"
             else
-                element.nickname=unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length-1))]
+                element.nickname = unknownNicknames[Math.floor(Math.random() * (unknownNicknames.length - 1))]
             curRank++
         })
         this.alertDialog.setWorldRank(res.result)
@@ -167,7 +171,7 @@ cc.Class({
     },
     sharing() {
         //主动拉起分享接口
-        cc.loader.loadRes("share.jpg", function(err, data) {
+        cc.loader.loadRes("share.jpg", function (err, data) {
             wx.shareAppMessage({
                 title: "寻找童年回忆 是兄弟就来弹我！",
                 imageUrl: data.url
