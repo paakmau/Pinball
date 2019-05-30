@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.38963763735736834,
-      "y": 0.38963763735736834,
+      "x": 0.5006249217882538,
+      "y": 0.5006249217882538,
       "z": 1
     },
     "_quat": {
@@ -6669,13 +6669,14 @@
       "__id__": 201
     },
     "_enabled": true,
-    "shootPower": 2000,
+    "shootPower": 1000,
     "shootDir": {
       "__type__": "cc.Vec2",
       "x": 0,
       "y": 1
     },
     "touchBallTimeBeforeShoot": 1.5,
+    "randomFactor": 100,
     "_id": "eaCA90OTZGLKBub94oaLzj"
   },
   {
@@ -8586,11 +8587,11 @@
       "__id__": 257
     },
     "_enabled": true,
-    "bombPowerFact": 2000,
+    "bombPowerFact": 1500,
     "springUpSpeed": 0.1,
     "maxAccTime": 0.7,
     "maxDownDis": 100,
-    "ZhenFu": 0.4,
+    "ZhenFu": 0.2,
     "_id": "04D31tKyNKCJ/bRG5oN2Df"
   },
   {

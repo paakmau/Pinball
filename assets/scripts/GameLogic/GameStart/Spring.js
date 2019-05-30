@@ -38,7 +38,7 @@ cc.Class({
                 // this.node.position = this.maxPosition.add(cc.v2(0, this.ZhenFu * Math.sin(this.overTime * 10)))
                 this.over = true
                 this.overTime += dT
-                this.accTime = this.maxAccTime + this.ZhenFu * Math.sin(this.overTime * 10)
+                this.accTime = this.maxAccTime + this.ZhenFu * Math.sin(this.overTime * 5)
             }
             this.node.position = this.originPos.add(cc.v2(0, -this.accTime/this.maxAccTime*this.maxDownDis))
             this.maxPosition = this.node.position
