@@ -131,8 +131,8 @@ cc.Class({
             data: {
                 openid: openid,
                 mark: resultBonus,
-                topUserNum: 3, // 世界排名显示的前几名
-                radiusFront: 1, // 玩家目前排名附近的其他玩家半径
+                topUserNum: 20, // 世界排名显示的前几名
+                radiusFront: 2, // 玩家目前排名附近的其他玩家半径
                 radiusBack: 2
             },
             success: that.onRecieveRank.bind(that)
@@ -141,7 +141,7 @@ cc.Class({
     onRecieveRank(res) {
         let curRank = 1
         let myRank = res.result.rank
-        const unknownNicknames = ['路人甲', '路人丙', '路人乙', '张三', '李四', '赵四', '王五', '卢本伟', '郭逢缘']
+        const unknownNicknames = ['匿名用户']
         res.result.topUsers.forEach(element => {
             if(curRank == myRank)
                 element.nickname = "您"
