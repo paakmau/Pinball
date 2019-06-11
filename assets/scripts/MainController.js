@@ -144,7 +144,6 @@ cc.Class({
     },
 
     gameOver() {
-        var that = this
         this.resultBonus = this.gameData.getBonus()
         this.gameData.resetData()
         this.gameUI.setBonus(this.gameData.getBonus())
