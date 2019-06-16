@@ -11,6 +11,7 @@ var UIController = cc.Class({
         alertDialog: Alert
     },
     onLoad(){
+        var that = this;
         this.mark = 0
         this.setBonus(this.mark)
         // 加载广告
@@ -34,9 +35,30 @@ var UIController = cc.Class({
             comm.bannerAd.onResize(() => {
                 comm.bannerAd.style.left = comm.windowWidth / 2 - 150 + 0.1;
                 comm.bannerAd.style.top = comm.windowHeight - comm.bannerAd.style.realHeight + 0.1;
-            });
+            })
             comm.bannerAd.onError(function (res) {
                 console.log(res);
+            })
+        }
+        // 视频广告
+        if(comm.videoBar_1 == null){
+            comm.videoBar_1 = wx.createRewardedVideoAd({
+                adUnitId: 'adunit-14672b9c5ad64478'
+            })
+            comm.videoBar_1.onError(function(res){
+                console.log("video_1",res);
+            })
+            comm.videoBar_1.onLoad(() => {
+                console.log('复活激励视频 广告加载成功')
+            })
+            comm.videoBar_1.onClose(res => {
+                console.log('第一个视频回调')
+                if (res && res.isEnded || res === undefined) {
+                    console.log("视频回调成功");
+                } else {
+                    console.log("复活视频回调失败");
+                    that.showRank ()
+                }
             })
         }
     },
@@ -46,7 +68,7 @@ var UIController = cc.Class({
         this.mark = value
     },
     gameOver(mark) {
-        this.alertDialog.showGameOver("游戏结束", this.gameResume, mark)
+        this.alertDialog.showGameOver("游戏结束", this.gameResumeAndPlayAd, mark)
         Ad.bannerAd.show()
     },
     setWorldRank(worldRankData) {
@@ -55,8 +77,11 @@ var UIController = cc.Class({
     showRank(callback) {
         this.alertDialog.showGamePause("游戏暂停", callback, this.mark)
     },
-    gameResume () {
+    gameResumeAndPlayAd () {
         Ad.bannerAd.hide()
+        Ad.videoBar_1.load()
+        .then(() => Ad.videoBar_1.show())
+        .catch(err => console.log(err.errMsg));
     }
 })
 
