@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "6faaeea5-d36a-4a81-8cc7-de8b419cc9d8",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "Bean_Pink": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "1edb335c-67b7-491e-8876-1aa390f60ace",
       "rawTextureUuid": "6faaeea5-d36a-4a81-8cc7-de8b419cc9d8",
       "trimType": "auto",

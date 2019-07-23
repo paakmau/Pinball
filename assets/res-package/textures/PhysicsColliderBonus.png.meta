@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "25b94c77-f569-4521-8d87-13fca48b2ffa",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "PhysicsColliderBonus": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "84be44b0-df4a-48fa-963b-8b8a825fec75",
       "rawTextureUuid": "25b94c77-f569-4521-8d87-13fca48b2ffa",
       "trimType": "auto",

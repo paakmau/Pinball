@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "1916c08e-6aa9-499d-b83d-c354321f2cec",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "Edge": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "5eb17ca4-b6ca-466e-9d44-4b602cd36a77",
       "rawTextureUuid": "1916c08e-6aa9-499d-b83d-c354321f2cec",
       "trimType": "auto",

@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "1d073a19-e9c8-401e-9ee2-297702eb4443",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "PotalTrampolineIn": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "07e65704-dd99-4947-a382-7a992d6c21d3",
       "rawTextureUuid": "1d073a19-e9c8-401e-9ee2-297702eb4443",
       "trimType": "auto",

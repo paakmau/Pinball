@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "636c07db-a70c-48e4-b32d-67b5a486b30f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "BallStick": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "3fda9404-6944-42e5-8a44-44dab94af456",
       "rawTextureUuid": "636c07db-a70c-48e4-b32d-67b5a486b30f",
       "trimType": "auto",

@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "7f66f4c8-0c42-4d23-94d3-5151bd01462a",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "PotalWall": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "6c8f7bbb-dc59-4f8d-b12b-d489567365e6",
       "rawTextureUuid": "7f66f4c8-0c42-4d23-94d3-5151bd01462a",
       "trimType": "auto",

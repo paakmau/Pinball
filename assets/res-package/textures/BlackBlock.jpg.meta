@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "186b61ee-467c-483c-aa3a-f106f872ca05",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "BlackBlock": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "c32a5455-1160-4f3a-9388-c103b68df75f",
       "rawTextureUuid": "186b61ee-467c-483c-aa3a-f106f872ca05",
       "trimType": "auto",

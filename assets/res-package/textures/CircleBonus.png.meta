@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "e5101642-c87c-4737-9aca-5d50b481b11e",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "CircleBonus": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "f19c1642-198c-4e80-9368-8773f42d52e7",
       "rawTextureUuid": "e5101642-c87c-4737-9aca-5d50b481b11e",
       "trimType": "auto",

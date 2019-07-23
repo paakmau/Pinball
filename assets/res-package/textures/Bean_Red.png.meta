@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "79f6ec04-037d-4197-a985-e8ce9b8c1c7e",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "Bean_Red": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "84e30181-8088-4d5b-ac34-92207183f2b0",
       "rawTextureUuid": "79f6ec04-037d-4197-a985-e8ce9b8c1c7e",
       "trimType": "auto",
