@@ -43,8 +43,8 @@ var Alert = cc.Class({
         // Loading 第一次打开排名前 this.isUploaded 为 false
         this.startFadeIn()
     },
-    showGameOverWithoutRecover(detailString, mark) {
-        this.resetGameOverDialog(false, detailString, mark)
+    showGameOverWithoutRecover(detailString, mark, normalCallback) {
+        this.resetGameOverDialog(false, detailString, mark, null, null, normalCallback)
     },
     showGameOverWithRecover(detailString, mark, shareCallback, videoCallback, normalCallback) {
         this.resetGameOverDialog(true, detailString, mark, shareCallback, videoCallback, normalCallback)

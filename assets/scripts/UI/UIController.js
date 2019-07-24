@@ -94,8 +94,8 @@ var UIController = cc.Class({
         )
         Ad.bannerAd.show()
     },
-    gameOverWithoutRecover(mark) {
-        this.alertDialog.showGameOverWithoutRecover("游戏结束", mark)
+    gameOverWithoutRecover(mark, normalCallback) {
+        this.alertDialog.showGameOverWithoutRecover("游戏结束", mark, normalCallback)
         Ad.bannerAd.show()
     },
     setWorldRank(worldRankData) {

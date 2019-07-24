@@ -154,10 +154,8 @@ cc.Class({
         this.recoverNum--
         if (this.recoverNum >= 0)
             this.gameUI.gameOverWithRecover(this.resultBonus, this.onCloseGameOverAndShare.bind(this), this.onCloseGameOverAndVideo.bind(this), this.onCloseGameOverAndNormal.bind(this))
-        else {
-            this.recoverNum = 2
-            this.gameUI.gameOverWithoutRecover(this.resultBonus);
-        }
+        else
+            this.gameUI.gameOverWithoutRecover(this.resultBonus, this.onCloseGameOverAndNormal.bind(this));
         // 把得分上传至后端并向UI传入从后端获得的世界排名信息
         if (cc.sys.platform === cc.sys.WECHAT_GAME && this.openid != null) {
             this.uploadRankAndGetRank(this.openid, this.resultBonus)
