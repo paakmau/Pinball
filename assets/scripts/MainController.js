@@ -182,6 +182,7 @@ cc.Class({
     },
     onCloseGameOverAndNormal() {
         this.gameData.resetData()
+        this.gameUI.setBonus(this.gameData.getBonus())
         this.health = 1
     },
     uploadRankAndGetRank(openid, resultBonus) {
