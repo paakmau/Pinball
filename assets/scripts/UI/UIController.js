@@ -1,87 +1,108 @@
 import Alert from "./Alert/Alert"
-var Ad = require("../Ad/ad")
+var Ad = require("./Ad")
 
 var UIController = cc.Class({
     extends: cc.Component,
-    properties:{
+    properties: {
         Bonus: {
             default: null,
             type: cc.Label
         },
         alertDialog: Alert
     },
-    onLoad(){
+    onLoad() {
         var that = this;
         this.mark = 0
         this.setBonus(this.mark)
         // 加载广告
         var comm = Ad
-        // 手机屏幕信息
-        let winSize = wx.getSystemInfoSync();
-        comm.windowWidth = winSize.windowWidth;
-        comm.windowHeight = winSize.windowHeight;
-        console.log(comm.windowWidth, comm.windowHeight);
-        // 广告1和2
-        if (comm.bannerAd == null) {
-            // 广告
-            comm.bannerAd = window.wx.createBannerAd({
-                adUnitId: 'adunit-2eb292b97ccde5a6',
-                style: {
-                    left: comm.windowWidth / 2 - 150,
-                    top: comm.windowHeight - 90,
-                    width: 300,
-                }
-            })
-            comm.bannerAd.onResize(() => {
-                comm.bannerAd.style.left = comm.windowWidth / 2 - 150 + 0.1;
-                comm.bannerAd.style.top = comm.windowHeight - comm.bannerAd.style.realHeight + 0.1;
-            })
-            comm.bannerAd.onError(function (res) {
-                console.log(res);
-            })
-        }
-        // 视频广告
-        if(comm.videoBar_1 == null){
-            comm.videoBar_1 = wx.createRewardedVideoAd({
-                adUnitId: 'adunit-14672b9c5ad64478'
-            })
-            comm.videoBar_1.onError(function(res){
-                console.log("video_1",res);
-            })
-            comm.videoBar_1.onLoad(() => {
-                console.log('复活激励视频 广告加载成功')
-            })
-            comm.videoBar_1.onClose(res => {
-                console.log('第一个视频回调')
-                if (res && res.isEnded || res === undefined) {
-                    console.log("视频回调成功");
-                } else {
-                    console.log("复活视频回调失败");
-                    that.showRank ()
-                }
-            })
+        if (cc.sys.platform == cc.sys.WECHAT_GAME) {
+            // 手机屏幕信息
+            let winSize = wx.getSystemInfoSync();
+            comm.windowWidth = winSize.windowWidth;
+            comm.windowHeight = winSize.windowHeight;
+            console.log(comm.windowWidth, comm.windowHeight);
+            // 广告1和2
+            if (comm.bannerAd == null) {
+                // 广告
+                comm.bannerAd = window.wx.createBannerAd({
+                    adUnitId: 'adunit-2eb292b97ccde5a6',
+                    style: {
+                        left: comm.windowWidth / 2 - 150,
+                        top: comm.windowHeight - 90,
+                        width: 300,
+                    }
+                })
+                comm.bannerAd.onResize(() => {
+                    comm.bannerAd.style.left = comm.windowWidth / 2 - 150 + 0.1;
+                    comm.bannerAd.style.top = comm.windowHeight - comm.bannerAd.style.realHeight + 0.1;
+                })
+                comm.bannerAd.onError(function (res) {
+                    console.log(res);
+                })
+            }
+            // 视频广告
+            if (comm.videoBar_1 == null) {
+                comm.videoBar_1 = wx.createRewardedVideoAd({
+                    adUnitId: 'adunit-14672b9c5ad64478'
+                })
+                comm.videoBar_1.onError(function (res) {
+                    console.log("video_1", res);
+                })
+                comm.videoBar_1.onLoad(() => {
+                    console.log('复活激励视频 广告加载成功')
+                })
+                comm.videoBar_1.onClose(res => {
+                    console.log('第一个视频回调')
+                    if (res && res.isEnded || res === undefined) {
+                        console.log("视频回调成功");
+                    } else {
+                        console.log("复活视频回调失败");
+                        that.showRank()
+                    }
+                })
+            }
         }
     },
     //设置bonus的值。value为int类型
-    setBonus(value){
+    setBonus(value) {
         this.Bonus.string = '得分:  ' + value
         this.mark = value
     },
-    gameOver(mark) {
-        this.alertDialog.showGameOver("游戏结束", this.gameResumeAndPlayAd, mark)
+    gameOverWithRecover(mark, shareCallback, videoCallback, normalCallback) {
+        this.alertDialog.showGameOverWithRecover(
+            "游戏结束",
+            mark,
+            () => {
+                //主动拉起分享接口
+                cc.loader.loadRes("share.jpg", function (err, data) {
+                    wx.shareAppMessage({
+                        title: "寻找童年回忆 是兄弟就来弹我！",
+                        imageUrl: data.url
+                    })
+                })
+                shareCallback()
+            },
+            () => {
+                Ad.bannerAd.hide()
+                Ad.videoBar_1.load()
+                    .then(() => Ad.videoBar_1.show())
+                    .catch(err => console.log(err.errMsg))
+                videoCallback()
+            },
+            normalCallback
+        )
+        Ad.bannerAd.show()
+    },
+    gameOverWithoutRecover(mark) {
+        this.alertDialog.showGameOverWithoutRecover("游戏结束", mark)
         Ad.bannerAd.show()
     },
     setWorldRank(worldRankData) {
         this.alertDialog.setWorldRank(worldRankData)
     },
     showRank(callback) {
-        this.alertDialog.showGamePause("游戏暂停", callback, this.mark)
-    },
-    gameResumeAndPlayAd () {
-        Ad.bannerAd.hide()
-        Ad.videoBar_1.load()
-        .then(() => Ad.videoBar_1.show())
-        .catch(err => console.log(err.errMsg));
+        this.alertDialog.showGamePause("游戏暂停", this.mark, callback)
     }
 })
 

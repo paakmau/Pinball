@@ -167,9 +167,9 @@ cc.Class({
         cc.director.loadScene('GameDemo')
     },
     showRank() {
-        this.alertDialog.showLoadingRank("", null, true)
+        this.alertDialog.showLoadingRank("", this.onShareButtonClicked)
     },
-    sharing() {
+    onShareButtonClicked() {
         //主动拉起分享接口
         cc.loader.loadRes("share.jpg", function (err, data) {
             wx.shareAppMessage({

@@ -96,6 +96,9 @@ cc.Class({
             // 向微信开放数据域传递进入游戏消息
             wx.postMessage({ type: 'GAME_START' })
         }
+        // 复活信息
+        this.recoverNum = 2
+        this.health = 1
         // 球掉落
         this.node.on(BallFallDGEvent.Name, function (event) {
             that.gameOver()
@@ -142,12 +145,19 @@ cc.Class({
             }
         })
     },
-
     gameOver() {
+        this.health--
+        if (this.health >= 1)
+            return
         this.resultBonus = this.gameData.getBonus()
-        this.gameData.resetData()
         this.gameUI.setBonus(this.gameData.getBonus())
-        this.gameUI.gameOver(this.resultBonus)
+        this.recoverNum--
+        if (this.recoverNum >= 1)
+            this.gameUI.gameOverWithRecover(this.resultBonus, this.onCloseGameOverAndShare, this.onCloseGameOverAndVideo, this.onCloseGameOverAndNormal)
+        else {
+            this.recoverNum = 2
+            this.gameUI.gameOverWithoutRecover(this.resultBonus);
+        }
         // 把得分上传至后端并向UI传入从后端获得的世界排名信息
         if (cc.sys.platform === cc.sys.WECHAT_GAME && this.openid != null) {
             this.uploadRankAndGetRank(this.openid, this.resultBonus)
@@ -163,6 +173,16 @@ cc.Class({
     },
     closeRankAndResume() {
         this.gameManager.resume()
+    },
+    onCloseGameOverAndShare() {
+        this.health = 1
+    },
+    onCloseGameOverAndVideo() {
+        this.health = 2
+    },
+    onCloseGameOverAndNormal() {
+        this.gameData.resetData()
+        this.health = 1
     },
     uploadRankAndGetRank(openid, resultBonus) {
         var that = this

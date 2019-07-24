@@ -39,9 +39,9 @@ cc.Class({
         },
         ballStarterNode: cc.Node,
         centralCircleController: CentralCircleController,
-        buttonBonusGroups:{
+        buttonBonusGroups: {
             type: ButtonBonusGroup,
-            default:[]
+            default: []
         },
         upgradableBonusController: {
             type: UpgradableBonusController,
@@ -62,13 +62,13 @@ cc.Class({
         // 观察者模式, 监听子节点的事件
 
         // 小球就绪事件
-        this.node.on(BallReadyGLEvent.Name, function(event) {
+        this.node.on(BallReadyGLEvent.Name, function (event) {
             that.isBallReady = event.isReady
         })
 
         // 小球开始Bomb事件
-        this.node.on(BallStartBombGLEvent.Name, function(event) {
-            if(that.isBallReady) {
+        this.node.on(BallStartBombGLEvent.Name, function (event) {
+            if (that.isBallReady) {
                 that.ball.bomb(event.bombDir)
                 var dGEvent = new BallStartShootEvent()
                 dGEvent.init()
@@ -77,7 +77,7 @@ cc.Class({
         })
 
         // 小球蹦床Bomb事件
-        this.node.on(BallBombTrampolineGLEvent.Name, function(event) {
+        this.node.on(BallBombTrampolineGLEvent.Name, function (event) {
             that.ball.bomb(event.bombDir)
             // cc.log("BallBomb, type:" + event.trampolineType)
             var dGEvent = new TrampolineContactDGEvent()
@@ -86,7 +86,7 @@ cc.Class({
         })
 
         // 小球传送事件
-        this.node.on(BallTransferGLEvent.Name, function(event) {
+        this.node.on(BallTransferGLEvent.Name, function (event) {
             that.ball.transfer(event.pos)
             // cc.log("BallTransfer")
             var dGEvent = new PortalContactDGEvent()
@@ -95,7 +95,7 @@ cc.Class({
         })
 
         // 获得Bonus事件
-        this.node.on(BonusGainGLEvent.Name, function(event) {
+        this.node.on(BonusGainGLEvent.Name, function (event) {
             // cc.log("BonusGain "+event.factor)
             var dGEvent = new BonusGainDGEvent()
             dGEvent.init(event.factor)
@@ -103,13 +103,13 @@ cc.Class({
         })
 
         // 可升级Bonus升级事件
-        this.node.on(UpgradableBonusUpgradeGLEvent.Name, function(event) {
+        this.node.on(UpgradableBonusUpgradeGLEvent.Name, function (event) {
             // cc.log("UpgradableBonus Upgraded, name:" + event.bonusName + ", level: " + event.level)
             that.centralCircleController.setOuterLight(event.level, event.mxLevel)
         })
 
         // GameOver事件
-        this.node.on(GameOverGLEvent.Name, function(event) {
+        this.node.on(GameOverGLEvent.Name, function (event) {
             that.ball.transfer(that.ballStarterWorldCenter)
             that.ball.restart()
             // cc.log("Game Over")
@@ -117,7 +117,7 @@ cc.Class({
             dGEvent.init()
             that.node.dispatchEvent(dGEvent)
             that.centralCircleController.blinkRedLight()
-            for(var i = 0; i < that.buttonBonusGroups.length;i++){
+            for (var i = 0; i < that.buttonBonusGroups.length; i++) {
                 that.buttonBonusGroups[i].reset();
             }
             that.upgradableBonusController.reset();
@@ -125,7 +125,7 @@ cc.Class({
         })
 
         // RacketPunch事件
-        this.node.on(RacketPunchGLEvent.Name, function(event) {
+        this.node.on(RacketPunchGLEvent.Name, function (event) {
             // cc.log("Racket has punched!")
             var dGEvent = new RacketPunchDGEvent()
             dGEvent.init()
@@ -133,20 +133,20 @@ cc.Class({
         })
 
         // 进入黑洞事件
-        this.node.on(BlackHoleInGLEvent.Name, function(event) {
+        this.node.on(BlackHoleInGLEvent.Name, function (event) {
             that.ball.goIntoBlackHole(event.pos)
             // cc.log("Go Into Black Hole")
         })
 
         // 脱离黑洞事件
-        this.node.on(BlackHoleOutGLEvent.Name, function(event) {
+        this.node.on(BlackHoleOutGLEvent.Name, function (event) {
             that.ball.goOutOfBlackHole(event.pos, event.bombDir)
             // cc.log("Go Out Of Black Hole")
         })
 
         //centralcircle碰撞事件
-        this.node.on(CentralCircleCollideGLEvent.Name, function(event){
-            cc.log("CentralCircle Collide")
+        this.node.on(CentralCircleCollideGLEvent.Name, function (event) {
+            // cc.log("CentralCircle Collide")
             that.ball.faster()
             that.centralCircleController.addInnerLight()
         })

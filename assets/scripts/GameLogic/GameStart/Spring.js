@@ -47,7 +47,7 @@ cc.Class({
     },
     springDown(){
         this.isPressed = true
-        cc.log("spring down")
+        // cc.log("spring down")
     },
     springUp(){
         this.isPressed = false
@@ -55,12 +55,12 @@ cc.Class({
         moveToAction.easing(cc.easeIn(5.0))
         var action = cc.sequence(moveToAction, cc.callFunc(this.onSpringUpEnd, this))
         this.node.runAction(action)
-        cc.log("spring up")
+        // cc.log("spring up")
     },
     onSpringUpEnd() {
         var event = new BombStartBombGLEvent()
         event.init(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact))
-        cc.log(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).y)
+        // cc.log(cc.v2(0, 1).mul(this.accTime * this.bombPowerFact).y)
         this.node.dispatchEvent(event)
         this.accTime = 0
         this.overTime = 0

@@ -1,30 +1,30 @@
 var DataContainer = cc.Class({
     extends: cc.Component,
-    properties:{
+    properties: {
     },
-    onLoad(){
+    onLoad() {
         this.bonus = 0;
         this.portalTimes = 0;
         this.trampolineTimes = 0;
     },
 
-    resetData(){
+    resetData() {
         this.bonus = 0;
         this.portalTimes = 0;
         this.trampolineTimes = 0;
-        cc.log("resetData");
+        // cc.log("resetData");
     },
 
-    trampolineContact(){
+    trampolineContact() {
         this.trampolineTimes++;
-        cc.log("Trampoline Contact = " + this.trampolineTimes);
+        // cc.log("Trampoline Contact = " + this.trampolineTimes);
     },
-    bonusGain(value){
+    bonusGain(value) {
         this.bonus += value;
-        cc.log("get bonus:" + value + ", all bonus = " + this.bonus);
+        // cc.log("get bonus:" + value + ", all bonus = " + this.bonus);
         return this.bonus;
     },
-    getBonus(){
+    getBonus() {
         return this.bonus;
     }
 

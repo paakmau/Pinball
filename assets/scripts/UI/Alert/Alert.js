@@ -5,7 +5,6 @@ import RankController from './RankController'
  * 管理游戏结束对话框的出现和隐藏
  * 
  * detailString :   内容 string 类型.
- * exitCallBack:    退出事件回调  function 类型.
  * neeCancel:       是否展示取消按钮 bool 类型 default YES.
  * duration:        动画速度 default = 0.3.
 */
@@ -15,7 +14,9 @@ var Alert = cc.Class({
     properties: {
         detailLabel: cc.Label,
         cancelButton: cc.Node,
-        enterButton: cc.Node,
+        cancelButtonText: cc.Label,
+        shareButton: cc.Node,
+        videoButton: cc.Node,
         outBackground: cc.Node,
         animSpeed: 0.5,
         rankController: RankController
@@ -34,31 +35,37 @@ var Alert = cc.Class({
         self.actionFadeIn = cc.sequence(cc.spawn(cc.fadeTo(self.animSpeed, 255), cc.scaleTo(self.animSpeed, 1.0)), cbFadeIn)
         self.actionFadeOut = cc.sequence(cc.spawn(cc.fadeTo(self.animSpeed, 0), cc.scaleTo(self.animSpeed, 1.2)), cbFadeOut)
     },
-    showLoadingRank(detailStr, exitCallBack) {
-        this.configAlert(detailStr, exitCallBack, false)
+    showLoadingRank(detailStr, shareCallback) {
+        this.configAlert(true, false, false, "确定", detailStr, shareCallback)
         this.rankController.initLoading()
         this.isShow = true
         this.isShowRankList = true
         // Loading 第一次打开排名前 this.isUploaded 为 false
         this.startFadeIn()
     },
-    showGameOver(detailString, exitCallBack, mark) {
-        this.configAlert(detailString, exitCallBack, false)
+    showGameOverWithoutRecover(detailString, mark) {
+        this.resetGameOverDialog(false, detailString, mark)
+    },
+    showGameOverWithRecover(detailString, mark, shareCallback, videoCallback, normalCallback) {
+        this.resetGameOverDialog(true, detailString, mark, shareCallback, videoCallback, normalCallback)
+    },
+    showGamePause(detailString, mark, exitCallBack) {
+        this.configAlert(false, false, true, "继续", detailString, null, null, exitCallBack)
+        // 设置mark
+        this.rankController.initGamePause(mark)
+        // 设置rank
+        this.isShow = true
+        this.isShowRankList = true
+        this.startFadeIn()
+    },
+    resetGameOverDialog(withRecover, detailStr, mark, shareCallback, videoCallback, normalCallback) {
+        this.configAlert(withRecover, withRecover, true, "下一局", detailStr, shareCallback, videoCallback, normalCallback)
         // 设置mark
         this.rankController.initGameOver(mark)
         // 因为分数未上传不能立刻设置rank
         this.isShow = true
         this.isShowRankList = true
         this.isUploaded = false
-        this.startFadeIn()
-    },
-    showGamePause(detailString, exitCallBack, mark) {
-        this.configAlert(detailString, exitCallBack, false)
-        // 设置mark
-        this.rankController.initGamePause(mark)
-        // 设置rank
-        this.isShow = true
-        this.isShowRankList = true
         this.startFadeIn()
     },
     setWorldRank(worldRankData) {
@@ -73,10 +80,18 @@ var Alert = cc.Class({
             this.rankController.releaseRankList()
     },
     onExitButtonClicked: function (event) {
-        if (event.currentTarget == this.enterButton)
-            this.sharing ()
         if (this.exitCallBack)
             this.exitCallBack()
+        this.startFadeOut()
+    },
+    onShareButtonClicked: function () {
+        if (this.shareCallback)
+            this.shareCallback()
+        this.startFadeOut()
+    },
+    onVideoButtonClicked: function () {
+        if (this.videoCallback)
+            this.videoCallback()
         this.startFadeOut()
     },
     // 执行弹进动画
@@ -107,21 +122,24 @@ var Alert = cc.Class({
             wx.postMessage({ type: 'GAME_RESUME' })
         }
     },
-    configAlert: function (detailString, exitCallBack, needCancel) {
+    configAlert: function (hasShare, hasVideo, hasExit, cancelStr, detailStr, shareCallback, videoCallback, normalCallback) {
+        // 分享与视频按钮
+        if (this.shareButton)
+            this.shareButton.active = hasShare
+        if (this.videoButton)
+            this.videoButton.active = hasVideo
+        if (this.cancelButton)
+            this.cancelButton.active = hasExit
+        if (this.cancelButtonText)
+            this.cancelButtonText.string = cancelStr
 
         // 回调
-        this.exitCallBack = exitCallBack
+        this.shareCallback = shareCallback
+        this.videoCallback = videoCallback
+        this.normalCallback = normalCallback
 
-        // 内容
-        this.detailLabel.string = detailString
-
-        // 是否需要取消按钮
-        if (needCancel || needCancel == undefined) { // 显示
-            this.cancelButton.active = true
-        } else {  // 隐藏
-            this.cancelButton.active = false
-            this.enterButton.x = 0
-        }
+        // 标题内容
+        this.detailLabel.string = detailStr
     },
     update(dT) {
         if (this.isShowRankList != this.curIsShowRankList && this.isUploaded) {
@@ -129,15 +147,6 @@ var Alert = cc.Class({
             this.setWorldRankShow()
         }
     },
-    sharing() {
-        //主动拉起分享接口
-        cc.loader.loadRes("share.jpg", function(err, data) {
-            wx.shareAppMessage({
-                title: "寻找童年回忆 是兄弟就来弹我！",
-                imageUrl: data.url
-            })
-        });
-    }
 })
 
 module.exports = Alert
