@@ -133,6 +133,14 @@ var Alert = cc.Class({
         if (this.cancelButtonText)
             this.cancelButtonText.string = cancelStr
 
+        // 特殊处理只有退出按钮的情况
+        if (this.cancelButton) {
+            if (!hasShare && !hasVideo && hasExit)
+                this.cancelButton.node.y = -313
+            else
+                this.cancelButton.node.y = -381
+        }
+
         // 回调
         this.shareCallback = shareCallback
         this.videoCallback = videoCallback
