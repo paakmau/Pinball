@@ -14089,7 +14089,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 520,
-      "height": 1000
+      "height": 900
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -14164,7 +14164,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 427.8,
+      "y": 377.8,
       "z": 0
     },
     "_scale": {
@@ -14301,7 +14301,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 130,
+      "y": 104.978,
       "z": 0
     },
     "_scale": {
@@ -15901,7 +15901,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 250,
-      "height": 68
+      "height": 55
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -15911,7 +15911,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -260,
+      "y": -246.644,
       "z": 0
     },
     "_scale": {
@@ -16165,7 +16165,7 @@
     "_left": 464,
     "_right": 0,
     "_top": 0,
-    "_bottom": 206,
+    "_bottom": 175.85600000000002,
     "_verticalCenter": 0,
     "_horizontalCenter": -120,
     "_isAbsLeft": true,
@@ -16231,7 +16231,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 250,
-      "height": 68
+      "height": 55
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -16241,7 +16241,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -340,
+      "y": -313.056,
       "z": 0
     },
     "_scale": {
@@ -16598,7 +16598,7 @@
     "_left": 464,
     "_right": 0,
     "_top": 0,
-    "_bottom": 126,
+    "_bottom": 109.44400000000002,
     "_verticalCenter": 0,
     "_horizontalCenter": -120,
     "_isAbsLeft": true,
@@ -16661,7 +16661,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 250,
-      "height": 65
+      "height": 55
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -16671,7 +16671,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -420,
+      "y": -381.262,
       "z": 0
     },
     "_scale": {
@@ -16925,7 +16925,7 @@
     "_left": 0,
     "_right": 464,
     "_top": 0,
-    "_bottom": 47.5,
+    "_bottom": 41.238,
     "_verticalCenter": 0,
     "_horizontalCenter": 120,
     "_isAbsLeft": true,

@@ -16,6 +16,8 @@ var UIController = cc.Class({
         this.setBonus(this.mark)
         // 加载广告
         var comm = Ad
+        this.videoCallback = null
+        this.normalCallback = null
         if (cc.sys.platform == cc.sys.WECHAT_GAME) {
             // 手机屏幕信息
             let winSize = wx.getSystemInfoSync();
@@ -55,10 +57,13 @@ var UIController = cc.Class({
                 comm.videoBar_1.onClose(res => {
                     console.log('第一个视频回调')
                     if (res && res.isEnded || res === undefined) {
-                        console.log("视频回调成功");
+                        console.log("复活视频看完")
+                        if (that.videoCallback)
+                            that.videoCallback()
                     } else {
-                        console.log("复活视频回调失败");
-                        that.showRank()
+                        console.log("复活视频被终止")
+                        if (that.normalCallback)
+                            that.normalCallback()
                     }
                 })
             }
@@ -74,6 +79,7 @@ var UIController = cc.Class({
             "游戏结束",
             mark,
             () => {
+                Ad.bannerAd.hide()
                 //主动拉起分享接口
                 cc.loader.loadRes("share.jpg", function (err, data) {
                     wx.shareAppMessage({
@@ -85,17 +91,24 @@ var UIController = cc.Class({
             },
             () => {
                 Ad.bannerAd.hide()
+                this.videoCallback = videoCallback
+                this.normalCallback = normalCallback
                 Ad.videoBar_1.load()
                     .then(() => Ad.videoBar_1.show())
                     .catch(err => console.log(err.errMsg))
-                videoCallback()
             },
-            normalCallback
+            () => {
+                Ad.bannerAd.hide()
+                normalCallback()
+            }
         )
         Ad.bannerAd.show()
     },
     gameOverWithoutRecover(mark, normalCallback) {
-        this.alertDialog.showGameOverWithoutRecover("游戏结束", mark, normalCallback)
+        this.alertDialog.showGameOverWithoutRecover("游戏结束", mark, () => {
+            Ad.bannerAd.hide()
+            normalCallback()
+        })
         Ad.bannerAd.show()
     },
     setWorldRank(worldRankData) {
