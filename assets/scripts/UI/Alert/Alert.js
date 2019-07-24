@@ -49,8 +49,8 @@ var Alert = cc.Class({
     showGameOverWithRecover(detailString, mark, shareCallback, videoCallback, normalCallback) {
         this.resetGameOverDialog(true, detailString, mark, shareCallback, videoCallback, normalCallback)
     },
-    showGamePause(detailString, mark, exitCallBack) {
-        this.configAlert(false, false, true, "继续", detailString, null, null, exitCallBack)
+    showGamePause(detailString, mark, normalCallback) {
+        this.configAlert(false, false, true, "继续", detailString, null, null, normalCallback)
         // 设置mark
         this.rankController.initGamePause(mark)
         // 设置rank
@@ -80,8 +80,8 @@ var Alert = cc.Class({
             this.rankController.releaseRankList()
     },
     onExitButtonClicked: function (event) {
-        if (this.exitCallBack)
-            this.exitCallBack()
+        if (this.normalCallback)
+            this.normalCallback()
         this.startFadeOut()
     },
     onShareButtonClicked: function () {

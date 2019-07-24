@@ -153,7 +153,7 @@ cc.Class({
         this.gameUI.setBonus(this.gameData.getBonus())
         this.recoverNum--
         if (this.recoverNum >= 1)
-            this.gameUI.gameOverWithRecover(this.resultBonus, this.onCloseGameOverAndShare, this.onCloseGameOverAndVideo, this.onCloseGameOverAndNormal)
+            this.gameUI.gameOverWithRecover(this.resultBonus, this.onCloseGameOverAndShare.bind(this), this.onCloseGameOverAndVideo.bind(this), this.onCloseGameOverAndNormal.bind(this))
         else {
             this.recoverNum = 2
             this.gameUI.gameOverWithoutRecover(this.resultBonus);
