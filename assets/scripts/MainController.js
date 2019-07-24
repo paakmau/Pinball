@@ -152,7 +152,7 @@ cc.Class({
         this.resultBonus = this.gameData.getBonus()
         this.gameUI.setBonus(this.gameData.getBonus())
         this.recoverNum--
-        if (this.recoverNum >= 1)
+        if (this.recoverNum >= 0)
             this.gameUI.gameOverWithRecover(this.resultBonus, this.onCloseGameOverAndShare.bind(this), this.onCloseGameOverAndVideo.bind(this), this.onCloseGameOverAndNormal.bind(this))
         else {
             this.recoverNum = 2
@@ -183,6 +183,7 @@ cc.Class({
     onCloseGameOverAndNormal() {
         this.gameData.resetData()
         this.gameUI.setBonus(this.gameData.getBonus())
+        this.recoverNum = 2
         this.health = 1
     },
     uploadRankAndGetRank(openid, resultBonus) {
