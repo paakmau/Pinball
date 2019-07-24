@@ -135,10 +135,14 @@ var Alert = cc.Class({
 
         // 特殊处理只有退出按钮的情况
         if (this.cancelButton) {
-            if (!hasShare && !hasVideo && hasExit)
+            if (!hasShare && !hasVideo && hasExit) {
+                this.cancelButton.height = 80
                 this.cancelButton.y = -313
-            else
+            }
+            else { 
+                this.cancelButton.height = 55
                 this.cancelButton.y = -381
+            }
         }
 
         // 回调
